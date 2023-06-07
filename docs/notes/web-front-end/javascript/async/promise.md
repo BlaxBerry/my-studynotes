@@ -1,10 +1,10 @@
-# Promise
+# JavaScript Promise
 
 ## 简介
 
 Promise 是 JavaScript 中解决异步编程的一种方案，由 ES6 提出
 
-可替代以往回调函数和事件的异步任务处理方式，可有效解决回调深层嵌套时的回调地狱问题
+可替代以往回调函数和事件的方式来处理异步任务，并有效解决回调函数深层嵌套时的回调地狱问题
 
 ::: tip
 
@@ -71,7 +71,7 @@ button.addEventListener("click", () =>
 
 Promise 实例通过调用 [Promise 对象（构造函数）](#promise-对象)生成
 
-**可理解为就是一个 Promise 处理异步操作**
+**可理解为就是一个由 Promise 处理的异步操作**
 
 该异步任务由 Promise 对象的 [executor 执行器函数](#executor-执行器函数) 定义，并通过 Promise 实例（原型）上的方法可对异步任务的不同的[执行状态](#执行状态)、[处理结果](#执行结果)进行对应处理
 
@@ -384,7 +384,7 @@ Promise实例.then((resolved) => {
 
 Promise 对象是一个构造函数，用来生成 [Promise 实例](#promise-实例)
 
-该构造函数内包裹要处理的异步任务，调用该构造函数生成的 Promise 实例可理解为一个异步操作
+该构造函数内包裹要由 Promise 处理的异步任务，异步任务由构造函数内的[executor 执行器函数](#executor-执行器函数)定义
 
 > Promise 对象调用等相关 [详见上文](#promise-实例)
 
@@ -515,7 +515,9 @@ const p = new Promise((resolve, reject) => reject(异步失败时的返回值));
 
 ### Promise.try()
 
-## PromiseLike 接口
+## 自定义 Promise
+
+### PromiseLike 接口
 
 > TS 内置类型，是 ES5 标准库中的一个 interface 接口，
 >
@@ -538,7 +540,7 @@ interface PromiseLike<T> {
 }
 ```
 
-## 手写 Promise 构造函数
+### 手写 Promise
 
 ::: code-group
 
@@ -717,4 +719,10 @@ const p = doSomethingAsync(false)
 
 :::
 
-## 异步的中断 abortControll <Badge type="danger" text="FIXME" />
+## Promise 中断
+
+详见 [AbortController](../web-apis/AbortController.md)
+
+## Promise 异步转同步
+
+详见 [async...await...](./async-await.md)
