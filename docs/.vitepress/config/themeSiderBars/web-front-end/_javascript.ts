@@ -5,8 +5,9 @@ export default [
     text: "JS 基础",
     collapsed: true,
     items: [
-      { text: "堆、栈", link: `${PATH}` },
-      { text: "数据类型", link: `${PATH}` },
+      { text: "堆、栈", link: `${PATH}/ecma-script/stack-heap` },
+      { text: "数据类型", link: `${PATH}/ecma-script/data-type` },
+      { text: "运算符", link: `${PATH}/ecma-script/operators` },
       { text: "函数", link: `${PATH}/ecma-script/functions` },
     ],
   },
@@ -34,9 +35,7 @@ export default [
   {
     text: "JS 面向对象",
     collapsed: true,
-    items: [
-      { text: "Class 类", link: `${PATH}/oop/class` },
-    ],
+    items: [{ text: "Class 类", link: `${PATH}/oop/class` }],
   },
   {
     text: "JS 模块化",

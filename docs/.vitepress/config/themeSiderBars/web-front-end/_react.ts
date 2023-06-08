@@ -4,10 +4,7 @@ export default [
   {
     text: "React 基础",
     collapsed: true,
-    items: [
-      { text: "JSX 基础", link: `${PATH}/jsx/` },
-      { text: "React 与 TypeScript", link: `${PATH}/react-with-ts/` },
-    ],
+    items: [{ text: "JSX 基础", link: `${PATH}/jsx/` }],
   },
   {
     text: "React 内置 API",
