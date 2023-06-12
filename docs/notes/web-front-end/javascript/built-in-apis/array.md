@@ -1,1 +1,1 @@
-# JavaScript Array
+# JS Array

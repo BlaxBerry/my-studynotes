@@ -1,4 +1,4 @@
-# JavaScript Object
+# JS Object
 
 ### Object.entries()
 

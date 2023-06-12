@@ -24,6 +24,11 @@ export default [
     ],
   },
   {
+    text: "JS 面向对象",
+    collapsed: true,
+    items: [{ text: "Class 类", link: `${PATH}/oop/class` }],
+  },
+  {
     text: "JS 异步编程",
     collapsed: true,
     items: [
@@ -31,11 +36,6 @@ export default [
       { text: "async...await...", link: `${PATH}/async/async-await` },
       { text: "Generator", link: `${PATH}/async/generator` },
     ],
-  },
-  {
-    text: "JS 面向对象",
-    collapsed: true,
-    items: [{ text: "Class 类", link: `${PATH}/oop/class` }],
   },
   {
     text: "JS 模块化",

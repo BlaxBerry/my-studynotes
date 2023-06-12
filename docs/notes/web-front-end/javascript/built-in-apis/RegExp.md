@@ -1,1 +1,1 @@
-# JavaScript RegExp
+# JS RegExp

@@ -1,1 +1,1 @@
-# JavaScript Fetch
+# JS Fetch

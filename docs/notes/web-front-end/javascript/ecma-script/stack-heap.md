@@ -1,4 +1,4 @@
-# JavaScript 栈、堆
+# JS 栈、堆
 
 ## 栈 ( Stack )
 

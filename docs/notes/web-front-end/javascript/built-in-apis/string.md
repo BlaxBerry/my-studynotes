@@ -1,1 +1,1 @@
-# JavaScript String
+# JS String

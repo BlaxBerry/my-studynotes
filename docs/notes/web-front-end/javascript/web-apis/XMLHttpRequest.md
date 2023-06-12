@@ -1,1 +1,1 @@
-# JavaScript XMLHttpRequest
+# JS XMLHttpRequest

@@ -1,1 +1,1 @@
-# JavaScript 函数
+# JS 函数

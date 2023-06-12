@@ -1,4 +1,4 @@
-# JavaScript Storage
+# JS Storage
 
 ## localStorage()
 
