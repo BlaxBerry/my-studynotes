@@ -38,11 +38,11 @@ export default [
     ],
   },
   {
-    text: "JS 模块化",
+    text: "JS 模块化编程",
     collapsed: true,
     items: [
-      { text: "ES Module", link: `${PATH}/module-dev/es-module` },
       { text: "CommonJS", link: `${PATH}/module-dev/common-js` },
+      { text: "ES Modules", link: `${PATH}/module-dev/es-modules` },
     ],
   },
   {
