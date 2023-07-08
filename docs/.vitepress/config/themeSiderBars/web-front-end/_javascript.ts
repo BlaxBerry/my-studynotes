@@ -19,6 +19,7 @@ export default [
       { text: "String", link: `${PATH}/built-in-apis/String` },
       { text: "Object", link: `${PATH}/built-in-apis/Object` },
       { text: "Number", link: `${PATH}/built-in-apis/Number` },
+      { text: "Symbol", link: `${PATH}/built-in-apis/Symbol` },
       { text: "RegExp", link: `${PATH}/built-in-apis/RegExp` },
       { text: "Date", link: `${PATH}/built-in-apis/Date` },
     ],
@@ -26,14 +27,16 @@ export default [
   {
     text: "JS 面向对象",
     collapsed: true,
-    items: [{ text: "Class 类", link: `${PATH}/oop/class` }],
+    items: [
+      { text: "原型、原型链", link: `${PATH}/oop/prototype` },
+      { text: "Class 类", link: `${PATH}/oop/class` },
+    ],
   },
   {
     text: "JS 异步编程",
     collapsed: true,
     items: [
       { text: "Promise", link: `${PATH}/async/promise` },
-      { text: "async...await...", link: `${PATH}/async/async-await` },
       { text: "Generator", link: `${PATH}/async/generator` },
     ],
   },

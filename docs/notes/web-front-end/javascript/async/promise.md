@@ -112,7 +112,7 @@ const Promise实例 = new Promise((resolve, reject) => {
 
 executor 执行器函数是调用 [Promise 对象（构造函数）](#promise-对象)创建 Promise 实例时必须传入的参数
 
-**executor 执行器函数体就是由 Promise 处理的异步任务**
+即，**executor 执行器函数体就是由 Promise 处理的异步任务**
 
 ::: code-group
 
@@ -221,11 +221,13 @@ promiseInstance.catch(() => {
 
 :::
 
-::: tip 立即执行
+::: details 执行时机
 
 executor 执行器函数在调用`new Promise()`时会立即执行
 
 即，Promise 处理的异步在调用构造函数时会立即执行
+
+[详见下文](#promise-执行时机)
 
 ::: code-group
 
@@ -518,6 +520,25 @@ Promise.any([a, b, c, d])
 
 :::
 
+::: details 例：执行异步任务时必须等待指定时间后才执行
+
+比如可用于模块的自定义延迟导入
+
+> 如下：React 组件懒加载自定义延迟 3s，[详见`React.lazy()`](../../react/built-in-apis/methods.md#lazy)
+
+```js
+import React from "react";
+
+const lazyComponent = React.lazy(() =>
+  Promise.all([
+    import("组件路径"),
+    new Promise((resolve) => setTimeout(resolve, 3000)),
+  ]).then(([moduleExports]) => moduleExports)
+);
+```
+
+:::
+
 ---
 
 ### Promise.race()
@@ -534,6 +555,11 @@ const promise实例 = Promise.race([
 
 ::: tip 谁先完成就用谁
 
+返回值 Promise 实例的状态取决于参数序列中第一个完成的异步任务
+
+- **第一个完成的异步任务为 resolved 时**：返回值 Promise 实例状态为 resolved
+- **第一个完成的异步任务为 rejected 时**：返回值 Promise 实例状态为 rejected
+
 ::: code-group
 
 ```js [全部成功<Badge>Resolved</Badge>]
@@ -543,7 +569,7 @@ const c = new Promise((resolve) => setTimeout(() => resolve("cc"), 2000));
 const d = new Promise((resolve) => setTimeout(() => resolve("dd"), 1000));
 
 Promise.race([a, b, c, d]).then((res) => console.log(res));
-// dd
+// 1s 后打印："dd"
 ```
 
 ```js [全部失败<Badge type="danger">Resolved</Badge>]
@@ -553,7 +579,65 @@ const c = new Promise((_, reject) => setTimeout(() => reject("cc"), 2000));
 const d = new Promise((_, reject) => setTimeout(() => reject("dd"), 1000));
 
 Promise.race([a, b, c, d]).catch((err) => console.log(err));
-// dd
+// 1s 后打印："dd"
+```
+
+```js [有成功也有失败]
+const a = new Promise((resolve) => setTimeout(() => resolve("aa"), 4000));
+const b = new Promise((_, reject) => setTimeout(() => reject("bb"), 3000));
+const c = new Promise((_, reject) => setTimeout(() => reject("cc"), 2000));
+const d = new Promise((resolve) => setTimeout(() => resolve("dd"), 1000));
+
+Promise.race([a, b, c, d])
+  .then((res) => console.log(`resolved ${res}`))
+  .catch((err) => console.log(`rejected ${err}`));
+// 1s 后打印："resolved dd"
+```
+
+```js [有成功也有失败]
+const a = new Promise((resolve) => setTimeout(() => resolve("aa"), 4000));
+const b = new Promise((resolve) => setTimeout(() => resolve("bb"), 3000));
+const c = new Promise((resolve) => setTimeout(() => resolve("cc"), 2000));
+const d = new Promise((_, reject) => setTimeout(() => reject("dd"), 1000));
+
+Promise.race([a, b, c, d])
+  .then((res) => console.log("resolved", res))
+  .catch((err) => console.log("rejected", err));
+// 1s 后打印："rejected dd"
+```
+
+:::
+
+::: details 例：执行异步任务时只要超过指定时间就立刻结束执行
+
+比如可用于网络请求
+
+> 如下：超过 3s 就立刻结束异步任务的执行，并报错
+
+::: code-group
+
+```js [多个任务]
+const p1 = new Promise((resolve) => setTimeout(() => resolve("p1"), 4000));
+const p2 = new Promise((resolve) => setTimeout(() => resolve("p2"), 5000));
+
+Promise.race([
+  p1,
+  p2,
+  new Promise((_, reject) => setTimeout(() => reject("超时了"), 3000)),
+])
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err)); // 3s后打印："超时了"
+```
+
+```js [一个任务]
+const p = new Promise((resolve) => setTimeout(() => resolve("p1"), 4000));
+
+Promise.race([
+  p1,
+  new Promise((_, reject) => setTimeout(() => reject("超时了"), 3000)),
+])
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err)); // 3s后打印："超时了"
 ```
 
 :::
@@ -561,6 +645,31 @@ Promise.race([a, b, c, d]).catch((err) => console.log(err));
 ---
 
 ### Promise.allSettled() <Badge type="danger" text="FIXME"/>
+
+用于处理一组 Promise 任务序列
+
+参数接收一个 Promise 任务数组，返回值为一个包含所有异步任务状态和结果的对象数组
+
+无论序列中异步任务结果是否成功，执行不会中途失败
+
+```js{0}
+const a = Promise.resolve("aa");
+const b = Promise.reject("bb");
+const c = Promise.resolve("bb");
+const d = Promise.reject("dd");
+
+Promise.allSettled([a, b, c, d])
+  .then((res) => console.log(res))
+
+/*
+[
+  { status: 'fulfilled', value: 'aa' },
+  { status: 'rejected', reason: 'bb' },
+  { status: 'fulfilled', value: 'bb' },
+  { status: 'rejected', reason: 'dd' }
+]
+*/
+```
 
 ---
 
@@ -878,48 +987,25 @@ Promise实例
 
 链式调用是指 Promise 实例在调用其实例方法后可继续调用实例方法
 
-```js{0}
-Promise实例
-  .then(res => {
-    // ...
-    return 返回值
-  })
-  .then(res => {/**/})
-  .catch(err => {
-    // ...
-    throw new Error(错误对象)
-  })
-  .catch(err => {/**/})
-  .finally(() => {/**/})
-```
-
 因为 Promise 实例方法的返回值是个新的 Promise 实例，所以返回值任可使用实例原型上的方法
 
-```js
-// 成功状态的
-const 新的Promise实例 = Promise实例.then((res) => {
-  return 执行结果返回值;
-});
-
-// 失败状态的
-const 新的Promise实例 = Promise实例.then(undefined, (err) => {
-  throw new Error();
-});
-const 新的Promise实例 = Promise实例.catch((err) => {
-  throw new Error();
-});
-```
-
-### 链式调用转同步
-
-详见 [async...await...](./async-await.md)
+Promise 实例方法的链式调可通过[`async...await...`](#async-await)转为同步执行
 
 ::: code-group
+
+```js{0} [链式调用]
+Promise实例
+  .then((result) => {/* 处理 */})
+  .then((result) => {/* 处理 */})
+  .catch((reason) =>{/* 处理 */})
+  .catch((reason) =>{/* 处理 */})
+  .finally(() =>{/* 处理 */})
+```
 
 ```js [async...await...]
 async function doSomething() {
   try {
-    const result = await promiseInstance();
+    const result = await 获取Promise实例的函数;
     /* 同步处理 */
     /* 同步处理 */
   } catch (error) {
@@ -928,11 +1014,91 @@ async function doSomething() {
 }
 ```
 
-```js{0} [链式调用]
-promiseInstance
-  .then((result) => {/* 处理 */})
-  .catch((reason) =>{/* 处理 */})
-  .finally(() =>{/* 处理 */})
+:::
+
+::: details `then()`的链式调用
+
+详见上文实例方法[`then()`](#then)
+
+::: code-group
+
+```js{0} [使用]
+成功的Promise实例
+  .then((res) => {
+    return 返回值;
+  })
+  .then((res) => {
+    console.log(res); // 上一个 then() 的返回值
+    return 返回值;
+  })
+  .then((res) => {
+    console.log(res); // 上一个 then() 的返回值
+  })
+  .then((res) => {
+    console.log(res); // undefined
+  })
+```
+
+```js [例子]
+Promise.resolve(1)
+  .then((res) => {
+    console.log(res); // 1
+    return (res += 1);
+  })
+  .then((res) => {
+    console.log(res); // 2
+    return (res += 1);
+  })
+  .then((res) => {
+    console.log(res); // 3
+  })
+  .then((res) => {
+    console.log(res); // [!code hl] // undefined
+  });
+```
+
+:::
+
+::: details `catch()`的链式调用
+
+详见上文实例方法[`catch()`](#catch)
+
+::: code-group
+
+```js{0} [使用]
+失败的Promise实例
+  .catch((err) => {
+    console.log(err); // 异常
+    throw new Error("错误信息");
+  })
+  .catch((err) => {
+    console.log(err); // 上一 catch() 抛出的异常
+    throw new Error("错误信息");
+  })
+  .catch((err) => {
+    console.log(err);  // 上一 catch() 抛出的异常
+  })
+  .catch((err) => {
+    console.log(err); // [!code hl] // 因为没有捕获到任何错误异常，不打印
+  });
+```
+
+```js [例子]
+Promise.reject("xxx")
+  .catch((err) => {
+    console.log(1, err); // "xxx"
+    throw new Error("aaa");
+  })
+  .catch((err) => {
+    console.log(1, err.message); // "aaa"
+    throw new Error("bbb");
+  })
+  .catch((err) => {
+    console.log(1, err.message); // "bbb"
+  })
+  .catch((err) => {
+    console.log(1, err.message); // [!code hl] // 因为没有捕获到任何错误异常，不打印
+  });
 ```
 
 :::
@@ -1025,53 +1191,109 @@ const newFailedPromiseInstance = promiseInstance.catch((err) => {
 
 :::
 
-::: danger 报错 UnhandledPromiseRejection
+## Promise 执行时机
 
-**executor 执行器函数内直接调用`reject()`或`throw`错误对象时**，会报错没有捕获异常 Promise Rejection
-
-```js
-new Promise((resolve, reject) => reject()); // [!code error]
-// [UnhandledPromiseRejection: This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). The promise rejected with the reason "undefined".] { code: 'ERR_UNHANDLED_REJECTION' }
-
-new Promise(() => { throw new Error()}); // [!code error]
-// throw new Error()
-          ^
-Promise.reject(); // 不报错
-```
-
-解决方法如报错信息所写的两个方法：
-
-- **方法一**：使用[`try...catch...`](../ecma-script/error-exception.md#trycatch)+[`await...await...`](async-await.md)
-- **方法二**：使用 Promise 实例方法[`catch()`](#catch)
-
+::: details new Promise()
+`new Promise()`创建 Promise 任务时，其内逻辑会作为同步直接执行
 ::: code-group
 
-```js [方法一]
-async function doSomethingAsync() {
-  return new Promise((resolve, reject) => reject());
-}
+```js [例一]
+console.log(111);
 
-try {
-  await doSomethingAsync();
-} catch {
-  /* 错误捕获与处理 */
-}
+new Promise((_, __) => console.log(222));
+
+console.log(333);
+
+// 111
+// 222 Promise 构造函数内容同步立刻执行
+// 333
 ```
 
-```js [方法二]
-const promiseInstance = new Promise((resolve, reject) => reject());
+```js [例二<Badge>定时器</Badge>]
+console.log(111);
 
-promiseInstance.catch(() => {
-  /* 错误捕获与处理 */
-});
+setTimeout(() => console.log(222), 0); // [!code hl]
+setTimeout(() => console.log(333), 1000); // [!code hl]
+
+new Promise((_, __) => console.log(444));
+
+console.log(555);
+
+// 111
+// 444 Promise 构造函数内容同步立刻执行
+// 555
+// 222 计时器异步延迟执行
+// 333 计时器异步延迟执行
 ```
 
-```js [方法三<Badge>不常用</Badge>]
-const promiseInstance = new Promise((resolve, reject) => reject());
+:::
 
-promiseInstance.then(undefined, () => {
-  /* 错误捕获与处理 */
-});
+::: details Promise.resolve()
+`Promise.resolve()`创建 Promise 任务时，实例方法`then()`内逻辑在所有同步任务结束后立刻执行
+::: code-group
+
+```js [例一]
+console.log(111);
+
+Promise.resolve().then(() => console.log(222));
+
+console.log(333);
+
+// 111
+// 333
+// 222 Promise 实例方法在所有同步任务结束后立刻执行
+```
+
+```js [例二<Badge>定时器</Badge>]
+console.log(111);
+
+setTimeout(() => console.log(222), 0); // [!code hl]
+setTimeout(() => console.log(333), 1000); // [!code hl]
+
+Promise.resolve().then(() => console.log(444));
+
+console.log(555);
+
+// 111
+// 555
+// 444 Promise 实例方法在所有同步任务结束后立刻执行
+// 222 计时器异步延迟执行
+// 333 计时器异步延迟执行
+```
+
+:::
+
+::: details Promise.reject()
+`Promise.reject()`创建 Promise 任务时，实例方法`catch()`内逻辑在所有同步任务结束后立刻执行
+::: code-group
+
+```js [例一]
+console.log(111);
+
+Promise.reject().catch(() => console.log(222));
+
+console.log(333);
+
+// 111
+// 333
+// 222 Promise 实例方法在所有同步任务结束后立刻执行
+```
+
+```js [例二<Badge>定时器</Badge>]
+console.log(111);
+
+setTimeout(() => console.log(222), 0); // [!code hl]
+setTimeout(() => console.log(333), 1000); // [!code hl]
+
+Promise.reject().catch(() => console.log(444));
+
+console.log(555);
+
+// 111
+// 555
+// 444 Promise 实例方法在所有同步任务结束后立刻执行
+// 222 计时器异步延迟执行
+// 333 计时器异步延迟执行
 ```
 
 :::
@@ -1156,7 +1378,7 @@ new Promise((resolve, reject) => {
 
 > TS 内置类型，是 ES5 标准库中的一个 interface 接口，可理解为 ES6 正式提出 Promise 前的类似功能的实现
 
-`PromiseLike`类型如其名，与`Promise`类型类似，可链式调用实例原型上的[`then()`](#then)方法，但没有[`catch()`](#catch)、[finally()](#finally)方法，异步任务失败的捕获只能通过`then()`方法的第二个参数
+`PromiseLike`类型如其名，与`Promise`类型类似，可链式调用实例原型上的[`then()`](#then)方法，但没有[`catch()`](#catch)、[`finally()`](#finally)方法，异步任务失败的捕获只能通过`then()`方法的第二个参数
 
 ```ts
 interface PromiseLike<T> {
@@ -1351,3 +1573,72 @@ const p = doSomethingAsync(false)
 ```
 
 :::
+
+## async...await...
+
+::: tip 使用
+
+- `async`定义函数
+- `await`命令获取 Promise 实例返回值
+
+:::
+
+### async 函数
+
+async 函数返回一个 Promise 对象
+
+::: code-group
+
+```js [写法一<Badge>普通函数</Badge>]
+async function 函数(): Promise<函数返回值> {
+  const 返回值 = await 异步函数();
+  const 返回值 = await 异步函数();
+  // return 返回值;
+}
+
+// 函数无返回值
+async function 函数(): Promise<void> {}
+```
+
+```ts [写法二<Badge>箭头函数</Badge>]
+const 函数 = async (): Promise<函数返回值> => {
+  const 返回值 = await 异步函数();
+  const 返回值 = await 异步函数();
+  // return 返回值;
+};
+
+// 函数无返回值
+const 函数 = async (): Promise<void> => {};
+```
+
+:::
+
+---
+
+### await 命令 <Badge type='danger'>FIXME</Badge>
+
+::: code-group
+
+```js [例子]
+async function doSomething() {
+  const a = await asyncFunction("aaa", 1000);
+  const b = await asyncFunction("bbb", 2000);
+  const c = await asyncFunction("ccc", 3000);
+  console.log(a, b, c);
+}
+
+doSomething();
+// 6s 后打印: "aaa" "bbb" "ccc"
+
+function asyncFunction(result, delay) {
+  return new Promise((resolve) => setTimeout(() => resolve(result), delay));
+}
+```
+
+:::
+
+---
+
+### 顶层 await <Badge type='danger'>FIXME</Badge>
+
+（ top-level await )

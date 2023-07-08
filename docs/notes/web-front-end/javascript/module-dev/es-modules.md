@@ -21,7 +21,10 @@ ES6 提出的 JavaScript 模块加载方案
 2. HTML 文档中给`<script/>`标签添加`type="module"`属性
 
 ```html
-<script type="module" src="模块路径"></script>
+<script
+  type="module"
+  src="模块路径"
+></script>
 ```
 
 :::
@@ -547,7 +550,7 @@ Promise.all([import("moduleA"), import("moduleB"), import("moduleC")])
 
 ### await import()
 
-利用 [顶层`await`](../async/async-await.md#顶层-await) 实现 Promise 异步转同步动态加载模块
+利用 [顶层`await`](../async/promise.md#async-await) 实现 Promise 异步转同步动态加载模块
 
 ```js
 const 模块 = (await import("路径")).default;
@@ -614,11 +617,17 @@ https://es6.ruanyifeng.com/#docs/module-loader
 所以如果脚本体积很大或者是外部脚本时，加载与下载会大量耗时，容易造成浏览器堵塞卡死
 
 ```html
-<script async src="模块路径"></script>
+<script
+  async
+  src="模块路径"
+></script>
 ```
 
 ```html
-<script defer src="模块路径"></script>
+<script
+  defer
+  src="模块路径"
+></script>
 ```
 
 - defer（渲染完再执行）
