@@ -400,6 +400,22 @@ async function getPromiseInstance() {
 
 :::
 
+::: warning `prefer-promise-reject-errors`
+
+建议在`Promise.reject()`时强制传入一个 **[Error 对象](../ecma-script/error-exception.md)** 以更方便的追踪错误堆栈
+
+::: code-group
+
+```js [👎]
+Promise.reject("错误信息");
+```
+
+```js [👍]
+Promise.reject(new Error("错误信息"));
+```
+
+:::
+
 ---
 
 ### Promise.all()
@@ -934,6 +950,25 @@ promiseInstance
   .catch((reason) => {
     console.log(reason.message); // [!code hl] // 没有捕获到错误，不打印
   });
+```
+
+:::
+
+::: warning `no-floating-promises`
+
+在处理 Promise 异步任务时最好附加上异常的捕获与处理的逻辑以防止出现错误导致崩溃
+
+::: code-group
+
+```js{0} [❌]
+PromiseInstance
+  .then(() => {});
+```
+
+```js{0} [✅]
+PromiseInstance
+  .then(() => {})
+  .catch(() => {}); // [!code hl]
 ```
 
 :::
@@ -1639,6 +1674,101 @@ function asyncFunction(result, delay) {
 
 ---
 
+### 异常捕获 <Badge type='danger'>FIXME</Badge>
+
+---
+
 ### 顶层 await <Badge type='danger'>FIXME</Badge>
 
-（ top-level await )
+顶层 await（ top-level await )
+
+---
+
+### 书写规范
+
+::: details `no-async-promise-executor`
+
+**Promise 构造函数中的执行函数不建议使用`async`函数**
+
+- 构造函数里去使用`async`那么包装这个 Promise 就没啥必要了
+- 里面的`async`函数抛出的异常无法被捕获到，会导致返回的 Promise 实例状态不会变为 rejected
+
+::: code-group
+
+```js [❌]
+new Promise(async (resolve, reject) => {});
+```
+
+```js [✅]
+new Promise((resolve, reject) => {});
+```
+
+:::
+
+::: details no-await-in-loop
+
+**不建议在循环里使用`await`**<br/>
+建议将这些异步任务改为并发执行，这可以大大提升代码的执行效率
+
+::: code-group
+
+```js [👎]
+for (const url of urls) {
+  const response = await fetch(url); // [!code error]
+}
+```
+
+```js [👍]
+const jobs = [];
+
+for (const url of urls) {
+  const job = fetch(url); // [!code hl]
+  jobs.push(job); // [!code hl]
+}
+
+await Promise.all(jobs);
+```
+
+:::
+
+::: details no-return-await
+
+**没必要等待 Promise 并立即将其结果返回**<br/>
+因为从`async`函数返回的所有值都包装在 Promise 中因此可直接返回 Promise
+::: code-group
+
+```js [👎]
+async () => {
+  return await getUser(userId);
+};
+```
+
+```js [👍]
+async () => {
+  return getUser(userId);
+};
+```
+
+:::
+
+::: details no-misused-promises
+
+推荐抽一个变量出来提高代码的可读性
+
+::: code-group
+
+```js [👎]
+if (await getAsyncResult()) {
+  // ...
+}
+```
+
+```js [👍]
+const result = await getAsyncResult();
+
+if (result) {
+  // ...
+}
+```
+
+:::
