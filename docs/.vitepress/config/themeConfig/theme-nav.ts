@@ -3,7 +3,6 @@ export default [
     text: "Web 前端",
     items: [
       { text: "总目录", link: "/notes/web-front-end/" },
-      { text: "渲染模式", link: "/notes/web-front-end/" },
       {
         text: "常用语言・框架",
         items: [
@@ -32,7 +31,7 @@ export default [
   {
     text: "其他",
     items: [
-      { text: "常用开发工具", link: "/notes/others/" },
+      { text: "开发工具", link: "/notes/others/dev-tools/" },
       { text: "跨平台", link: "/notes/others/" },
       { text: "云开发", link: "/notes/others/" },
       { text: "性能优化", link: "/notes/others/" },

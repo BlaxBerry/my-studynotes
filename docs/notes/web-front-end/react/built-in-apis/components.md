@@ -64,7 +64,7 @@ function App() {
 
 :::
 
-## <Fragment\> (<>)
+## <Fragment\> ( <> )
 
 > 该组件不会被渲染到页面
 
@@ -219,37 +219,53 @@ export default function Routes() {
 
 > 该组件不会被渲染到页面
 
+`<React.Profiler>`组件用于测量组件的渲染性能
+
+::: warning 生成环境中禁用，开发环境中不要滥用
+
+每次分析都会给应用程序增加一些 CPU 和内存开销
+
+:::
+
 ::: code-group
 
-```tsx [Profiler组件]
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import onRenderCallback from "utils/profilerOnRenderCallback";
-
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <React.Profiler id="App" onRender={onRenderCallback}>
-      <React.Fragment children={<App />} />
-    </React.Profiler>
-  </React.StrictMode>
-);
+```tsx [整个应用程序]
+<React.Profiler
+  id="自定义名"
+  onRender={回调函数}
+>
+  <App />
+</React.Profiler>
 ```
 
-```tsx [onRender函数]
-type ProfilerOnRenderCallback = (
-  id: string,
-  phase: "mount" | "update",
-  actualDuration: number,
-  baseDuration: number,
-  startTime: number,
-  commitTime: number
-) => void;
+```tsx [某个指定组件]
+<React.Profiler
+  id="自定义名"
+  onRender={回调函数}
+>
+  <某个组件 />
+</React.Profiler>
+```
 
-const onRender: ProfilerOnRenderCallback = (
+:::
+
+::: code-group
+
+```tsx{5-10,14-23} [使用]
+import React from "react";
+
+export default function Component() {
+  return (
+    <React.Profiler
+      id="自定义名"
+      onRender={profilerOnRenderCallback}
+    >
+      {/* ... */}
+    </React.Profiler>
+  );
+}
+
+const profilerOnRenderCallback: ProfilerOnRenderCallback = (
   id,
   phase,
   actualDuration,
@@ -257,17 +273,28 @@ const onRender: ProfilerOnRenderCallback = (
   startTime,
   commitTime
 ) => {
-  console.log({
-    id,
-    phase,
-    actualDuration,
-    baseDuration,
-    startTime,
-    commitTime,
-  });
+  console.log({ id, phase, actualDuration, baseDuration, startTime, commitTime });
 };
+```
 
-export default onRender;
+```tsx [TS类型<Badge>完整版</Badge>]
+const Profiler: ExoticComponent<ProfilerProps>;
+
+interface ProfilerProps {
+  children?: ReactNode | undefined;
+  id: string;
+  onRender: ProfilerOnRenderCallback;
+}
+
+type ProfilerOnRenderCallback = (
+  id: string,
+  phase: "mount" | "update",
+  actualDuration: number,
+  baseDuration: number,
+  startTime: number,
+  commitTime: number,
+  interactions: Set<SchedulerInteraction>
+) => void;
 ```
 
 :::

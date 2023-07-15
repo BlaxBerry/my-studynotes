@@ -12,27 +12,17 @@ export default [
     items: [
       { text: "内置组件", link: `${PATH}/built-in-apis/components` },
       { text: "内置方法", link: `${PATH}/built-in-apis/methods` },
-    ],
-  },
-  {
-    text: "React Hooks",
-    collapsed: true,
-    items: [
-      { text: "useState()", link: `${PATH}/hooks/useState` },
-      { text: "useRef()", link: `${PATH}/hooks/useRef` },
-      { text: "useContext()", link: `${PATH}/hooks/useContext` },
-      { text: "useEffect()", link: `${PATH}/hooks/useEffect` },
-      { text: "useMemo()", link: `${PATH}/hooks/useMemo` },
-      { text: "useCallback()", link: `${PATH}/hooks/useCallback` },
+      { text: "钩子函数 ( Hooks )", link: `${PATH}/built-in-apis/hooks` },
     ],
   },
   {
     text: "React 性能优化",
     collapsed: true,
     items: [
-      { text: "重新渲染", link: `${PATH}/performance/re-render` },
-      { text: "渲染效率", link: `${PATH}/performance/re-render` },
-      { text: "加载时间", link: `${PATH}/performance/re-render` },
+      { text: "优化渲染效率", link: `${PATH}/performance/optimizing-render` },
+      { text: "减少重新渲染", link: `${PATH}/performance/avoid-re-render` },
+      { text: "状态管理", link: `${PATH}/performance/state-management` },
+      { text: "防范跨站脚本攻击", link: `${PATH}/performance/prevent-XSS` },
     ],
   },
 ];

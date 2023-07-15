@@ -58,13 +58,12 @@ export default React.memo<PropsType>(Component);
 
 :::
 
-::: tip 复杂数据类型的`props`时不管用
+::: warning `React.memo(组件)`在`props`为复杂数据类型时不管用问题 <Badge type="danger">Bug</Badge>
 
-React 默认通过浅层相等来比较新旧`props`，所以在`props`是对象、数组或函数时仍会重新渲染<br/>
-为了避免这种情况应该：<br/>
+React 默认通过浅层相等来比较新旧`props`，所以在`props`是对象、数组或函数时仍会重新渲染
 
 <details class="details custom-block">
-  <summary>1. 简化从父组件中传递<code>props</code>的数据类型</summary>
+  <summary>改法一：简化从父组件中传递<code>props</code>的数据类型</summary>
 
 ```tsx
 const Father = () => (
@@ -72,13 +71,15 @@ const Father = () => (
        <Child data={ a: xxx, b: xxx, c: xxx }/>; // [!code --]
        <Child a={xxx} b={xxx} c={xxx} />;  // [!code ++]
     </>
-)
+);
+
+const Child = React.memo(...);
 ```
 
 </details>
 
 <details class="details custom-block">
-  <summary>2. 在父组件中使用<code>useMemo()</code>来记忆要传递的<code>props</code></summary>
+  <summary>改法二：在父组件中使用<code>useMemo()</code>来记忆要传递的<code>props</code></summary>
 
 ```tsx{2-4}
 const Father = () => {
@@ -92,15 +93,11 @@ const Father = () => {
     </>
   );
 };
+
+const Child = React.memo(...);
 ```
 
 </details>
-
-:::
-
-::: warning 第二个参数（状态的比较函数）
-
-`React.memo()`可接收一个状态的比较函数作为第二个参数。但若要自定义则必须比较每个`prop`，一般情况下省略即可，没那技术就别尝试
 
 :::
 
@@ -222,10 +219,10 @@ export default function App() {
 
 :::
 
-## startTransition()
+## startTransition() <Badge type="danger">FIXME</Badge>
 
-## forwardRef()
+## forwardRef() <Badge type="danger">FIXME</Badge>
 
-## createContext()
+## createContext() <Badge type="danger">FIXME</Badge>
 
 结合 [useContext()](../built-in-hooks/index.md#usecontext)

@@ -2,7 +2,7 @@ const PATH = "/notes/web-front-end";
 
 export default [
   {
-    text: "语言",
+    text: "常用语言",
     collapsed: true,
     items: [
       { text: "HTML", link: `${PATH}/html/` },
@@ -13,7 +13,7 @@ export default [
     ],
   },
   {
-    text: "框架",
+    text: "常用框架",
     collapsed: true,
     items: [
       { text: "React", link: `${PATH}/react/` },
