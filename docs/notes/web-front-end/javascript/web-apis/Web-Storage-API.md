@@ -1,4 +1,4 @@
-# JS Storage
+# JS Web Storage API
 
 ## localStorage()
 

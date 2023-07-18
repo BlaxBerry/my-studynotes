@@ -59,17 +59,32 @@ button.addEventListener("click", () =>
 
 :::
 
-::: tip 基本使用
+::: tip 基本
 
-- [Promise 是个对象（构造函数）](#promise-对象)可简单理解为一个包裹异步任务的容器<br/>
-- 调用该构造函数后其处理的异步任务会返回为一个[Promise 实例](#promise-实例)<br/>
+- Promise 是个对象，可简单理解为一个包裹异步任务的容器<br/>
+- 通过调用构造函数或 Promise 对象方法得到一个[Promise 实例](#promise-实例)<br/>
 - 该实例可通过链式调用指定 API 来对应处理异步任务所处的不同进程状态与执行结果<br/>
 
 :::
 
 ## Promise 对象
 
-Promise 对象是个构造函数，调用后可生成一个 [Promise 实例](#promise-实例)
+::: tip Promise 对象上的方法：
+
+- [Promise.resolve()](#promise-resolve)
+- [Promise.reject()](#promise-reject)
+- [Promise.all()](#promise-all)
+- [Promise.race()](#promise-race)
+- [Promise.any()](#promise-any)
+- [Promise.try()](#promise-try)
+
+:::
+
+---
+
+### new Promise()
+
+构造函数调用后可生成一个 [Promise 实例](#promise-实例)
 
 该构造函数接收一个 [executor 执行器函数](#executor-执行器函数) 做参数用来定义要执行的异步任务
 
@@ -92,17 +107,6 @@ const Promise实例 = new Promise((resolve, reject) => {
   else reject(异步任务失败理由);
 });
 ```
-
-:::
-
-::: tip Promise 对象上的方法：
-
-- [Promise.resolve()](#promise-resolve)
-- [Promise.reject()](#promise-reject)
-- [Promise.all()](#promise-all)
-- [Promise.race()](#promise-race)
-- [Promise.any()](#promise-any)
-- [Promise.try()](#promise-try)
 
 :::
 
@@ -301,6 +305,8 @@ console.log('xxx');
 ```
 
 :::
+
+---
 
 ### Promise.resolve()
 
@@ -1387,50 +1393,24 @@ Promise实例
 
 > 如下：预计耗时 4s 的 Promise 异步任务在 2s 时中止
 
-```js{1-2,7-14}
+```js{1,6-9,14}
 const abortController = new AbortController();
-setTimeout(() => abortController.abort(), 2000);
 
 new Promise((resolve, reject) => {
-  const timer = setTimeout(() => resolve("promise succeed"), 4000);
+  const timer = setTimeout(() => resolve("success"), 4000);
 
-  abortController.signal.addEventListener(
-    "abort",
-    () => {
-      clearTimeout(timer);
-      reject("promise stopped");
-    },
-    { once: true }
-  );
+  abortController.signal.addEventListener("abort", () => {
+    clearTimeout(timer);
+    reject("stop");
+  });
 })
   .then((res) => console.log(res))
   .catch((error) => console.log(error));
+
+setTimeout(() => abortController.abort(), 2000);
 ```
 
-## 自定义 Promise
-
-### PromiseLike 类型
-
-> TS 内置类型，是 ES5 标准库中的一个 interface 接口，可理解为 ES6 正式提出 Promise 前的类似功能的实现
-
-`PromiseLike`类型如其名，与`Promise`类型类似，可链式调用实例原型上的[`then()`](#then)方法，但没有[`catch()`](#catch)、[`finally()`](#finally)方法，异步任务失败的捕获只能通过`then()`方法的第二个参数
-
-```ts
-interface PromiseLike<T> {
-  then<TResult1 = T, TResult2 = never>(
-    onfulfilled?:
-      | ((value: T) => TResult1 | PromiseLike<TResult1>)
-      | undefined
-      | null,
-    onrejected?:
-      | ((reason: any) => TResult2 | PromiseLike<TResult2>)
-      | undefined
-      | null
-  ): PromiseLike<TResult1 | TResult2>;
-}
-```
-
-### 手写 Promise
+## 手写 Promise
 
 ::: code-group
 
@@ -1609,7 +1589,78 @@ const p = doSomethingAsync(false)
 
 :::
 
-## async...await...
+## TS 接口类型
+
+### Promise\<T>
+
+> TS 内置 Interface 接口类型
+
+`Promise`类型的数据可像 [Promise 实例](#promise-实例) 一样调用[`then()`](#then)方法，但没有[`catch()`](#catch)、
+
+```ts
+/**
+ * Represents the completion of an asynchronous operation
+ */
+interface Promise<T> {
+  /**
+   * Attaches callbacks for the resolution and/or rejection of the Promise.
+   * @param onfulfilled The callback to execute when the Promise is resolved.
+   * @param onrejected The callback to execute when the Promise is rejected.
+   * @returns A Promise for the completion of which ever callback is executed.
+   */
+  then<TResult1 = T, TResult2 = never>(
+    onfulfilled?:
+      | ((value: T) => TResult1 | PromiseLike<TResult1>)
+      | undefined
+      | null,
+    onrejected?:
+      | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+      | undefined
+      | null
+  ): Promise<TResult1 | TResult2>;
+
+  /**
+   * Attaches a callback for only the rejection of the Promise.
+   * @param onrejected The callback to execute when the Promise is rejected.
+   * @returns A Promise for the completion of the callback.
+   */
+  catch<TResult = never>(
+    onrejected?:
+      | ((reason: any) => TResult | PromiseLike<TResult>)
+      | undefined
+      | null
+  ): Promise<T | TResult>;
+}
+```
+
+---
+
+### PromiseLike\<T>
+
+> TS 内置 Interface 接口类型
+>
+> 如其名，与`Promise`类型类似，可理解为 ES6 正式提出 Promise 前的类似功能的实现
+
+`PromiseLike`类型的数据可像 [Promise 实例](#promise-实例) 一样调用[`then()`](#then)方法，但没有[`catch()`](#catch)方法
+
+只能通过`then()`方法的第二个函数参数捕获异步任务的异常错误失败
+
+```ts
+interface PromiseLike<T> {
+  then<TResult1 = T, TResult2 = never>(
+    onfulfilled?:
+      | ((value: T) => TResult1 | PromiseLike<TResult1>)
+      | undefined
+      | null,
+    onrejected?:
+      | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+      | undefined
+      | null
+  ): PromiseLike<TResult1 | TResult2>;
+}
+```
+
+## async...await... <Badge type="danger">FIXME</Badge>
 
 ::: tip 使用
 

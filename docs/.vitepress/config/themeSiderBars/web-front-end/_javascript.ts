@@ -52,10 +52,11 @@ export default [
     text: "Web API",
     collapsed: true,
     items: [
-      { text: "Storage", link: `${PATH}/web-apis/Storage` },
-      { text: "Fetch", link: `${PATH}/web-apis/Fetch` },
-      { text: "FileReader", link: `${PATH}/web-apis/` },
+      { text: "Web Storage API", link: `${PATH}/web-apis/Web-Storage-API` },
+      { text: "XMLHttpRequest", link: `${PATH}/web-apis/XMLHttpRequest` },
+      { text: "Fetch API", link: `${PATH}/web-apis/Fetch-API` },
       { text: "AbortController", link: `${PATH}/web-apis/AbortController` },
+      { text: "File API", link: `${PATH}/web-apis/File-API` },
     ],
   },
 ];
