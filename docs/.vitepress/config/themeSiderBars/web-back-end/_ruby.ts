@@ -10,7 +10,7 @@ export default [
     ],
   },
   {
-    text: "Ruby 内置对象与其方法",
+    text: "Ruby 内置对象方法",
     collapsed: true,
     items: [
       { text: "List", link: `${PATH}/apis/` },

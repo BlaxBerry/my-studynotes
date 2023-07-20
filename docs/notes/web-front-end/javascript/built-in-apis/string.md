@@ -1,1 +1,3 @@
 # JS String
+
+## length

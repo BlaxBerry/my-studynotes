@@ -4,7 +4,12 @@ export default [
   {
     text: "React 基础",
     collapsed: true,
-    items: [{ text: "JSX 基础", link: `${PATH}/jsx/` }],
+    items: [
+      { text: "JSX 基础", link: `${PATH}/basics/jsx` },
+      { text: "组件基础", link: `${PATH}/basics/components` },
+      { text: "状态管理", link: `${PATH}/basics/state-management` },
+      { text: "样式使用", link: `${PATH}/basics/styling` },
+    ],
   },
   {
     text: "React 内置 API",
@@ -21,8 +26,15 @@ export default [
     items: [
       { text: "优化渲染效率", link: `${PATH}/performance/optimizing-render` },
       { text: "减少重新渲染", link: `${PATH}/performance/avoid-re-render` },
-      { text: "状态管理", link: `${PATH}/performance/state-management` },
       { text: "防范跨站脚本攻击", link: `${PATH}/performance/prevent-XSS` },
+    ],
+  },
+  {
+    text: "React 框架",
+    collapsed: true,
+    items: [
+      { text: "Next", link: "/notes/web-front-end/react-next/" },
+      { text: "Gatsby", link: "/notes/web-front-end/react-gatsby/" },
     ],
   },
 ];

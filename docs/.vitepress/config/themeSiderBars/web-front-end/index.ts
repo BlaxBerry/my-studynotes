@@ -13,11 +13,15 @@ export default [
     ],
   },
   {
-    text: "常用框架",
+    text: "常用库・框架",
     collapsed: true,
     items: [
-      { text: "React", link: `${PATH}/react/` },
+      { text: "jQuery", link: `${PATH}/jquery/` },
       { text: "Vue", link: `${PATH}/vue/` },
+      { text: "React", link: `${PATH}/react/` },
+      { text: "Nuxt", link: `${PATH}/vue-nuxt/` },
+      { text: "Next", link: `${PATH}/react-next/` },
+      { text: "Gatsby", link: `${PATH}/react-gatsby/` },
     ],
   },
 ];

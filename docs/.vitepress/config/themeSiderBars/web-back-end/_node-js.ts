@@ -1,4 +1,4 @@
-const PATH = "/notes/web-back-end/nodejs";
+const PATH = "/notes/web-back-end/node-js";
 
 export default [
   {
@@ -9,10 +9,17 @@ export default [
     ],
   },
   {
-    text: "Node.js 内置模块",
+    text: "内置模块",
     collapsed: true,
     items: [
       { text: "fs", link: `${PATH}/` },
+    ],
+  },
+  {
+    text: "Web 应用框架",
+    collapsed: true,
+    items: [
+      { text: "Express.js", link: "/notes/web-back-end/express-js/" },
     ],
   },
 ];

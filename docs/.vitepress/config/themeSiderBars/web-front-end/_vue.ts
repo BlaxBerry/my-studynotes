@@ -1,4 +1,4 @@
-const PATH = "/notes/web-front-end/react";
+const PATH = "/notes/web-front-end/vue";
 
 export default [
   {
@@ -16,5 +16,10 @@ export default [
       { text: "?", link: `${PATH}/` },
       { text: "?", link: `${PATH}/` },
     ],
+  },
+  {
+    text: "Vue 框架",
+    collapsed: true,
+    items: [{ text: "Nuxt", link: "/notes/web-front-end/vue-nuxt/" }],
   },
 ];

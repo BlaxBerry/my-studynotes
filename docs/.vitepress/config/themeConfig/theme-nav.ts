@@ -21,7 +21,7 @@ export default [
       {
         text: "常用语言・框架",
         items: [
-          { text: "Node.js", link: "/notes/web-back-end/nodejs/" },
+          { text: "Node.js", link: "/notes/web-back-end/node-js/" },
           { text: "Python", link: "/notes/web-back-end/python/" },
           { text: "Ruby", link: "/notes/web-back-end/ruby/" },
         ],
@@ -32,9 +32,7 @@ export default [
     text: "其他",
     items: [
       { text: "开发工具", link: "/notes/others/dev-tools/" },
-      { text: "跨平台", link: "/notes/others/" },
-      { text: "云开发", link: "/notes/others/" },
-      { text: "性能优化", link: "/notes/others/" },
+      { text: "Web 应用渲染模式", link: "/notes/others/webapp-render-patterns/" },
     ],
   },
 ];

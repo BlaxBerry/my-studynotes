@@ -10,7 +10,7 @@ export default [
     ],
   },
   {
-    text: "Python 内置对象与其方法",
+    text: "Python 内置对象方法",
     collapsed: true,
     items: [
       { text: "List", link: `${PATH}/apis/` },

@@ -1,18 +1,16 @@
-# JSX
+# JSX 基础
 
 ## 简介
 
 JSX（ JavaScript XML ）是 JavaScript 的语法扩展
 
-用于在 JS 中编写类似 HTML 的标记，多定义在`.jsx`、`.tsx`、`.js`、`.ts`等文件
+用于在`.jsx`、`.tsx`等文件中编写类似 HTML 的标记，最终会被转换为纯 JavaScript 对象
 
-React 中多使用 JSX 作为组件返回值来描述要呈现的 UI
+React 中多使用 JSX 语法创建虚拟 DOM
 
 ## JSX 书写规则
 
-JSX 看起来像 HTML 标签，但在底层会被转换为纯 JavaScript 对象
-
-::: details 1. 组件必须返回单个根元素
+::: details 1. React 组件必须返回单个根元素
 
 React 组件在返回多个标签/子组件时需要使用单个父元素包装<br/>
 若不想渲染根元素时可使用[`<React.Fragment>` ( `<>...</>` )](../built-in-apis/components.md#fragment)
@@ -49,24 +47,26 @@ function Component() {
 
 ::: details 2. JSX 标签必须要闭合
 
-书写无内容的一般标签、[自闭合标签](../../html/tags/index.md#自闭合标签)、无参数的组件时必须使用斜线`/`来结束
+书写无内容的一般标签、自闭合标签、无参数的组件时必须使用斜线`/`来结束
 
 ```tsx
-import React from "react";
-
-export default function Component() {
-  return (
-    <>
-      <自闭合标签 />
-      <无参数组件 />
-    </>
-  );
-}
+<JSX标签>
+  <无内容一般标签 />
+  <自闭合标签 />
+  <无参数组件 />
+</JSX标签>
 ```
 
 :::
 
-::: details 3. JSX 采用驼峰命名
+::: details 3. JSX 标签名首字母大小写
+
+- JSX 标签首字母小写时：转化渲染为同名的 HTML 元素，若没有则报错
+- JSX 标签首字母大写时：渲染为同名的 React 组件，若没有则报错
+
+:::
+
+::: details 4. JSX 标签属性采用驼峰命名
 
 JSX 最终会被转换为 JavaScript 对象的键，所以大部分变量都等需采用小驼峰命名法
 
@@ -87,6 +87,40 @@ export default function Component() {
     />
   );
 }
+```
+
+:::
+
+::: details 5. JSX 标签属性值使用大括号`{}`包裹
+
+```jsx
+<JSX标签
+  属性={属性值}
+  属性={属性值}
+/>
+```
+
+:::
+
+::: details 6. JSX 标签属性值的简写
+
+- JSX 标签的属性值为字符串时可省略大括号`{}`
+- JSX 标签的属性值为`true`时可省略属性值，因为组件上的`prop`默认值都为`true`
+
+::: code-group
+
+```jsx [字符串类型]
+<JSX标签
+  属性={"字符串内容"}
+  属性="字符串内容" // [!code hl] // 省略写法
+/>
+```
+
+```jsx [true]
+<JSX标签
+  属性={true}
+  属性 // [!code hl] // 省略写法
+/>
 ```
 
 :::
@@ -151,28 +185,7 @@ JSX 中使用 JavaScript 时需写入大括号`{}`
 <JSX标签>其他内容{变量名}其他内容</JSX标签>
 ```
 
-<details class="details custom-block">
-  <summary>字符串类型</summary>
-
-::: code-group
-
-```jsx [作为JSX直接渲染的文本]
-// 写法一
-<JSX标签>字符串内容</JSX标签>
-// 写法一
-<JSX标签>{"字符串内容"}</JSX标签>
-```
-
-```jsx [作为标签/组件的属性值]
-<JSX标签
-  属性="字符串内容" // 写法一
-  属性={"字符串内容"} // 写法一
-/>
-```
-
 :::
-
-</details>
 
 ::: details JS 函数
 
@@ -228,11 +241,50 @@ JSX 中使用 JavaScript 时需写入大括号`{}`
 
 :::
 
+::: tip `null`、`undefined`、`false`、`true`会被忽略渲染
+
+若想抛弃语义进渲染值的话可转位字符串类型
+
+::: code-group
+
+```jsx [不被渲染]
+<JSX标签>{null}</JSX标签>
+<JSX标签>{undefined}</JSX标签>
+<JSX标签>{false}</JSX标签>
+<JSX标签>{true}</JSX标签>
+
+// 上述潜入内容不被渲染，等同于：
+<JSX标签/>
+
+```
+
+```jsx [可以渲染]
+<JSX标签>{String(null)}</JSX标签>
+<JSX标签>{String(undefined)}</JSX标签>
+<JSX标签>{String(false)}</JSX标签>
+<JSX标签>{String(true)}</JSX标签>
+```
+
+:::
+
+::: warning 数值`0`会被渲染
+
+虽然在 JavaScript 中`0`是虚值，但是 JSX 中会被渲染出来
+
+故不能作为条件用于逻辑运算符判断的条件渲染，若需要使用时可转位布尔类型
+
+```jsx
+<JSX标签>{0 ？ <A/> : <B/>}</JSX标签> // [!code --]
+<JSX标签>{Boolean(0) ？ <A/> : <B/>}</JSX标签> // [!code ++]
+```
+
+:::
+
 ## JSX 列表渲染
 
-JSX 的列表渲染实质是通过调用 JavaScript 数组的`map()`方法将列表数据映射为一个组件数组
+JSX 列表渲染实质是通过调用 JavaScript 数组方法[`map()`](../../javascript/built-in-apis/Array.md#map)将列表数据映射为一个组件数组
 
-被渲染的每一个 JSX 标签或组件都需要一个唯一`key`来标识，否则报错
+组件数组中的每一个 JSX 标签 / 组件都需要一个`key`属性作为唯一标识
 
 ::: code-group
 

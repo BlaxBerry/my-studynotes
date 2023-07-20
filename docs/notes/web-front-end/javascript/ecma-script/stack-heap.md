@@ -1,5 +1,7 @@
 # JS 栈、堆
 
+https://vue3js.cn/interview/JavaScript/copy.html#二、浅拷贝
+
 ## 栈 ( Stack )
 
 ## 堆 ( Heap )

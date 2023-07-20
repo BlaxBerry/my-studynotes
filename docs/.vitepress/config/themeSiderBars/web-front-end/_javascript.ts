@@ -12,7 +12,7 @@ export default [
     ],
   },
   {
-    text: "JS 内置对象方法",
+    text: "内置对象方法",
     collapsed: true,
     items: [
       { text: "Array", link: `${PATH}/built-in-apis/Array` },
@@ -25,7 +25,7 @@ export default [
     ],
   },
   {
-    text: "JS 面向对象",
+    text: "面向对象",
     collapsed: true,
     items: [
       { text: "原型、原型链", link: `${PATH}/oop/prototype` },
@@ -33,7 +33,7 @@ export default [
     ],
   },
   {
-    text: "JS 异步编程",
+    text: "异步编程",
     collapsed: true,
     items: [
       { text: "Promise", link: `${PATH}/async/promise` },
@@ -41,7 +41,7 @@ export default [
     ],
   },
   {
-    text: "JS 模块化编程",
+    text: "模块化开发",
     collapsed: true,
     items: [
       { text: "CommonJS", link: `${PATH}/module-dev/common-js` },
@@ -52,6 +52,7 @@ export default [
     text: "Web API",
     collapsed: true,
     items: [
+      { text: "DOM", link: `${PATH}/web-apis/DOM` },
       { text: "Web Storage API", link: `${PATH}/web-apis/Web-Storage-API` },
       { text: "XMLHttpRequest", link: `${PATH}/web-apis/XMLHttpRequest` },
       { text: "Fetch API", link: `${PATH}/web-apis/Fetch-API` },
