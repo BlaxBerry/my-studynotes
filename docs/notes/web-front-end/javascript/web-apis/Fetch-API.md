@@ -121,3 +121,8 @@ setTimeout(() => abortController.abort();, 延迟时间毫秒); // [!code hl]
 ::: details 例子：
 
 :::
+
+- fetch：
+  https://www.ruanyifeng.com/blog/2020/12/fetch-tutorial.html
+- fetchAPI vs Axios：
+  https://blog.logrocket.com/axios-vs-fetch-best-http-requests/

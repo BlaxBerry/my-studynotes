@@ -1,5 +1,8 @@
 # Web 应用渲染模式
 
+web front render pattern：
+https://www.ragate.co.jp/blog/articles/10524
+
 ## CSR
 
 CSR（ Client Side Rendering ）
@@ -21,6 +24,8 @@ Steps:
 - 主要脚本很小并且加载速度很快。在这种情况下，应用程序会快速加载主脚本，并且会更快发送要求动态数据的额外请求。
 
 ### SPA
+
+SPA 首屏加速：https://juejin.cn/post/7091313074614829086
 
 ## SSR
 

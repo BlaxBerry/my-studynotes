@@ -1662,6 +1662,12 @@ interface PromiseLike<T> {
 
 ## async...await... <Badge type="danger">FIXME</Badge>
 
+https://juejin.cn/post/7122071393495154701
+
+https://mp.weixin.qq.com/s/UIzuKzzy4-EmaYcTPNupKQ
+
+https://mp.weixin.qq.com/s/aLQVpglTRA0bJGyCpXOD8Q
+
 ::: tip 使用
 
 - `async`定义函数

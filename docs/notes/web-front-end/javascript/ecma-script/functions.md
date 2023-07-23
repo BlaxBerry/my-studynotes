@@ -85,3 +85,8 @@ window.onresize = debounce_setPageLayout;
 :::
 
 ## 节流（ throttle ）
+
+## 闭包
+
+闭包：
+https://www.xiaohongshu.com/explore/64687f7d00000000270109b8?app_platform=ios&app_version=7.85.2&share_from_user_hidden=true&type=video&xhsshare=WeixinSession&appuid=5f30c38f00000000010080f3&apptime=1684588184&wechatWid=7869e27a50c008cb39ad21f977b55165

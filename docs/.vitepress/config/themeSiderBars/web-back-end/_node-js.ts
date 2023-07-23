@@ -20,6 +20,8 @@ export default [
     collapsed: true,
     items: [
       { text: "Express.js", link: "/notes/web-back-end/express-js/" },
+      { text: "Koa.js", link: "/notes/web-back-end/koa-js/" },
+      { text: "Nest.js", link: "/notes/web-back-end/nest-js/" },
     ],
   },
 ];

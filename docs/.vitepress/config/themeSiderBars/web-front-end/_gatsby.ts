@@ -1,4 +1,4 @@
-const PATH = "/notes/web-front-end/vue-nuxt";
+const PATH = "/notes/web-front-end/gatsby";
 
 export default [
     {

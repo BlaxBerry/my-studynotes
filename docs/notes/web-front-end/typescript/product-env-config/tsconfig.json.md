@@ -1,3 +1,3 @@
-# TS 配置文件
+# TS tsconfig.json
 
 https://www.tslang.cn/docs/handbook/tsconfig-json.html

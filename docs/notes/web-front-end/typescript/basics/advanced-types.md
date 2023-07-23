@@ -114,6 +114,8 @@ type D = MyTuple[2 | 3 | 4];
 
 ## 映射类型
 
+https://segmentfault.com/a/1190000041715281
+
 映射类型 ( Mapped Types ) 是指基于某个类型派生创建一个新类型，多用于复杂类型的复用
 
 按需会结合[类型操作](./types-manipulation.md)中所有语法以及对象类型中[属性修饰符](./ts-object.md#属性修饰符)
@@ -151,3 +153,17 @@ type NullAbleValue<T> = {
 条件类型 ( Conditional Type )
 
 https://www.typescriptlang.org/docs/handbook/2/conditional-types.html
+
+```ts
+type 自定义类型名 = T extends P ？A : B
+```
+
+::: details 例：
+
+NonNullable 的条件类型取一个类型 T 并检查它是否扩展了 null 或 undefined，如果扩展了则结果类型为 never，否则为原始类型 T
+
+```ts
+type NonNullable<T> = T extends null | undefined ? never : T;
+```
+
+:::

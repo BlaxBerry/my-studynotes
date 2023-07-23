@@ -12,7 +12,7 @@ export default [
     ],
   },
   {
-    text: "React 内置 API",
+    text: "内置 API",
     collapsed: true,
     items: [
       { text: "内置组件", link: `${PATH}/built-in-apis/components` },
@@ -21,7 +21,7 @@ export default [
     ],
   },
   {
-    text: "React 性能优化",
+    text: "性能优化",
     collapsed: true,
     items: [
       { text: "优化渲染效率", link: `${PATH}/performance/optimizing-render` },
@@ -30,11 +30,11 @@ export default [
     ],
   },
   {
-    text: "React 框架",
+    text: "Web 应用框架",
     collapsed: true,
     items: [
-      { text: "Next", link: "/notes/web-front-end/react-next/" },
-      { text: "Gatsby", link: "/notes/web-front-end/react-gatsby/" },
+      { text: "Next", link: "/notes/web-front-end/next/" },
+      { text: "Gatsby", link: "/notes/web-front-end/gatsby/" },
     ],
   },
 ];

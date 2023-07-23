@@ -10,6 +10,7 @@ export default [
       { text: "Sass", link: `${PATH}/sass/` },
       { text: "JavaScript", link: `${PATH}/javascript/` },
       { text: "TypeScript", link: `${PATH}/typescript/` },
+      { text: "Dart", link: `${PATH}/dart/` },
     ],
   },
   {
@@ -19,9 +20,23 @@ export default [
       { text: "jQuery", link: `${PATH}/jquery/` },
       { text: "Vue", link: `${PATH}/vue/` },
       { text: "React", link: `${PATH}/react/` },
-      { text: "Nuxt", link: `${PATH}/vue-nuxt/` },
-      { text: "Next", link: `${PATH}/react-next/` },
-      { text: "Gatsby", link: `${PATH}/react-gatsby/` },
+    ],
+  },
+  {
+    text: "Web 应用开发",
+    collapsed: true,
+    items: [
+      { text: "Nuxt", link: `${PATH}/nuxt/` },
+      { text: "Next", link: `${PATH}/next/` },
+      { text: "Gatsby", link: `${PATH}/gatsby/` },
+    ],
+  },
+  {
+    text: "跨平台开发",
+    collapsed: true,
+    items: [
+      { text: "Flutter", link: `${PATH}/flutter/` },
+      { text: "Electron", link: `${PATH}/electron/` },
     ],
   },
 ];

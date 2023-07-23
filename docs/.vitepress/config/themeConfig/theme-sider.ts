@@ -10,6 +10,9 @@ import _next from "../themeSiderBars/web-front-end/_next";
 import _gatsby from "../themeSiderBars/web-front-end/_gatsby";
 import _vue from "../themeSiderBars/web-front-end/_vue";
 import _nuxt from "../themeSiderBars/web-front-end/_nuxt";
+import _dart from "../themeSiderBars/web-front-end/_dart";
+import _flutter from "../themeSiderBars/web-front-end/_flutter";
+import _electron from "../themeSiderBars/web-front-end/_electron";
 
 import webBackEnd from "../themeSiderBars/web-back-end";
 import _nodeJs from "../themeSiderBars/web-back-end/_node-js";
@@ -27,10 +30,13 @@ export default {
   "/notes/web-front-end/typescript/": _typesctipt,
   "/notes/web-front-end/jquery/": _jquery,
   "/notes/web-front-end/react/": _react,
-  "/notes/web-front-end/react-next/": _next,
-  "/notes/web-front-end/react-gatsby/": _gatsby,
+  "/notes/web-front-end/next/": _next,
+  "/notes/web-front-end/gatsby/": _gatsby,
   "/notes/web-front-end/vue/": _vue,
-  "/notes/web-front-end/vue-nuxt/": _nuxt,
+  "/notes/web-front-end/nuxt/": _nuxt,
+  "/notes/web-front-end/dart/": _dart,
+  "/notes/web-front-end/flutter/": _flutter,
+  "/notes/web-front-end/electron/": _electron,
 
   "/notes/web-back-end/": webBackEnd,
   "/notes/web-back-end/node-js/": _nodeJs,

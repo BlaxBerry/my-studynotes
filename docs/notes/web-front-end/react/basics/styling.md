@@ -2,7 +2,9 @@
 
 ## 内联样式
 
-内联样式 ( Inline Style ) 通过 JSX 标签的`style`属性接收一个属性为小驼峰的 JavaScript 对象
+内联样式 ( Inline Style ) 是 CSS-in-JS 的实现
+
+通过 JSX 标签的`style`属性接收一个属性为小驼峰的 JavaScript 对象
 
 ```jsx
 import React from "react";
@@ -72,7 +74,7 @@ export default function Component() {
 
 ## 外联样式
 
-引入单独的样式文件，目前多为`.css`、`.scss`、`.less`文件
+引入单独的样式表 ( Style Sheet ) 目前多为`.css`、`.scss`、`.less`文件
 
 样式文件中定义的类名需要通过 JSX 标签的`className`属性使用，其余的选择器、动画、媒体查询等会被自动使用
 

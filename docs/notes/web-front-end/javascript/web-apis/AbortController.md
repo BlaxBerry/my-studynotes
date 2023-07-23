@@ -262,3 +262,6 @@ setTimeout(() => abortController.abort();, 10); // [!code hl]
     }
 */
 ```
+
+- how to use AbortController（JP）:
+  https://qiita.com/tronicboy/items/41487016d57bcf86fb60

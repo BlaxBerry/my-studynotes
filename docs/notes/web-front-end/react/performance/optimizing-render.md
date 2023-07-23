@@ -1,8 +1,9 @@
 # React 优化渲染效率
 
-https://mp.weixin.qq.com/s/rR9blZrDzI0zQ7Vs6QiuAQ
+React 老项目优化:
+https://blog.csdn.net/zhangrui_web/article/details/112979204
 
-## 避免重新无意义的重新挂载
+## 避免同名 JSX 卸载后又挂载
 
 ::: code-group
 
@@ -10,19 +11,19 @@ https://mp.weixin.qq.com/s/rR9blZrDzI0zQ7Vs6QiuAQ
 import React from "react";
 
 export default function Component() {
-  if (条件) return <JSX标签 a={值a1} />;
-  return <JSX标签 a={值a2} b={值b} />;
+  if (条件) return <JSX标签 a={值a1} />; // [!code --]
+  return <JSX标签 a={值a2} b={值b} />; // [!code --]
 }
 ```
 
-```jsx{6-7} [👍]
+```jsx [👍]
 import React from "react";
 
 export default function Component() {
   return (
     <JSX标签
-      a={条件 ? 值a1 : 值a2}
-      b={条件 && 值b}
+      a={条件 ? 值a1 : 值a2} // [!code ++]
+      b={条件 && 值b} // [!code ++]
     />
   );
 }
@@ -30,11 +31,11 @@ export default function Component() {
 
 :::
 
-## 避免内联函数
+## 避免内联样式
 
-不推荐在 JSX 中定义内联函数，会导致每次渲染都会重新定义函数
+不推荐大量使用 CSS-in-JS 的内联样式，一方面有代码可读性差功能不全等问题，另一方面组件每次渲染时都会重新创建`style`中内联样式对象
 
-建议将函数在组件中单独定义后绑定给 JSX 属性
+建议可在组件外部定义样式对象，或采用其他代替方式 [详见](../basics/styling.md)
 
 ::: code-group
 
@@ -42,17 +43,129 @@ export default function Component() {
 import React from "react";
 
 export default function Component() {
-  return <JSX标签 属性={() => { /*...*/ }} /> // [!code error]
+  return (
+    <JSX标签
+      style={{ // [!code --]
+        属性: 值, // [!code --]
+        属性: 值, // [!code --]
+        属性: 值, // [!code --]
+      }} // [!code --]
+    />
+  );
 }
 ```
 
-```jsx{4,6} [👍]
+```tsx{0} [👍]
+import React, { CSSProperties } from "react";
+
+const styles: CSSProperties = { // [!code ++]
+  属性: 值, // [!code ++]
+  属性: 值, // [!code ++]
+  属性: 值, // [!code ++]
+} // [!code ++]
+
+export default function Component() {
+  return <JSX标签 style={styles} />;
+}
+```
+
+:::
+
+## 避免内联函数
+
+不推荐在 JSX 中定义内联函数，组件每次渲染时都会重新创建函数
+
+1. 建议使用`useCallback()`创建函数
+2. 不依赖本组件状态时，建议作为外部函数在组件外部创建
+
+::: code-group
+
+```jsx{0} [👎]
 import React from "react";
 
 export default function Component() {
-  const 函数名 = () => { /*...*/ };
+  return <JSX标签 属性={() => {/* ... */}} /> // [!code --]
+}
+```
+
+```jsx{0} [👍 <Badge>useCallback( )</Badge>]
+import React, { useCallback } from "react";
+
+export default function Component() {
+  const 函数名 = useCallback(() => {/* ... */}, [依赖项]); // [!code ++] // 指定依赖项或空依赖
 
   return <JSX标签 属性={函数名} />;
+}
+```
+
+```jsx{0} [👍 <Badge>外部函数</Badge>]
+import React from "react";
+
+const 函数名 = () => {/* ... */};  // [!code ++]
+
+export default function Component() {
+  return <JSX标签 属性={函数名} />;
+}
+```
+
+:::
+
+## 避免空依赖 useMemo()、useCallback()
+
+因为这两个钩子函数是用于缓存基于本组件内状态数据变化而变化的状态和函数，
+因此若依赖项可指定的话则没有必要使用该钩子函数，直接定义即可
+
+::: code-group
+
+```jsx [👎]
+import React, { useCallback, useMemo } from "react";
+
+export default function Component() {
+  const state = useMemo(()=> (/* ... */),[]) // [!code --]
+  const func = useCallback(()=> {/* ... */} ,[]) // [!code --]
+
+  // return ...
+}
+```
+
+```jsx [👍]
+import React, { useCallback, useMemo } from "react";
+
+const state = /* ... */; // [!code ++]
+const func = ()=> {/* ... */}; // [!code ++]
+
+export default function Component() {
+  // return ...
+}
+```
+
+:::
+
+## 避免在组件内部定义子组件
+
+不推荐在组件内部定义子组件，当前组件每次渲染时都会重新创建子组件 ( 不是重现渲染 )
+
+建议将子组件在当前组件外部定义
+
+::: code-group
+
+```jsx [👎]
+import React from "react";
+
+export default function Component() {
+  const ChildComponent = <div>.....</div>; // [!code --]
+
+  return <div>{ChildComponent}</div>; // [!code --]
+}
+```
+
+```jsx{0} [👍]
+import React from "react";
+
+const ChildComponent = () => <div>.....</div>; // [!code ++]
+
+export default function Component() {
+  return <div><ChildComponent /></div>; // [!code ++]
 }
 ```
 
@@ -76,8 +189,6 @@ https://blog.logrocket.com/rendering-large-lists-react-virtualized/
 :::
 
 ## 使用延时加载组件 <Badge type="danger">FIXME</Badge>
-
-Throttling & Debouncing Event Action
 
 ## 使用错误边界
 
@@ -171,6 +282,8 @@ Tree-shaking 的工作原理是分析代码的依赖关系并删除任何未使�
 为了确保您的 React 应用程序可以利用 tree-shaking，您应该使用 ES6 模块并确保您的代码是模块化的，并遵循组织和导入/导出代码的最佳实践。此外，当您只需要其中的一小部分时，应避免导入整个库。
 
 ## 使用 debounce、throttle 优化频繁触发的回调 <Badge type="danger">FIXME</Badge>
+
+Throttling & Debouncing Event Action
 
 ## 使用 ServiceWorkers 缓存应用程序状态 <Badge type="danger">FIXME</Badge>
 
