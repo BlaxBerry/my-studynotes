@@ -10,7 +10,7 @@ export default [
     ],
   },
   {
-    text: "Python 内置对象方法",
+    text: "内置对象方法",
     collapsed: true,
     items: [
       { text: "List", link: `${PATH}/apis/` },
@@ -19,5 +19,10 @@ export default [
       { text: "Dictionary", link: `${PATH}` },
       { text: "RegExp", link: `${PATH}` },
     ],
+  },
+  {
+    text: "Web 应用框架",
+    collapsed: true,
+    items: [{ text: "Django", link: "/notes/web-back-end/django/" }],
   },
 ];

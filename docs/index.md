@@ -22,10 +22,6 @@ hero:
     - theme: alt
       text: Web 后端
       link: /notes/web-back-end/
-    - theme: alt
-      text: 其他
-      link: /notes/others/
-
 # features:
 #   - title: 永不妥协
 #     details: 道阻且长行则将至

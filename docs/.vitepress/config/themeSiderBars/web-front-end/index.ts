@@ -31,12 +31,4 @@ export default [
       { text: "Gatsby", link: `${PATH}/gatsby/` },
     ],
   },
-  {
-    text: "跨平台开发",
-    collapsed: true,
-    items: [
-      { text: "Flutter", link: `${PATH}/flutter/` },
-      { text: "Electron", link: `${PATH}/electron/` },
-    ],
-  },
 ];

@@ -203,7 +203,7 @@ yarn add styled-components
 yarn add -D @types/styled-component
 ```
 
-::: details 例子
+::: details 例子:
 
 ```tsx
 import React from "react";

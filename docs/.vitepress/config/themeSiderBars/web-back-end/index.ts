@@ -14,7 +14,7 @@ export default [
     collapsed: true,
     items: [
       { text: "Node.js", link: `${PATH}/node-js/` },
-      { text: "Express.js", link: `${PATH}/express-js/` },
+      { text: "Django", link: `${PATH}/django/` },
       { text: "Ruby on Rails", link: `${PATH}/ruby-on-rails/` },
     ],
   },

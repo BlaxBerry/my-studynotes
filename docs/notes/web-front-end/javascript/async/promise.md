@@ -323,8 +323,6 @@ const 成功状态的Promise实例 = new Promise((resolve) =>
 );
 ```
 
-> 如下：使用例子
-
 ::: details 例：直接创建一个成功状态的 Promise 实例并使用
 
 ```js
@@ -372,8 +370,6 @@ const 失败状态的Promise实例 = new Promise((resolve, reject) =>
   reject(异步失败时的返回值)
 );
 ```
-
-> 如下：使用例子
 
 ::: details 例：直接创建一个失败状态的 Promise 实例并使用
 
@@ -1675,43 +1671,63 @@ https://mp.weixin.qq.com/s/aLQVpglTRA0bJGyCpXOD8Q
 
 :::
 
+---
+
 ### async 函数
 
-async 函数返回一个 Promise 对象
+通过`async`关键字定义一个异步函数，函数返回一个 Promise 实例
 
 ::: code-group
 
 ```js [写法一<Badge>普通函数</Badge>]
 async function 函数(): Promise<函数返回值> {
-  const 返回值 = await 异步函数();
-  const 返回值 = await 异步函数();
   // return 返回值;
 }
 
 // 函数无返回值
-async function 函数(): Promise<void> {}
+async function 函数(): Promise<void> {
+  // ...
+}
 ```
 
 ```ts [写法二<Badge>箭头函数</Badge>]
 const 函数 = async (): Promise<函数返回值> => {
-  const 返回值 = await 异步函数();
-  const 返回值 = await 异步函数();
   // return 返回值;
 };
 
 // 函数无返回值
-const 函数 = async (): Promise<void> => {};
+const 函数 = async (): Promise<void> => {
+  // ...
+};
 ```
 
 :::
 
 ---
 
-### await 命令 <Badge type='danger'>FIXME</Badge>
+### await 命令
+
+`await`关键字不能够单独出现，只能用于 [async 函数](#async-函数)
 
 ::: code-group
 
-```js [例子]
+```js [普通函数]
+async function 函数() {
+  const 返回值 = await Promise异步方法();
+}
+```
+
+```js [箭头函数]
+const 函数 = async () => {
+  const 返回值 = await Promise异步方法();
+};
+```
+
+:::
+
+::: details 例子：
+
+```js
 async function doSomething() {
   const a = await asyncFunction("aaa", 1000);
   const b = await asyncFunction("bbb", 2000);
@@ -1762,7 +1778,7 @@ new Promise((resolve, reject) => {});
 
 :::
 
-::: details no-await-in-loop
+::: details `no-await-in-loop`
 
 **不建议在循环里使用`await`**<br/>
 建议将这些异步任务改为并发执行，这可以大大提升代码的执行效率
@@ -1770,13 +1786,16 @@ new Promise((resolve, reject) => {});
 ::: code-group
 
 ```js [👎]
+const urls = ["URL", "URL", "URL"];
+
 for (const url of urls) {
   const response = await fetch(url); // [!code error]
 }
 ```
 
 ```js [👍]
-const jobs = [];
+const urls = ["URL", "URL", "URL"];
+const jobs = []; // [!code hl]
 
 for (const url of urls) {
   const job = fetch(url); // [!code hl]
@@ -1788,27 +1807,27 @@ await Promise.all(jobs);
 
 :::
 
-::: details no-return-await
+::: details `no-return-await`
 
-**没必要等待 Promise 并立即将其结果返回**<br/>
+**没必要`await`等待 Promise 并立即将其结果`return`返回**<br/>
 因为从`async`函数返回的所有值都包装在 Promise 中因此可直接返回 Promise
 ::: code-group
 
 ```js [👎]
 async () => {
-  return await getUser(userId);
+  return await fetch("URL");
 };
 ```
 
 ```js [👍]
 async () => {
-  return getUser(userId);
+  return fetch("URL");
 };
 ```
 
 :::
 
-::: details no-misused-promises
+::: details `no-misused-promises`
 
 推荐抽一个变量出来提高代码的可读性
 

@@ -11,3 +11,19 @@ https://blog.logrocket.com/node-js-server-side-authentication-tokens-vs-jwt/
 
 TS + nodejs：
 https://www.robinwieruch.de/typescript-node/
+
+::: code-group
+
+```shell [全局安装]
+npm install -g nodemon
+# 或
+yarn global add nodemon
+```
+
+```shell [安装为项目依赖]
+npm install --save-dev nodemon
+# 或
+yarn add -D nodemon
+```
+
+:::

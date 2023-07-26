@@ -28,8 +28,8 @@ export default [
     text: "面向对象",
     collapsed: true,
     items: [
-      { text: "原型、原型链", link: `${PATH}/oop/prototype` },
-      { text: "Class 类", link: `${PATH}/oop/class` },
+      { text: "原型 ( Prototype )", link: `${PATH}/oop/prototype` },
+      { text: "类 ( Class )", link: `${PATH}/oop/class` },
     ],
   },
   {

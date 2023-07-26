@@ -32,7 +32,10 @@ export default [
     text: "其他",
     items: [
       { text: "开发工具", link: "/notes/others/dev-tools/" },
+      { text: "跨平台开发", link: "/notes/others/cross-device/" },
       { text: "Web 应用渲染模式", link: "/notes/others/webapp-render-patterns/" },
+      { text: "工程化 ( CI/CD )", link: "/notes/others/ci-cd/" },
+      { text: "Serverless 开发", link: "/notes/others/ci-cd/" },
     ],
   },
 ];

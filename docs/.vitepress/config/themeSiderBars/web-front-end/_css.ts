@@ -2,14 +2,6 @@ const PATH = "/notes/web-front-end/css";
 
 export default [
   {
-    text: "CSS 基础",
-    collapsed: true,
-    items: [
-      { text: "？", link: `${PATH}/` },
-      { text: "？", link: `${PATH}/` },
-    ],
-  },
-  {
     text: "选择器",
     collapsed: true,
     items: [
@@ -21,6 +13,17 @@ export default [
       },
       { text: "属性选择器", link: `${PATH}/selectors/attribute-selectors` },
       { text: "组合选择器", link: `${PATH}/selectors/combinator-selectors` },
+    ],
+  },
+  {
+    text: "常用样式",
+    collapsed: true,
+    items: [
+      { text: "文本效果", link: `${PATH}/styles/text-effects` },
+      { text: "过渡 ( Transition )", link: `${PATH}/styles/` },
+      { text: "动画 ( Animation )", link: `${PATH}/styles/animations` },
+      { text: "2D Transform", link: `${PATH}/styles/` },
+      { text: "3D Transform", link: `${PATH}/styles/` },
     ],
   },
   {

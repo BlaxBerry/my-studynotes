@@ -1,10 +1,10 @@
-# TS 实用工具类型 ( Utility Types )
+# TS 内置工具类型 ( Utility Types )
 
 ## 简介
 
-TypeScript 内置了很多全局的实用程序类型，可直接调用来处理类型转换
+TypeScript 内置了很多全局类型，可直接调用来处理类型转换
 
-实用工具类型都是[映射类型](../common-types/advanced-types.md#映射类型)，通过[泛型](generic.md)将接收的类型处理后作为一个新类型返回
+这些内置工具类型都是[映射类型](../common-types/advanced-types.md#映射类型)，通过[泛型](generic.md)将接收的类型处理后作为一个新类型返回
 
 ## Record<K, V>
 
@@ -528,14 +528,16 @@ type C = ReturnType<typeof FunC>; // [!code hl]
 
 :::
 
-## Uppercase\<String> <Badge>字符串类型</Badge>
+## Uppercase\<String>
 
 将`<String>`接收的字符串中的**每个字符转换为大写**后作为一个新类型返回
+
+多用于操作[字符串字面量类型](./ts-template-literal.md#字符串字面量类型)
 
 ::: code-group
 
 ```ts [使用]
-type 自定义类型名 = Uppercase<字符串类型 | "字符串">;
+type 自定义类型名 = Uppercase<string | "字符串字面量类型">;
 ```
 
 ```ts [TS类型<Badge>完整版</Badge>]
@@ -569,14 +571,16 @@ type UpperStr = Str<"hello world">; // [!code hl]
 
 :::
 
-## Lowercase\<String> <Badge>字符串类型</Badge>
+## Lowercase\<String>
 
 将`<String>`接收的字符串中的**每个字符转换为小写**后作为一个新类型返回
+
+多用于操作[字符串字面量类型](./ts-template-literal.md#字符串字面量类型)
 
 ::: code-group
 
 ```ts [使用]
-type 自定义类型名 = Lowercase<字符串类型 | "字符串">;
+type 自定义类型名 = Lowercase<string | "字符串字面量类型">;
 ```
 
 ```ts [TS类型<Badge>完整版</Badge>]
@@ -610,14 +614,16 @@ type LowerStr = Str<"HELLO WORLD">; // [!code hl]
 
 :::
 
-## Capitalize\<String> <Badge>字符串类型</Badge>
+## Capitalize\<String>
 
 将`<String>`接收的字符串中的**第一个字符转换为大写**后作为一个新类型返回
+
+多用于操作[字符串字面量类型](./ts-template-literal.md#字符串字面量类型)
 
 ::: code-group
 
 ```ts [使用]
-type 自定义类型名 = Capitalize<字符串类型 | "字符串">;
+type 自定义类型名 = Capitalize<string | "字符串字面量类型">;
 ```
 
 ```ts [TS类型<Badge>完整版</Badge>]
@@ -641,14 +647,16 @@ type CapitalizedStr = Capitalize<Str>; // [!code hl]
 
 :::
 
-## Uncapitalize\<String> <Badge>字符串类型</Badge>
+## Uncapitalize\<String>
 
 将`<String>`接收的字符串中的**第一个字符转换为小写**后作为一个新类型返回
+
+多用于操作[字符串字面量类型](./ts-template-literal.md#字符串字面量类型)
 
 ::: code-group
 
 ```ts [使用]
-type 自定义类型名 = Uncapitalize<字符串类型 | "字符串">;
+type 自定义类型名 = Uncapitalize<string | "字符串字面量类型">;
 ```
 
 ```ts [TS类型<Badge>完整版</Badge>]

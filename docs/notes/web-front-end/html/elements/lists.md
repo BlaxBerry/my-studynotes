@@ -38,7 +38,7 @@ ul > li {
 
 无序列表 ( Ordered List )
 
-::: details 例子
+::: details 例子:
 
 <div :class="$style.playground">
   <ol>
@@ -72,7 +72,7 @@ ol > li {
 
 描述列表 ( Description List )
 
-::: details 例子
+::: details 例子:
 
 <div :class="$style.playground">
   <dl>

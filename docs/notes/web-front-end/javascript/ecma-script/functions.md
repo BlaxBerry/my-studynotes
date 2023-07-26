@@ -18,11 +18,17 @@ IIFE (Immediately Invoked Function Expression)
 
 ## this 指向
 
-## 柯里化
+## 柯里化 ( Currying )
 
 https://tsejx.github.io/javascript-guidebook/core-modules/ecmascript-function-objects/function-types/function-currying/
 
-## 防抖（ debounce ）
+## 防抖（ Debounce ）
+
+https://codefrontend.com/debounce-throttle-js-react/
+
+减少调用频率
+
+当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，又一次触发了事件，就重新开始延时
 
 原理是利用计时器使立刻执行的逻辑稍微等待一下，
 
@@ -84,9 +90,16 @@ window.onresize = debounce_setPageLayout;
 
 :::
 
-## 节流（ throttle ）
+## 节流（ Throttle ）
 
-## 闭包
+https://codefrontend.com/debounce-throttle-js-react/
 
-闭包：
+当持续触发事件时，保证一定时间段内只调用一次事件处理函数
+
+函数节流主要有两种实现方法：时间戳和定时器
+
+## 闭包 ( Closure )
+
+https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html
+
 https://www.xiaohongshu.com/explore/64687f7d00000000270109b8?app_platform=ios&app_version=7.85.2&share_from_user_hidden=true&type=video&xhsshare=WeixinSession&appuid=5f30c38f00000000010080f3&apptime=1684588184&wechatWid=7869e27a50c008cb39ad21f977b55165

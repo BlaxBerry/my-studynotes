@@ -6,6 +6,11 @@ https://www.w3schools.com/html/html_form_elements.asp
 
 ### \<input>
 
+<details class="details custom-block">
+  <summary><code>type</code></summary>
+
+可省略，默认值为`"text"`
+
 ::: details `type="text"`
 
 <div :class="$style.playground">
@@ -30,6 +35,72 @@ https://www.w3schools.com/html/html_form_elements.asp
 ```
 
 :::
+
+::: details `type="radio"`
+
+<div :class="$style.playground">
+  <label>
+    <input
+      type="radio"
+      name="xxx"
+      value="AAA"
+    />
+    AAA
+  </label>
+  
+  <label>
+    <input
+      type="radio"
+      name="xxx"
+      value="BBB"
+    />
+    BBB
+  </label>
+</div>
+
+::: code-group
+
+```html [写法一]
+<label>
+  <input
+    type="radio"
+    name="xxx"
+    value="AAA"
+  />
+  AAA
+</label>
+
+<label>
+  <input
+    type="radio"
+    name="xxx"
+    value="BBB"
+  />
+  BBB
+</label>
+```
+
+```html [写法二]
+<input
+  type="radio"
+  name="xxx"
+  id="AAA"
+  value="AAA"
+/>
+<label for="AAA">AAA</label>
+
+<input
+  type="radio"
+  name="xxx"
+  id="BBB"
+  value="BBB"
+/>
+<label for="BBB">BBB</label>
+```
+
+:::
+
+</details>
 
 ## 文本域
 

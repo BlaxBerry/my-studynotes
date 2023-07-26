@@ -2,8 +2,15 @@
 
 ![](/images/typescript.webp)
 
-https://zhuanlan.zhihu.com/p/260213914?utm_id=0
+```shell
+npm i -g typescript
+```
 
-https://www.xiaohongshu.com/explore/649a87080000000013017302?app_platform=ios&app_version=7.85.2&share_from_user_hidden=true&type=normal&xhsshare=WeixinSession&appuid=5f30c38f00000000010080f3&apptime=1687906709&wechatWid=7869e27a50c008cb39ad21f977b55165
+```shell
+tsc 文件.ts
+```
 
-https://mp.weixin.qq.com/s/KDE8B0ylT4OpdqoVymisFA
+```shell
+tsc --target [JS版本] 文件.ts
+# target option must be: 'es3', 'es5', 'es6', 'es2015', 'es2016', 'es2017', 'es2018', 'es2019', 'es2020', 'es2021', 'es2022', 'esnext'.
+```
