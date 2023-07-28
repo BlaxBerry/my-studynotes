@@ -26,9 +26,9 @@ export default [
     text: "Web 应用开发",
     collapsed: true,
     items: [
-      { text: "Nuxt", link: `${PATH}/nuxt/` },
-      { text: "Next", link: `${PATH}/next/` },
-      { text: "Gatsby", link: `${PATH}/gatsby/` },
+      { text: "Nuxt.js", link: `${PATH}/nuxt-js/` },
+      { text: "Next.js", link: `${PATH}/next-js/` },
+      { text: "Gatsby.js", link: `${PATH}/gatsby-js/` },
     ],
   },
 ];

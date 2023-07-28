@@ -2,14 +2,6 @@ const PATH = "/notes/web-front-end/typescript";
 
 export default [
   {
-    text: "TypeScript 配置",
-    collapsed: true,
-    items: [
-      { text: "环境构建", link: `${PATH}/product-env-config/build-env` },
-      { text: "配置文件", link: `${PATH}/product-env-config/tsconfig.json` },
-    ],
-  },
-  {
     text: "常见类型",
     collapsed: true,
     items: [
@@ -30,7 +22,10 @@ export default [
     items: [
       { text: "类型推断", link: `${PATH}/types-manipulation/type-inference` },
       { text: "类型断言", link: `${PATH}/types-manipulation/type-assertions` },
-      { text: "类型守护 ( 类型缩小 )", link: `${PATH}/types-manipulation/type-guards` }
+      {
+        text: "类型守护 ( 类型缩小 )",
+        link: `${PATH}/types-manipulation/type-guards`,
+      },
     ],
   },
   {

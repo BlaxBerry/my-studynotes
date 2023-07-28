@@ -24,17 +24,17 @@ export default [
     text: "性能优化",
     collapsed: true,
     items: [
-      { text: "优化渲染效率", link: `${PATH}/performance/optimizing-render` },
-      { text: "减少重新渲染", link: `${PATH}/performance/avoid-re-render` },
-      { text: "防范跨站脚本攻击", link: `${PATH}/performance/prevent-XSS` },
+      { text: "优化渲染效率", link: `${PATH}/performance/render-optimizing` },
+      { text: "重新渲染", link: `${PATH}/performance/re-render` },
+      { text: "防范跨站脚本攻击", link: `${PATH}/performance/XSS-prevent` },
     ],
   },
   {
     text: "Web 应用框架",
     collapsed: true,
     items: [
-      { text: "Next", link: "/notes/web-front-end/next/" },
-      { text: "Gatsby", link: "/notes/web-front-end/gatsby/" },
+      { text: "Next.js", link: "/notes/web-front-end/next-js/" },
+      { text: "Gatsby.js", link: "/notes/web-front-end/gatsby-js/" },
     ],
   },
 ];

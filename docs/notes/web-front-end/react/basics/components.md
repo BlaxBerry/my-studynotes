@@ -18,6 +18,8 @@ https://blog.logrocket.com/react-design-patterns/
 
 高阶组件是一个函数，且该函数接受一个组件作为参数，并返回一个新的组件
 
+prop 重名问题
+
 ```tsx
 
 ```
@@ -29,6 +31,8 @@ https://blog.logrocket.com/react-design-patterns/
 Render Props 组件模式
 
 是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术，更具体的说，render prop 是一个用于告知组件需要渲染什么内容的函数 prop。
+
+出现嵌套地狱的问题
 
 ```tsx
 

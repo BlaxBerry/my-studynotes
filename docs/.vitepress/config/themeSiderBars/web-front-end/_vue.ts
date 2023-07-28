@@ -25,6 +25,6 @@ export default [
   {
     text: "Web 应用框架",
     collapsed: true,
-    items: [{ text: "Nuxt", link: "/notes/web-front-end/nuxt/" }],
+    items: [{ text: "Nuxt.js", link: "/notes/web-front-end/nuxt-js/" }],
   },
 ];

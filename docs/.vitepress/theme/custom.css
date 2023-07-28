@@ -1,7 +1,13 @@
-.vp-doc .custom-block a {
+* {
+  outline: none;
+}
+
+/* <details class="custom-block"> 中的 <a> */
+.vp-doc details.custom-block a {
   color: var(--vp-c-brand);
 }
 
-* {
-  outline: none;
+/* <details class="custom-block"> 中的 <code> */
+.vp-doc details.custom-block code {
+  background-color: var(--vp-custom-block-tip-code-bg);
 }

@@ -1,8 +1,8 @@
-const PATH = "/notes/web-front-end/jquery";
+const PATH = "/notes/web-front-end/nuxt-js";
 
 export default [
   {
-    text: "jQuery 基础",
+    text: "Nuxt.js 基础",
     collapsed: true,
     items: [
       { text: "?", link: `${PATH}/` },

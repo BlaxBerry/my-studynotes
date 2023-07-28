@@ -1,8 +1,8 @@
-const PATH = "/notes/web-front-end/jquery";
+const PATH = "/notes/web-front-end/react-native";
 
 export default [
   {
-    text: "jQuery 基础",
+    text: "React Native 基础",
     collapsed: true,
     items: [
       { text: "?", link: `${PATH}/` },
