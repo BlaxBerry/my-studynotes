@@ -503,7 +503,7 @@ JavaScript 中空数组`[]`、空对象`{}`被视为`true`，所以不能直接�
 > 如下：`<input/>`输入值保留了下来
 
 ```jsx{8}
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function Component() {
   const [isText, setIsText] = useState(true);
@@ -526,7 +526,7 @@ export default function Component() {
 ::: code-group
 
 ```jsx [改法一]
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function Component() {
   const [isText, setIsText] = useState(true);
@@ -552,7 +552,7 @@ export default function Component() {
 ```
 
 ```jsx{8-9} [改法二]
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function Component() {
   const [isText, setIsText] = useState(true);

@@ -2,6 +2,11 @@
   outline: none;
 }
 
+/* <details class="custom-block"> 的 details、tip、warning、danger */
+.vp-doc .custom-block {
+  overflow: hidden;
+}
+
 /* <details class="custom-block"> 中的 <a> */
 .vp-doc details.custom-block a {
   color: var(--vp-c-brand);
@@ -10,4 +15,9 @@
 /* <details class="custom-block"> 中的 <code> */
 .vp-doc details.custom-block code {
   background-color: var(--vp-custom-block-tip-code-bg);
+}
+
+/* <div class="vp-code-group"> 中 tabs 的下划线 */
+.vp-code-group .tabs label::after {
+  z-index: 9;
 }

@@ -31,6 +31,7 @@ export default [
   {
     text: "其他",
     items: [
+      { text: "网络通信基础", link: "/notes/others/" },
       { text: "开发工具", link: "/notes/others/dev-tools/" },
       { text: "跨平台开发", link: "/notes/others/cross-device/" },
       { text: "Web 应用渲染模式", link: "/notes/others/webapp-render-patterns/" },

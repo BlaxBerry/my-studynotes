@@ -65,6 +65,14 @@ type T = A & B; // never
 
 ## 索引访问类型
 
+索引签名参数类型不能为文本类型或泛型类型，请考虑改用映射的对象类型
+
+```ts
+type MyType = {
+  [key in "a" | "b" | "c"]: boolean;
+};
+```
+
 https://mp.weixin.qq.com/s/KDE8B0ylT4OpdqoVymisFA
 
 索引访问类型 ( Indexed Access Types ) 用于获取对象、数组、元组类型中指定成员的类型

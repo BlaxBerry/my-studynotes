@@ -1408,6 +1408,8 @@ setTimeout(() => abortController.abort(), 2000);
 
 ## 手写 Promise
 
+::: details 如下
+
 ::: code-group
 
 ```js [定义]
@@ -1534,37 +1536,6 @@ class MyPromise {
       });
     });
   };
-
-  // Promise.race
-  // static race = function (promises) {
-  //   return new MyPromise((resolve, reject) => {
-  //     promises.forEach((p, i) => {
-  //       MyPromise.resolve(p).then(
-  //         (value) => resolve(value),
-  //         (reason) => reject(reason)
-  //       );
-  //     });
-  //   });
-  // };
-
-  // 在指定时间后才执行的 Promise.resolve
-  // static resolveDelay = function (value, time) {
-  //   return new MyPromise((resolve, reject) => {
-  //     setTimeout(() => {
-  //       if (value instanceof MyPromise) value.then(resolve, reject);
-  //       else resolve(value);
-  //     }, time);
-  //   });
-  // };
-
-  // 在指定时间后才执行的 Promise.reject
-  // static rejectDelay = function (reason, time) {
-  //   return new MyPromise((resolve, reject) => {
-  //     setTimeout(() => {
-  //       reject(reason);
-  //     }, time);
-  //   });
-  // };
 }
 ```
 

@@ -589,7 +589,7 @@ export default {
 ::: details 如下：React 中组件加载完毕时 import 导入样式文件
 
 ```tsx
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 export default function Component() {
   useEffect(() => {

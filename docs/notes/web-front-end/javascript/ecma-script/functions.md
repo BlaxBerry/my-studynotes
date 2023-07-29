@@ -26,7 +26,7 @@ https://tsejx.github.io/javascript-guidebook/core-modules/ecmascript-function-ob
 
 https://codefrontend.com/debounce-throttle-js-react/
 
-减少调用频率
+防抖（ Debounce ）是一种常用的前端技术，用于控制函数在连续触发时执行的频率。当一个事件被连续触发时，防抖会在一定的时间延迟后执行最后一次触发的动作，从而避免频繁执行函数造成性能损耗或不必要的操作。
 
 当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，又一次触发了事件，就重新开始延时
 
@@ -35,13 +35,14 @@ https://codefrontend.com/debounce-throttle-js-react/
 建议封装为通用函数，并通过`apply()`修改`this`指向和接收参数
 
 ```js
-function debounce(func, duration) {
+function debounce(func, delay) {
   let timer;
+
   return function (...args) {
     clearTimeout(timer);
     timer = setTimeout(() => {
       func.apply(this, args);
-    }, duration);
+    }, delay);
   };
 }
 ```
@@ -91,6 +92,8 @@ window.onresize = debounce_setPageLayout;
 :::
 
 ## 节流（ Throttle ）
+
+https://www.xiaohongshu.com/explore/64bdd984000000001701920e
 
 https://codefrontend.com/debounce-throttle-js-react/
 

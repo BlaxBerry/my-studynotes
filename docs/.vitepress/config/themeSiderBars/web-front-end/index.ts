@@ -20,15 +20,17 @@ export default [
       { text: "jQuery", link: `${PATH}/jquery/` },
       { text: "Vue", link: `${PATH}/vue/` },
       { text: "React", link: `${PATH}/react/` },
-    ],
-  },
-  {
-    text: "Web 应用开发",
-    collapsed: true,
-    items: [
       { text: "Nuxt.js", link: `${PATH}/nuxt-js/` },
       { text: "Next.js", link: `${PATH}/next-js/` },
       { text: "Gatsby.js", link: `${PATH}/gatsby-js/` },
+    ],
+  },
+  {
+    text: "打包・构建工具",
+    collapsed: true,
+    items: [
+      { text: "Webpack", link: `${PATH}/#` },
+      { text: "Vite", link: `${PATH}/#` },
     ],
   },
 ];

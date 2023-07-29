@@ -4,58 +4,44 @@
 
 > 该组件不会被渲染到页面
 
-`<StrictMode\>`组件用于包裹整个应用程序的根组件或部分组件，为其启用严格模式
+`<React.StrictMode>`组件用于包裹整个应用程序的根组件或部分组件，为其启用严格模式
 
 严格模式仅用于检查开发环境下组件中的常见错误
 
 ```tsx
-<StrictMode>
+<React.StrictMode>
   <组件 />
-</StrictMode>
+</React.StrictMode>
 ```
-
-> 如下：`src/main.tsx`中包裹`root`根组件，为整个应用程序开启严格模式
 
 ::: code-group
 
-```tsx [包裹根组件 <Badge>写法一</Badge>]
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-```
-
-```tsx [包裹根组件 <Badge>写法一</Badge>]
+```tsx{0} [包裹根组件]
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 
-const root = createRoot(document.getElementById("root") as HTMLElement);
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+const root = createRoot(document.getElementById("root") as HTMLElement);// [!code focus]
+root.render(// [!code focus]
+  <StrictMode>  // [!code focus]
+    <App /> // [!code focus]
+  </StrictMode> // [!code focus]
+);// [!code focus]
 ```
 
-```tsx [包裹部分内容]
+```tsx{0} [包裹部分内容]
 import { StrictMode } from "react";
 
 function App() {
   return (
     <>
       <Header />
-      <StrictMode>
-        <main>
-          <Sidebar />
-          <Content />
-        </main>
-      </StrictMode>
+      <StrictMode> // [!code focus]
+        <main> // [!code focus]
+          <Sidebar /> // [!code focus]
+          <Content /> // [!code focus]
+        </main> // [!code focus]
+      </StrictMode> // [!code focus]
       <Footer />
     </>
   );
@@ -92,25 +78,28 @@ function App() {
 
 :::
 
-> 如下：`src/App.tsx`组件中循环遍历列表
+::: details 例：组件中循环遍历列表
 
-```tsx
-import React from "react";
+```tsx{0}
+import { Fragment } from "react";
 
-export default function App() {
+const list: string[] = ["A", "B", "C"]
+
+export default function Component() {
   return (
     <>
-      {["A", "B", "C"].map((item, index) => (
-        <React.Fragment key={index}>
+      {list.map((item, index) => ( // [!code focus]
+        <Fragment key={index}> // [!code focus]
           <span>{index}</span>
-          --
           <span>{item}</span>
-        </React.Fragment>
-      ))}
+        </Fragment> // [!code focus]
+      ))} // [!code focus]
     </>
   );
 }
 ```
+
+:::
 
 ## <Suspense\>
 
@@ -120,17 +109,17 @@ export default function App() {
 
 ::: code-group
 
-```tsx{8-10} [使用]
+```tsx{0} [使用]
 import React from "react";
 import 加载中的状态组件 from "路径";
 
-const 动态加载的组件 = React.lazy(() => import("路径"));
+const 动态加载的组件 = React.lazy(() => import("路径")); // [!code focus]
 
 export default function 组件() {
   return (
-    <React.Suspense fallback={<该组件渲染前的加载状态 />}>
-      <动态加载的组件 />
-    </React.Suspense>
+    <React.Suspense fallback={<该组件渲染前的加载状态 />}> // [!code focus]
+      <动态加载的组件 /> // [!code focus]
+    </React.Suspense> // [!code focus]
   );
 }
 ```
@@ -149,22 +138,22 @@ interface SuspenseProps {
 
 > 谁被动态加载就包裹谁
 
-```tsx{9-11,13-15}
-import React from "react";
+```tsx{0}
+import { lazy, Suspense } from "react";
 
-const A = React.lazy(() => import("pages/A"));
-const B = React.lazy(() => import("pages/B"));
+const A = lazy(() => import("pages/A")); // [!code focus]
+const B = lazy(() => import("pages/B")); // [!code focus]
 
 export default function App() {
   return (
     <>
-      <React.Suspense fallback={<div>A is Loading...</div>}>
-        <A />
-      </React.Suspense>
+      <Suspense fallback={<div>A is Loading...</div>}> // [!code focus]
+        <A /> // [!code focus]
+      </Suspense> // [!code focus]
 
-      <React.Suspense fallback={<div>B is Loading...</div>}>
-        <B />
-      </React.Suspense>
+      <Suspense fallback={<div>B is Loading...</div>}> // [!code focus]
+        <B /> // [!code focus]
+      </Suspense> // [!code focus]
     </>
   );
 }
@@ -176,35 +165,35 @@ export default function App() {
 
 详见 [React-Router-Dom v6](/notes/web-front-end/react/react-router/v6.md)
 
-```tsx{12-19,21-28}
+```tsx{0}
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import NotFound from "pages/404";
 
-const PageA = React.lazy(() => import("pages/A"));
-const PageB = React.lazy(() => import("pages/B"));
+const PageA = React.lazy(() => import("pages/A")); // [!code focus]
+const PageB = React.lazy(() => import("pages/B")); // [!code focus]
 
 export default function Routes() {
   return (
     <Routes>
       {/* 动态加载 */}
-      <Route
-        path="/a"
-        element={
-          <React.Suspense fallback={<div>A is Loading...</div>}>
-            <PageA />
-          </React.Suspense>
-        }
-      />
+      <Route // [!code focus]
+        path="/a" // [!code focus]
+        element={ // [!code focus]
+          <React.Suspense fallback={<div>A is Loading...</div>}> // [!code focus]
+            <PageA /> // [!code focus]
+          </React.Suspense> // [!code focus]
+        } // [!code focus]
+      /> // [!code focus]
       {/* 动态加载 */}
-      <Route
-        path="/b"
-        element={
-          <React.Suspense fallback={<div>B is Loading...</div>}>
-            <PageB />
-          </React.Suspense>
-        }
-      />
+      <Route // [!code focus]
+        path="/b" // [!code focus]
+        element={ // [!code focus]
+          <React.Suspense fallback={<div>B is Loading...</div>}> // [!code focus]
+            <PageB /> // [!code focus]
+          </React.Suspense> // [!code focus]
+        } // [!code focus]
+      /> // [!code focus]
 
       {/* 非动态加载 */}
       <Route path="/404" element={<NotFound />} />
@@ -221,9 +210,55 @@ export default function Routes() {
 
 `<React.Profiler>`组件用于测量组件的渲染性能
 
-::: warning 生成环境中禁用，开发环境中不要滥用
+能够从中获取详细的组件渲染时间、渲染次数、重新渲染原因等信息
 
-每次分析都会给应用程序增加一些 CPU 和内存开销
+::: code-group
+
+```tsx{0} [使用]
+import { Profiler, ProfilerOnRenderCallback } from "react";
+
+export default function Component() {
+  return (
+    <Profiler // [!code focus]
+      id="自定义名" // [!code focus]
+      onRender={profilerOnRenderCallback} // [!code focus]
+    > // [!code focus]
+      <要监控的组件/> // [!code focus]
+    </Profiler> // [!code focus]
+  );
+}
+
+const profilerOnRenderCallback: ProfilerOnRenderCallback = ( // [!code focus]
+  id, // [!code focus]
+  phase, // [!code focus]
+  actualDuration, // [!code focus]
+  baseDuration, // [!code focus]
+  startTime, // [!code focus]
+  commitTime // [!code focus]
+) => { // [!code focus]
+  console.log({ id, phase, actualDuration, baseDuration, startTime, commitTime });
+}; // [!code focus]
+```
+
+```tsx [TS类型<Badge>完整版</Badge>]
+const Profiler: ExoticComponent<ProfilerProps>;
+
+interface ProfilerProps {
+  children?: ReactNode | undefined;
+  id: string;
+  onRender: ProfilerOnRenderCallback;
+}
+
+type ProfilerOnRenderCallback = (
+  id: string,
+  phase: "mount" | "update",
+  actualDuration: number,
+  baseDuration: number,
+  startTime: number,
+  commitTime: number,
+  interactions: Set<SchedulerInteraction>
+) => void;
+```
 
 :::
 
@@ -249,52 +284,12 @@ export default function Routes() {
 
 :::
 
-::: code-group
+::: warning 不要滥用`<React.Provider>`
 
-```tsx{5-10,14-23} [使用]
-import React from "react";
+开发环境中不要滥用，生成环境中要禁用
 
-export default function Component() {
-  return (
-    <React.Profiler
-      id="自定义名"
-      onRender={profilerOnRenderCallback}
-    >
-      {/* ... */}
-    </React.Profiler>
-  );
-}
-
-const profilerOnRenderCallback: ProfilerOnRenderCallback = (
-  id,
-  phase,
-  actualDuration,
-  baseDuration,
-  startTime,
-  commitTime
-) => {
-  console.log({ id, phase, actualDuration, baseDuration, startTime, commitTime });
-};
-```
-
-```tsx [TS类型<Badge>完整版</Badge>]
-const Profiler: ExoticComponent<ProfilerProps>;
-
-interface ProfilerProps {
-  children?: ReactNode | undefined;
-  id: string;
-  onRender: ProfilerOnRenderCallback;
-}
-
-type ProfilerOnRenderCallback = (
-  id: string,
-  phase: "mount" | "update",
-  actualDuration: number,
-  baseDuration: number,
-  startTime: number,
-  commitTime: number,
-  interactions: Set<SchedulerInteraction>
-) => void;
-```
+- 每次分析都会给应用程序带来性能开销
+- 过多使用会导致调试和分析复杂性增加
+- 会有不精准的可能性，组件渲染时间较长并不一定肯定是其本身性能问题，也有可能比如网络请求、数据处理、DOM 操作等原因导致
 
 :::

@@ -85,7 +85,7 @@ Hooks 钩子内的所有东西被视为所属于调用该钩子的组件，所�
 ::: code-group
 
 ```tsx [❌]
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function Father() {
   const [count, setCount] = useState<number>(0); // [!code --]
@@ -110,7 +110,7 @@ function B({ count }: { count: number }) {
 ```
 
 ```tsx [✅]
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function Father() {
   return (
@@ -168,7 +168,7 @@ export default function Father() {
 ```
 
 ```tsx [👍]
-import { useRef } from "react";
+import React, { useRef } from "react";
 
 export default function Father() {
   const ref = useRef<HTMLInputElement>(null); // [!code ++]

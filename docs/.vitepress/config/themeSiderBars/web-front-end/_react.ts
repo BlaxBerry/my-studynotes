@@ -7,8 +7,9 @@ export default [
     items: [
       { text: "JSX 基础", link: `${PATH}/basics/jsx` },
       { text: "组件基础", link: `${PATH}/basics/components` },
-      { text: "状态管理", link: `${PATH}/basics/state-management` },
-      { text: "样式使用", link: `${PATH}/basics/styling` },
+      { text: "组件样式", link: `${PATH}/basics/styling` },
+      { text: "状态管理", link: `${PATH}/basics/manage-states` },
+      { text: "表单管理", link: `${PATH}/basics/manage-forms` },
     ],
   },
   {
