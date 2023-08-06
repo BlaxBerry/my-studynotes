@@ -5,6 +5,7 @@ export default [
     text: "常用语言",
     collapsed: true,
     items: [
+      { text: "Go", link: `${PATH}/golang/` },
       { text: "Python", link: `${PATH}/python/` },
       { text: "Ruby", link: `${PATH}/ruby/` },
     ],

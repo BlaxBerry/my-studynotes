@@ -32,4 +32,11 @@ export default [
       { text: "块、内联", link: `${PATH}/block-inline` },
     ],
   },
+  {
+    text: "SEO",
+    collapsed: true,
+    items: [
+      { text: "Meta标签", link: `${PATH}/SEO/meta-tags` },
+    ],
+  }
 ];
