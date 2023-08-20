@@ -47,7 +47,7 @@ python 3.9.5
 
 :::
 
-## 下载安装
+## 安装
 
 > 本文主推 Mac 环境
 
@@ -110,7 +110,7 @@ asdf reshim nodejs
 从社区仓库安装一个指定语言・环境的对应插件
 
 ```shell
-asd plugin add [插件名] [gitURL]
+asd plugin add [插件名]
 ```
 
 ::: details 例子：
@@ -119,18 +119,18 @@ asd plugin add [插件名] [gitURL]
 
 ```shell [常用语言・环境插件]
 # Node.js
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf plugin add nodejs
 # Ruby
-asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+asdf plugin add ruby
 # Python
-asdf plugin-add python
+asdf plugin add python
 # Golang
-asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+asdf plugin add golang
 ```
 
-> 其他详见 [asdf community](https://github.com/orgs/asdf-community/repositories)
-
 :::
+
+插件详见 [asdf community](https://github.com/orgs/asdf-community/repositories)
 
 ---
 
@@ -154,6 +154,22 @@ ruby
 ```
 
 :::
+
+---
+
+### asdf plugin update
+
+升级所有已安装的插件
+
+```shell
+asdf plugin update --all
+```
+
+升级某一个已安装的插件
+
+```shell
+asdf plugin update 插件名
+```
 
 ---
 

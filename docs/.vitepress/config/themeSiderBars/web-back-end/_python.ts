@@ -21,6 +21,14 @@ export default [
     ],
   },
   {
+    text: "包管理工具",
+    collapsed: true,
+    items: [
+      { text: "pip", link: `${PATH}/package-management/pip` },
+      { text: "PDM", link: `${PATH}/package-management/PDM` },
+    ],
+  },
+  {
     text: "Web 应用框架",
     collapsed: true,
     items: [{ text: "Django", link: "/notes/web-back-end/django/" }],

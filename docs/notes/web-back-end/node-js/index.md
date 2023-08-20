@@ -2,15 +2,35 @@
 
 ![](/images/node-js.webp)
 
-WebAssembly：https://mp.weixin.qq.com/s/cIqijFUuy_k0oISfqphUag
+## 简介
 
-https://mp.weixin.qq.com/s/mHVFHLTM1Cs07peemFoVxA
+## 安装
 
-Node.js 服务器端身份验证：令牌与 JWT:
-https://blog.logrocket.com/node-js-server-side-authentication-tokens-vs-jwt/
+> 本文为 Mac 环境下使用 [asdf](../../dev-tools/asdf/index.md)
 
-TS + nodejs：
-https://www.robinwieruch.de/typescript-node/
+```shell
+# 1.
+asdf plugin add nodejs
+# 2.
+asdf install nodejs 版本
+# 3.
+asdf global nodejs 版本
+# 4.
+asdf reshim nodejs
+# 5. 查看版本
+node --version
+```
+
+> 如下：本文使用 Node.js v16.15.0
+
+```shell
+% node --version
+v16.15.0
+```
+
+## 项目启动
+
+### nodemon
 
 ::: code-group
 
@@ -20,10 +40,22 @@ npm install -g nodemon
 yarn global add nodemon
 ```
 
-```shell [安装为项目依赖]
+```shell [局部安装]
 npm install --save-dev nodemon
 # 或
 yarn add -D nodemon
 ```
 
 :::
+
+<br/>
+
+WebAssembly：https://mp.weixin.qq.com/s/cIqijFUuy_k0oISfqphUag
+
+https://mp.weixin.qq.com/s/mHVFHLTM1Cs07peemFoVxA
+
+Node.js 服务器端身份验证：令牌与 JWT:
+https://blog.logrocket.com/node-js-server-side-authentication-tokens-vs-jwt/
+
+TS + nodejs：
+https://www.robinwieruch.de/typescript-node/

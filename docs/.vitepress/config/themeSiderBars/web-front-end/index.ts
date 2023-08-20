@@ -26,6 +26,14 @@ export default [
     ],
   },
   {
+    text: "包管理工具",
+    collapsed: true,
+    items: [
+      { text: "npm", link: `${PATH}/package-management/npm` },
+      { text: "yarn", link: `${PATH}/package-management/yarn` },
+    ],
+  },
+  {
     text: "打包・构建工具",
     collapsed: true,
     items: [

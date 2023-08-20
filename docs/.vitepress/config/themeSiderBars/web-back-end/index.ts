@@ -23,7 +23,16 @@ export default [
     text: "数据库",
     collapsed: true,
     items: [
-      { text: "？", link: `？` },
+      { text: "MySQL", link: `${PATH}/mysql/` },
+      { text: "MongoDB", link: `${PATH}/mongodb/` },
+    ],
+  },
+  {
+    text: "服务器",
+    collapsed: true,
+    items: [
+      { text: "Apache", link: `${PATH}/apache/` },
+      { text: "Nginx", link: `${PATH}/nginx/` },
     ],
   },
 ];

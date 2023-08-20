@@ -2,10 +2,10 @@ const PATH = "/notes/dev-tools/git";
 
 export default [
     {
-        text: "Git 基础",
+        text: "常用命令",
         collapsed: true,
         items: [
-            { text: "?", link: `${PATH}/` },
+            { text: "git stash", link: `${PATH}/commands/git-stash` },
             { text: "?", link: `${PATH}/` },
         ],
     },

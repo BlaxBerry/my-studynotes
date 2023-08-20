@@ -14,14 +14,23 @@ hero:
     alt: picture
   actions:
     - theme: brand
-      text: 更新记录
-      link: /logs.md
-    - theme: alt
       text: Web 前端
       link: /notes/web-front-end/
-    - theme: alt
+    - theme: brand
       text: Web 后端
       link: /notes/web-back-end/
+    - theme: alt
+      text: Next.js
+      link: /notes/web-front-end/next-js/
+    - theme: alt
+      text: Nuxt.js
+      link: /notes/web-front-end/nuxt-js/
+    - theme: alt
+      text: Django
+      link: /notes/web-back-end/django/
+    - theme: alt
+      text: Ruby on Rails
+      link: /notes/web-back-end/ruby-on-rails/
 # features:
 #   - title: 永不妥协
 #     details: 道阻且长行则将至

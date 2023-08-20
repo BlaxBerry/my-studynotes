@@ -1,6 +1,6 @@
 # Next.js 相关
 
-![](/images/next.webp)
+![](/images/next-js.webp)
 
 ## 项目创建
 
