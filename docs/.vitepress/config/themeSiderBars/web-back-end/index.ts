@@ -16,6 +16,7 @@ export default [
     items: [
       { text: "Node.js", link: `${PATH}/node-js/` },
       { text: "Django", link: `${PATH}/django/` },
+      { text: "Gin", link: `${PATH}/gin/` },
       { text: "Ruby on Rails", link: `${PATH}/ruby-on-rails/` },
     ],
   },

@@ -4,15 +4,30 @@
 
 ## 介绍
 
-Django 是个基于 Python 的 Web 框架 ( 重型框架 )
-
-采用了 MTV 设计模式
+Django 是个基于 Python 的重型框架，用于 Web 开发，采用了 MTV 设计模式
 
 ::: tip MTV 设计模式
 
-- M ( Model )：数据模型
-- T ( Template )：模版
-- V ( View )：视图处理函数 / 类
+<details class="details custom-block">
+  <summary><code>M ( Model )</code> 数据模型</summary>
+
+管理数据字符与类型
+
+</details>
+
+<details class="details custom-block">
+  <summary><code>T ( Template )</code> 模版</summary>
+
+要展示的 HTML 页面内容
+
+</details>
+
+<details class="details custom-block">
+  <summary><code>V ( View )</code> 视图</summary>
+
+对应访问路径所对应的处理逻辑
+
+</details>
 
 :::
 
@@ -33,7 +48,7 @@ Python 3.10.0
 % python -m venv .venv
 % source .venv/bin/active
 
-(.venv) % pip install Django==4.2.4
+(.venv) % pip install Django==4.2.4 // [!code hl]
 (.venv) % pip list
 Package           Version
 ----------------- -------
@@ -50,7 +65,7 @@ typing_extensions 4.7.1 // [!code hl]
 ::: details 查看下载到虚拟环境中的版本
 
 ```shell
-(.venv) % python -m django --version
+(.venv) % python -m django --version // [!code hl]
 4.2.4
 ```
 
@@ -138,10 +153,10 @@ django-admin startprojcet django_app // [!code hl]
 ## 项目启动
 
 ```shell
-python manage.py runserver [IP:端口]
+python manage.py runserver [[IP:]端口]
 ```
 
-服务器默认开启在本机`localhost:8000`端口
+服务器默认开启在本机`localhost:8000`端口，可通过第二个参数设置 IP 与端口号
 
 ::: details 例：将上文创建的名为`django_app`项目在默认端口启动
 
@@ -160,7 +175,7 @@ You have 18 unapplied migration(s). Your project may not work properly until you
 Run 'python manage.py migrate' to apply them. // [!code error]
 August 19, 2023 - 12:06:30
 Django version 4.2.4, using settings 'django_app.settings'
-Starting development server at http://127.0.0.1:8000/
+Starting development server at http://127.0.0.1:8000/  // [!code hl]
 Quit the server with CONTROL-C.
 ```
 
@@ -181,7 +196,10 @@ Quit the server with CONTROL-C.
 
 ## 项目目录
 
-Django 项目中包含一个主应用与多个自定应用 [详见应用](#应用-applications)
+Django 项目中包含一个主应用与多个自定应用 [详见应用](./basics/application.md)
+
+- 主应用在创建项目时会顺带创建，对于小项目来说足够
+- 中大型项目中按业务需求可额外创建其他自定义应用
 
 ```shell
 |- 项目目录
@@ -199,7 +217,7 @@ Django 项目中包含一个主应用与多个自定应用 [详见应用](#应�
 |- 项目目录
   |- .venv
   |- 主应用
-    |- __init__.py # 告知 Python 该目录为一个包
+    |- __init__.py
     |- settings.py # 项目的配置文件
     |- urls.py # 项目的路由映射
     |- swgi.py # Python 服务网关接口 ( Python Web Server Gateway Interface ) 项目上线部署相关
@@ -214,14 +232,16 @@ Django 项目中包含一个主应用与多个自定应用 [详见应用](#应�
   |- .venv
   |- 主应用
   |- 自定应用
-    |- __init__.py # 告知 Python 该目录为一个包
-    |- migrations # 迁移文件夹，数据库相关
-      |- __init__.py # 告知 Python 该目录为一个包
+    |- __init__.py
+    |- migrations # 存放迁移文件
+      |- __init__.py
+      |- ...
+    |- templates # 存放 HTML 渲染模版
       |- ...
     |- admin.py # 后台管理系统相关
     |- apps.py # 该自定应用的配置
     |- models.py # 模型相关
-    |- test.py # 单元测试相关
+    |- tests.py # 单元测试相关
     |- views.py # 视图函数相关
   |- ...
   |- manage.py
@@ -233,7 +253,18 @@ Django 项目中包含一个主应用与多个自定应用 [详见应用](#应�
 
 ### settings.py
 
-文件位于项目主应用目录下，包含常用设置项：
+用于定义项目设置项，位于项目主应用目录下
+
+```shell
+|- 项目
+  |- 主应用
+    |- ...
+    |- views.py // [!code hl]
+  |- 自定义应用
+  |- manage.py
+```
+
+::: tip 常用设置项：
 
 - `ALLOWED_HOSTS`：用于注册可访问的域名
 - `INSTALLED_APPS`：用于注册项目中使用的应用
@@ -242,6 +273,7 @@ Django 项目中包含一个主应用与多个自定应用 [详见应用](#应�
 - `DATABASES`：用于设置数据库相关配置
 - `STATIC_URL`：用于设置文件的路径
 
+:::
 ::: details 例：项目新创建项目的默认`settings.py`
 
 ```python
@@ -382,64 +414,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 :::
 
-## 应用 ( Applications )
-
-Django 项目中一般有多个应用分别处理不同功能，可视为模块化开发中的模块
-
-对于小项目来说自动生成的主应用足够，中大型项目中业务可按需分别放入不同应用
-
-::: tip 主应用：
-包含当前该 Django 项目相关的内容，在通过[`django-admin startproject`](#项目创建)创建项目时自动创建
-:::
-
-::: tip 自定义应用：
-包含项目中各个业务功能相关内容，需通过[`python manage.py startapp`](#应用创建)自行创建
-:::
-
 ---
 
-### 应用创建
+### urls.py
 
-在创建项目时会顺带创建一个主应用，若想创建其他自定义应用则需在项目目录下执行下文命令
+用于定义可访问路径地址与各个应用的视图之间的映射关系，位于主应用目录下
 
-```shell
-python manage.py startapp 应用名
-# 或
-django-admin startapp 应用名
-```
+::: details 例：项目新创建项目的默认`urls.py`
 
-命令执行后会在项目目录下创建一个为`应用名`的目录 [详见项目目录](#项目目录)
+```python
+from django.contrib import admin
+from django.urls import path
 
-::: details 例：在名为`django_app`的项目下创建名为`main`的主应用与`aaa`、`bbb`的两个自定义应用
-
-::: code-group
-
-```shell [命令]
-(.venv) % cd django_app
-(.venv) % django-admin startproject main .
-(.venv) % python manage.py startapp aaa
-(.venv) % python manage.py startapp bbb
-```
-
-```shell [目录]
-|- django_app
-  |- main
-  |- aaa
-  |- bbb
-  |- manage.py
-```
-
-```python [配置文件]
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-
-    'aaa', // [!code hl]
-    'bbb', // [!code hl]
+urlpatterns = [
+    path('admin/', admin.site.urls),
 ]
 
 ```
@@ -448,125 +436,177 @@ INSTALLED_APPS = [
 
 ---
 
-### 应用注册
+### views.py
 
-应用创建后需要注册否则无法使用，即手动追加到配置文件[`settings.py`](# settings-py)的`INSTALLED_APPS`
+用于定义各个应用的视图，位于各个应用自身的目录下
+
+```shell
+|- 项目
+  |- 主应用
+  |- 自定义应用
+    |- ...
+    |- views.py // [!code hl]
+  |- manage.py
+```
+
+::: details 例：项目新创建项目的默认`views.py`
+
+```python
+from django.shortcuts import render
+
+# Create your views here.
+```
+
+:::
+
+## 后台管理页面
+
+Django 自带的管理页面，访问地址为`localhost:8000/admin/`
+
+可对数据库进行查看、增删改管理
+
+::: details STEP1. 设置路由
+
+Django 默认已经配置好管理页面的路由，不需手动创建
+
+::: code-group
+
+```python [urls.py]
+from django.contrib import admin
+from django.urls import path
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls), // [!code hl]
+]
+```
+
+:::
+
+::: details STEP2. 注册模型
+
+要通过管理页面管理的模型还需要在`admin.py`注册
+
+注册的模型通过`__str__`方法声明在管理页面中该模型所对应的表中各个数据的展示名
+
+::: code-group
+
+```shell [目录]
+|-
+  |- 主应用
+  |- 自定义应用
+    |- ...
+    |- admin.py // [!code hl]
+  |- manage.py
+```
+
+```python [admin.py]
+from django.contrib import admin
+
+from 应用中模型的路径 import 模型
+
+
+admin.site.register(模型) // [!code hl]
+admin.site.register(模型) // [!code hl]
+```
+
+```python [models.py]
+from django.db import models
+
+
+class UserModel(models.Model):
+    # 定义字段
+    # 定义字段
+
+
+    def __str__(self):
+        return f'{self.字段}'
+```
+
+:::
+
+::: details STEP3. 创建超级用户
+
+创建超级用户到数据库，访问管理页面通过该用户名 + 密码
+
+```shell
+python manage.py createsuperuser
+```
+
+::: code-group
+
+```shell [创建过程]
+(.venv) % python manage.py createsuperuser // [!code hl]
+Username (leave blank to use '电脑名'): 自定义超级用户名
+Email address:
+Password:
+Password (again):
+Superuser created successfully.
+```
+
+- 默认使用本机电脑名
+- 邮箱可跳过
+- 输入的密码不会显示
+
+:::
+
+::: details STEP 4. 国际化
 
 ::: code-group
 
 ```python [settings.py]
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-
-    # 除主应用外的自定义应用需在此注册
-]
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 ```
 
 :::
 
-## 数据迁移 （ Migrations ）
+::: details 例：注册模型并创建访问超级用户
 
-将模型自动映射到数据库的表
-
----
-
-### 生成迁移文件
-
-```shell
-python manage.py makemigrations
-```
-
-每个自定义应用默认都有迁移文件夹`migrations`来存放迁移文件
-
-```shell
-|- 项目
-  |- 自定义应用
-    |- migrations
-      |- __init__.py
-      |- ...
-```
-
-::: details 例：创建 Django 项目后执行命令生成迁移文件
-
-会提示没有变化，Django 项目默认自带 18 个 迁移文件
-
-```shell
-(.venv) % django-admin startproject django_app
-(.venv) % python manage.py makemigrations // [!code hl]
-No changes detected
-```
-
-:::
-
----
-
-### 执行迁移
-
-```shell
-python manage.py migrate
-```
-
-将生成的迁移文件同步到数据库
-
-::: details 例：创建 Django 项目后执行命令生迁移到默认数据库
-
-Django 项目默认使用 sqlite3，详见配置文件[`settings.py`](# settings-py)
-
-命令执行后会在项目目录下生成名为`db.sqlite3`的 Sqlite3 数据库文件
+向`admin.py`中注册`UserModel`模型
 
 ::: code-group
 
-```shell [命令]
-(.venv) % django-admin startproject django_app
-(.venv) % python manage.py migrate // [!code hl]
-Operations to perform:
-  Apply all migrations: admin, auth, contenttypes, sessions
-Running migrations:
-  Applying contenttypes.0001_initial... OK
-  Applying auth.0001_initial... OK
-  Applying admin.0001_initial... OK
-  Applying admin.0002_logentry_remove_auto_add... OK
-  Applying admin.0003_logentry_add_action_flag_choices... OK
-  Applying contenttypes.0002_remove_content_type_name... OK
-  Applying auth.0002_alter_permission_name_max_length... OK
-  Applying auth.0003_alter_user_email_max_length... OK
-  Applying auth.0004_alter_user_username_opts... OK
-  Applying auth.0005_alter_user_last_login_null... OK
-  Applying auth.0006_require_contenttypes_0002... OK
-  Applying auth.0007_alter_validators_add_error_messages... OK
-  Applying auth.0008_alter_user_username_max_length... OK
-  Applying auth.0009_alter_user_last_name_max_length... OK
-  Applying auth.0010_alter_group_name_max_length... OK
-  Applying auth.0011_update_proxy_permissions... OK
-  Applying auth.0012_alter_user_first_name_max_length... OK
-  Applying sessions.0001_initial... OK
+```python [1. 注册模型]
+from django.contrib import admin
+
+from my_app.models import UserModel
+
+admin.site.register(UserModel)
 ```
 
-```python [数据库配置]
-DATABASE = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+```python [2. 模型]
+from django.db import models
+
+
+class UserModel(models.Model):
+    user_name = models.CharField(verbose_name="user name", max_length=20)
+    user_age = models.IntegerField(verbose_name="user age", default=0)
+
+    def __str__(self):
+        return f'{self.user_name} - {self.user_age}'
+```
+
+```shell [3. 创建超级用户]
+Username (leave blank to use 'xxxx'): admin
+Email address:
+Password:
+Password (again):
+The password is too similar to the username.
+This password is too short. It must contain at least 8 characters.
+This password is too common.
+Bypass password validation and create user anyway? [y/N]: y
+Superuser created successfully.
 ```
 
 ```shell [目录]
-|- 项目名
+|- 项目目录
   |- 主应用
+  |- django_app
     |- ...
-  |- ...
-  |- db.sqlite3 // [!code hl]
+    |- admin.py // [!code hl]
+    |- models.py // [!code hl]
   |- manage.py
 ```
 
 :::
-
-<br/>
-
-https://www.bilibili.com/video/BV1fh4y1Z7jp/?p=9&spm_id_from=pageDriver&vd_source=8960252a3845b76b699282b11f36ab5c

@@ -4,83 +4,35 @@
 
 ## 简介
 
-TypeScript 是 JavaScript 的超级，可视为增加了对数据类型支持的 JavaScript 的扩展
+TypeScript 是 JavaScript 的超集
 
-## 本地安装
+可视为增加了对数据类型支持的 JavaScript 的扩展
 
-```shell
+## 安装
+
+::: code-group
+
+```shell [全局安装]
 npm i -g typescript
 # 或
 yarn global add typescript
 ```
 
-## 常用命令
-
-```shell
-tsc --help --all
-```
-
-::: details `tsc --version`
-
-查看版本
-
-```shell
-tsc --version
-# 或
-tsc -v
-```
-
-:::
-
-::: details `tsc --init`
-
-初始化，在当前所处工作区创建 TS 配置文件`tsconfig.json`
-
-> 如下：Version 5.1.6
-
-```shell
-% tsc --init
-
-Created a new tsconfig.json with:
-
-  target: es2016
-  module: commonjs
-  strict: true
-  esModuleInterop: true
-  skipLibCheck: true
-  forceConsistentCasingInFileNames: true
-
-
-You can learn more at https://aka.ms/tsconfig
-```
-
-:::
-
-::: details `tsc 文件.ts`
-
-编译一个指定`.ts`文件为`.js文件`
-
-> 前端脚手架以及框架开发时会自动编译
-
-```shell
-tsc 文件.ts
-
-# 或指定编译版本
-tsc --target [JS版本] 文件.ts # target option must be: 'es3', 'es5', 'es6', 'es2015', 'es2016', 'es2017', 'es2018', 'es2019', 'es2020', 'es2021', 'es2022', 'esnext'.
-```
-
-:::
-
-::: details `tsc --noEmit`
-
-检查
-
 :::
 
 ## 配置文件
 
+项目中 TS 的配置位于[`tsconfig.json`](#tsconfig-json)文件
+
+---
+
+### tsconfig.json
+
+可通过命令初始化自动生成，或者局部安装后自行手写
+
 https://www.typescriptlang.org/tsconfig
 
+::: details 例：默认初始化`tsconfig.json`
 ::: code-group
 
 ```json [默认初始值<Badge>Version 5.1.6</Badge>]
@@ -196,3 +148,72 @@ https://www.typescriptlang.org/tsconfig
 ```
 
 :::
+
+## 常用命令
+
+```shell
+tsc --help --all
+```
+
+::: details `tsc --version`
+
+查看版本
+
+```shell
+tsc --version
+# 或
+tsc -v
+```
+
+:::
+
+::: details `tsc --init`
+
+初始化，在当前所处工作区创建 TS 配置文件`tsconfig.json`
+
+> 如下：Version 5.1.6
+
+```shell
+% tsc --init
+
+Created a new tsconfig.json with:
+
+  target: es2016
+  module: commonjs
+  strict: true
+  esModuleInterop: true
+  skipLibCheck: true
+  forceConsistentCasingInFileNames: true
+
+
+You can learn more at https://aka.ms/tsconfig
+```
+
+:::
+
+::: details `tsc 文件.ts`
+
+编译一个指定`.ts`文件为`.js文件`
+
+> 前端脚手架以及框架开发时会自动编译
+
+```shell
+tsc 文件.ts
+
+# 或指定编译版本
+tsc --target [JS版本] 文件.ts # target option must be: 'es3', 'es5', 'es6', 'es2015', 'es2016', 'es2017', 'es2018', 'es2019', 'es2020', 'es2021', 'es2022', 'esnext'.
+```
+
+:::
+
+::: details `tsc --noEmit`
+
+检查
+
+:::
+
+<br/>
+
+5 个 TS 库：https://www.cnblogs.com/sexintercourse/p/16786524.html
+
+高级用法：https://mp.weixin.qq.com/s/BRZ102Ce3hV7oKfwhwljWw

@@ -6,15 +6,22 @@ export default [
     collapsed: true,
     items: [
       { text: "?", link: `${PATH}/` },
+      { text: "?", link: `${PATH}/` },
+      {
+        text: "内置模块",
+        collapsed: true,
+        items: [
+          { text: "fs", link: `` },
+          { text: "path", link: `` },
+          { text: "http", link: `` },
+          { text: "url", link: `` },
+          { text: "querystring", link: `` },
+          { text: "util", link: `` },
+        ],
+      },
     ],
   },
-  {
-    text: "内置模块",
-    collapsed: true,
-    items: [
-      { text: "fs", link: `${PATH}/` },
-    ],
-  },
+
   {
     text: "Web 应用框架",
     collapsed: true,

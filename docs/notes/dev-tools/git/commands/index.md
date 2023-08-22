@@ -1,4 +1,6 @@
-# git stash
+# Git 常用命令
+
+## git stash
 
 https://juejin.cn/post/6844904085716467720
 
@@ -13,11 +15,19 @@ https://developer.aliyun.com/article/1201539
 
 :::
 
-## git stash save "MESSAGE"
+### git stash save "MESSAGE"
 
-## git stash list
+储存缓存
 
-## git stash pop stash stash\@\{0\}
+---
+
+### git stash list
+
+展示缓存列表
+
+---
+
+### git stash pop stash \<STASH ID>
 
 恢复缓存
 

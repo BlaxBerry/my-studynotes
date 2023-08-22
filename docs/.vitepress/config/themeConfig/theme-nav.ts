@@ -32,10 +32,18 @@ export default [
   {
     text: "其他",
     items: [
-      { text: "常用开发工具", link: "/notes/dev-tools/" },
       { text: "Web开发基础", link: "/notes/web-fundamental/" },
       { text: "Web开发其他", link: "/notes/web-others/" },
       { text: "Linux", link: "/notes/operating-systems/linux/" },
+      {
+        text: "常用开发工具",
+        items: [
+          { text: "Git", link: "/notes/dev-tools/git/" },
+          { text: "Docker", link: "/notes/dev-tools/docker/" },
+          { text: "asdf", link: "/notes/dev-tools/asdf/" },
+        ],
+      },
+
     ],
   },
 ];

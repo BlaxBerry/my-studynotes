@@ -6,12 +6,7 @@
 
 JavaScript 有两个运行环境：
 
-- 在浏览器中执行
-- 在终端中执行 ( Node.js )
-
----
-
-### 浏览器环境
+::: details 1. 在浏览器中执行
 
 只需要写入在 HTML 中的`<script>`标签中
 
@@ -28,11 +23,13 @@ JavaScript 有两个运行环境：
 </html>
 ```
 
----
+:::
 
-### Node.js 环境
+::: details 2. 在终端中执行
 
-详见 [Node.js 的安装](../../web-back-end/node-js/index.md#安装)
+详见 [Node.js](../../web-back-end/node-js/index.md#安装)
+
+:::
 
 <br/>
 
