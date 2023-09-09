@@ -26,15 +26,15 @@ Python 3.10.0
 
 ## 虚拟环境
 
-虚拟环境可以将 Python 项目与系统隔离
+虚拟环境可隔离系统环境，来防止安装的包污染系统环境
 
-在虚拟环境中安装的包及其版本仅适用于该虚拟环境内
+一般 Python 项目都建议在运行在在虚拟环境中
 
 ---
 
 ### venv
 
-Python 自带无需下载，开箱即用
+Python 自带，开箱即用无需下载
 
 ::: details 1. 创建
 
@@ -120,7 +120,7 @@ version = 3.10.0
 > 如下：
 
 ```shell
-# 进入一个空工作区 & 查看系统 Python 版本
+# 创建并进入一个空工作区 & 查看系统 Python 所在
 % mkdir my-python-demo
 % cd my-python-demo
 % which python

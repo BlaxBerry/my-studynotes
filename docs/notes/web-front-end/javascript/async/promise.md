@@ -231,7 +231,7 @@ executor 执行器函数在调用`new Promise()`时会立即执行
 
 即，Promise 处理的异步在调用构造函数时会立即执行
 
-[详见下文](#promise-执行时机)
+详见 [执行时机](#promise-执行时机)
 
 ::: code-group
 
@@ -542,7 +542,7 @@ Promise.any([a, b, c, d])
 
 比如可用于模块的自定义延迟导入
 
-> 如下：React 组件懒加载自定义延迟 3s，[详见`React.lazy()`](../../react/built-in-apis/methods.md#lazy)
+> 如下：React 组件懒加载自定义延迟 3s，详见 [`React.lazy()`](../../react/built-in-apis/methods.md#lazy)
 
 ```js
 import React from "react";

@@ -1,19 +1,19 @@
-# Django 应用 ( Applications )
+# Django 应用
 
 ## 简介
 
-Django 项目中一般有多个应用分别处理不同功能，可视为模块化开发中的模块
+Django 中的应用 ( Application ) 可视为模块化开发中的模块
 
-## 分类
+一般中大型项目会有多个应用分别处理不同业务功能，每个应用都可以有独自的数据库表结构、视图函数、渲染模版等内容
 
-::: tip 主应用：
+::: details 主应用：
 
 - 在通过[`django-admin startproject`](../index.md#项目创建)创建项目时自动创建
-- 包含当前该 Django 项目配置相关的内容
+- 包含当前该 Django 项目配置相关的内容，故多命名为`config`
 
 :::
 
-::: tip 自定义应用：
+::: details 自定义应用：
 
 - 需自行通过[`python manage.py startapp`](#应用创建)创建
 - 不是必须，用于模块化处理中大型项目中复杂独立的功能
@@ -23,7 +23,7 @@ Django 项目中一般有多个应用分别处理不同功能，可视为模块�
 
 ::: code-group
 
-```shell [主应用]
+```shell{3-8} [主应用]
 |- 项目目录
   |- .venv
   |- 主应用
@@ -37,7 +37,7 @@ Django 项目中一般有多个应用分别处理不同功能，可视为模块�
   |- manage.py
 ```
 
-```shell [自定义应用]
+```shell{4-15} [自定义应用]
 |- 项目目录
   |- .venv
   |- 主应用
@@ -59,19 +59,34 @@ Django 项目中一般有多个应用分别处理不同功能，可视为模块�
 
 :::
 
----
+## 应用创建
 
-### 应用创建
+在创建项目时会自动创建一个主应用
 
-在创建项目时会顺带创建一个主应用，若想创建其他自定义应用则需在项目目录下执行下文命令
+其他自定义应用则需在项目目录下执行下文命令来创建
 
-```shell
+命令执行后会在项目目录下创建一个为`应用名`的目录 详见 [Django 项目目录](../index.md#项目目录)
+
+::: code-group
+
+```shell [命令]
 python manage.py startapp 应用名
 # 或
 django-admin startapp 应用名
 ```
 
-命令执行后会在项目目录下创建一个为`应用名`的目录 [详见项目目录](#项目目录)
+```shell [目录]
+|- 项目目录
+  |- .venv
+  |- 主应用
+  |- 应用名
+    |- __init__.py // [!code hl]
+    |- ... // [!code hl]
+  |- ...
+  |- manage.py
+```
+
+:::
 
 ::: details 例：在名为`django_app`的项目下创建名为`main`的主应用与`aaa`、`bbb`的两个自定义应用
 
@@ -104,11 +119,11 @@ INSTALLED_APPS = [
 
 :::
 
----
+## 应用注册
 
-### 应用注册
+应用创建后需要注册，否则无法使用
 
-应用创建后需要注册否则无法使用，即手动追加到配置文件[`settings.py`](# settings-py)的`INSTALLED_APPS`
+手动追加到主应用的配置文件[`settings.py`](../index.md#settings-py)中的`INSTALLED_APPS`
 
 ::: code-group
 
@@ -116,7 +131,8 @@ INSTALLED_APPS = [
 INSTALLED_APPS = [
     # ...
 
-    # 除主应用外的自定义应用需在此注册
+    "自定义应用",
+    "自定义应用"
 ]
 ```
 

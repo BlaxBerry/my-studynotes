@@ -4,13 +4,13 @@
 
 ## 项目创建
 
-```shell
+::: code-group
+
+```shell [命令]
 npx create-next-app@latest
 ```
 
-::: tip 安装配置选:
-
-```shell
+```shell [安装配置选项]
 ✔ What is your project named? 自定义项目名
 # 是否安装使用 TS ( 默认推荐 Yes )
 ✔ Would you like to use TypeScript? No / Yes
@@ -35,7 +35,7 @@ npx create-next-app@latest
 - 使用应用路由器 App Router
 - 不使用自定义引用别名，使用默认`@`
 
-```shell{2-8}
+```shell{1-8}
 % npx create-next-app@latest
 ✔ What is your project named? 项目名
 ✔ Would you like to use TypeScript?  Yes
@@ -79,15 +79,17 @@ Success! Created 项目名 at /项目路径/项目名
 
 :::
 
+## 项目启动
+
+项目默认开启在`3000`端口
+
 ```shell
 npm run dev
 ```
 
 ::: details 例子：
 
-项目默认开启在`3000`端口
-
-```shell
+```shell{1}
 % npm run dev
 
 > next-demo@0.1.0 dev

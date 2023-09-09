@@ -25,3 +25,13 @@ go version
 % go version
 go version go1.18 darwin/amd64
 ```
+
+```shell
+% go env GOPATH
+/Users/用户/.asdf/installs/golang/1.18/packages
+```
+
+```shell
+% go env GOROOT
+/Users/用户/.asdf/installs/golang/1.18/go
+```

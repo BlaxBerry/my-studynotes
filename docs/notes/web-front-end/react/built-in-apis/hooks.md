@@ -50,7 +50,7 @@ function useState<S = undefined>(
 <details class="details custom-block">
   <summary><code>state</code>可通过函数初始化</summary>
 
-[详见性能优化](../performance/render-optimizing.md#避免-state-初始化函数重复调用)
+详见 [性能优化](../performance/render-optimizing.md#避免-state-初始化函数重复调用)
 
 ```tsx
 const [state, setState] = useState(状态初始化函数);
@@ -65,7 +65,7 @@ const [state, setState] = useState(() => 状态初始化函数(参数));
 
 组件状态 state 可存储任何数据当然也可为一个函数
 
-[详见性能优化](../performance/render-optimizing.md#避免-state-初始化函数重复调用)
+详见 [性能优化](../performance/render-optimizing.md#避免-state-初始化函数重复调用)
 
 ```tsx
 const [_, __] = useState<Function>(函数名); // [!code --]
@@ -676,4 +676,4 @@ useMemo 缓存计算数据的值。
 
 useCallback 缓存函数的引用
 
-## 自定义 Hooks ( useXxxx )
+## 自定义钩子 ( useXxxx )

@@ -6,7 +6,7 @@
 
 Django 是个基于 Python 的重型框架，用于 Web 开发，采用了 MTV 设计模式
 
-::: tip MTV 设计模式
+::: details MTV 设计模式：
 
 <details class="details custom-block">
   <summary><code>M ( Model )</code> 数据模型</summary>
@@ -84,19 +84,21 @@ django-admin startproject 项目名 [项目所处目录名]
 
 ::: code-group
 
-```shell [省略第二个参数]
+```shell{2-6} [省略第二个参数]
 |- 执行命令的目录
-  |- 项目名 // [!code hl]
-    |- 项目名 // [!code hl]
-      |- ... // [!code hl]
-    |- manage.py // [!code hl]
+  |- 项目名
+    |- 项目名
+      |- __init__.py
+      |- ...
+    |- manage.py
 ```
 
-```shell [第二个参数为 .]
+```shell{2-5} [第二个参数为 .]
 |- 执行命令的目录
-  |- 项目名 // [!code hl]
-    |- ... // [!code hl]
-  |- manage.py // [!code hl]
+  |- 项目名
+    |- __init__.py
+    |- ...
+  |- manage.py
 ```
 
 :::
@@ -115,13 +117,14 @@ django-admin startproject 项目名 [项目所处目录名]
 django-admin startprojcet django_app // [!code hl]
 ```
 
-```shell [目录]
+```shell{3-7} [目录]
 |- xxx
   |- .venv
-  |- django_app // [!code hl]
-    |- django_app // [!code hl]
-      |- ... // [!code hl]
-    |- manage.py // [!code hl]
+  |- django_app
+    |- django_app
+      |- __init__.py
+      |- ...
+    |- manage.py
 ```
 
 :::
@@ -140,12 +143,13 @@ django-admin startprojcet django_app // [!code hl]
 (.venv) % django-admin startproject django_app . // [!code hl]
 ```
 
-```shell [目录]
+```shell{3-6} [目录]
 |- xxx
   |- .venv
-  |- django_app // [!code hl]
-    |- ... // [!code hl]
-  |- manage.py // [!code hl]
+  |- django_app
+    |- __init__.py
+    |- ...
+  |- manage.py
 ```
 
 :::
@@ -196,12 +200,13 @@ Quit the server with CONTROL-C.
 
 ## 项目目录
 
-Django 项目中包含一个主应用与多个自定应用 [详见应用](./basics/application.md)
+一般比较大的 Django 项目中包含一个主应用与多个自定应用，来划分功能实现模块化开发，详见 [Django 应用](./basics/application.md)
 
-- 主应用在创建项目时会顺带创建，对于小项目来说足够
-- 中大型项目中按业务需求可额外创建其他自定义应用
+主应用多命名为`config`
 
-```shell
+::: code-group
+
+```shell [目录]
 |- 项目目录
   |- .venv
   |- 主应用 # 整个项目相关
@@ -211,9 +216,7 @@ Django 项目中包含一个主应用与多个自定应用 [详见应用](./basi
   |- manage.py # 管理该项目的命令工具
 ```
 
-::: code-group
-
-```shell [主应用]
+```shell{3-8} [主应用]
 |- 项目目录
   |- .venv
   |- 主应用
@@ -227,13 +230,13 @@ Django 项目中包含一个主应用与多个自定应用 [详见应用](./basi
   |- manage.py
 ```
 
-```shell [自定义应用]
+```shell{4-15} [自定义应用]
 |- 项目目录
   |- .venv
   |- 主应用
   |- 自定应用
     |- __init__.py
-    |- migrations # 存放迁移文件
+    |- migrations # 存放迁移文件，数据库比昂记录
       |- __init__.py
       |- ...
     |- templates # 存放 HTML 渲染模版
@@ -255,28 +258,19 @@ Django 项目中包含一个主应用与多个自定应用 [详见应用](./basi
 
 用于定义项目设置项，位于项目主应用目录下
 
-```shell
+::: code-group
+
+```shell [目录]
 |- 项目
   |- 主应用
+    |- __init__.py
     |- ...
-    |- views.py // [!code hl]
+    |- settings.py // [!code hl]
   |- 自定义应用
   |- manage.py
 ```
 
-::: tip 常用设置项：
-
-- `ALLOWED_HOSTS`：用于注册可访问的域名
-- `INSTALLED_APPS`：用于注册项目中使用的应用
-- `MIDDLEWARE`：用于注册项目中使用的中间件
-- `TEMPLATES`：用于设置模版导入的路径
-- `DATABASES`：用于设置数据库相关配置
-- `STATIC_URL`：用于设置文件的路径
-
-:::
-::: details 例：项目新创建项目的默认`settings.py`
-
-```python
+```python [默认 setting.py]
 from pathlib import Path
 
 # 项目根目录
@@ -414,15 +408,36 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 :::
 
+::: tip 常用设置项：
+
+- `ALLOWED_HOSTS`：用于注册可访问的域名
+- `INSTALLED_APPS`：用于注册项目中使用的应用
+- `MIDDLEWARE`：用于注册项目中使用的中间件
+- `TEMPLATES`：用于设置模版导入的路径
+- `DATABASES`：用于设置数据库相关配置
+- `STATIC_URL`：用于设置文件的路径
+
+:::
+
 ---
 
 ### urls.py
 
-用于定义可访问路径地址与各个应用的视图之间的映射关系，位于主应用目录下
+用于定义可访问路径地址与各个应用的视图之间的映射关系
 
-::: details 例：项目新创建项目的默认`urls.py`
+::: code-group
 
-```python
+```shell [目录]
+|- 项目
+  |- 主应用
+    |- __init__.py
+    |- ...
+    |- urls.py // [!code hl] # 主路由
+  |- 自定义应用
+  |- manage.py
+```
+
+```python [默认 urls.py]
 from django.contrib import admin
 from django.urls import path
 
@@ -440,18 +455,19 @@ urlpatterns = [
 
 用于定义各个应用的视图，位于各个应用自身的目录下
 
-```shell
+::: code-group
+
+```shell [目录]
 |- 项目
   |- 主应用
   |- 自定义应用
+    |- __init__.py
     |- ...
     |- views.py // [!code hl]
   |- manage.py
 ```
 
-::: details 例：项目新创建项目的默认`views.py`
-
-```python
+```python [默认 views.py]
 from django.shortcuts import render
 
 # Create your views here.
@@ -461,11 +477,11 @@ from django.shortcuts import render
 
 ## 后台管理页面
 
-Django 自带的管理页面，访问地址为`localhost:8000/admin/`
+Django 有自带的管理页面，可对数据库进行增删改查
 
-可对数据库进行查看、增删改管理
+项目启动后默认访问地址为`localhost:8000/admin/`
 
-::: details STEP1. 设置路由
+::: details <Badge>STEP 1</Badge> 设置路由
 
 Django 默认已经配置好管理页面的路由，不需手动创建
 
@@ -483,7 +499,7 @@ urlpatterns = [
 
 :::
 
-::: details STEP2. 注册模型
+::: details <Badge>STEP 2</Badge> 注册模型
 
 要通过管理页面管理的模型还需要在`admin.py`注册
 
@@ -495,6 +511,7 @@ urlpatterns = [
 |-
   |- 主应用
   |- 自定义应用
+    |- __init__.py
     |- ...
     |- admin.py // [!code hl]
   |- manage.py
@@ -525,7 +542,7 @@ class UserModel(models.Model):
 
 :::
 
-::: details STEP3. 创建超级用户
+::: details <Badge>STEP 3</Badge> 创建超级用户
 
 创建超级用户到数据库，访问管理页面通过该用户名 + 密码
 
@@ -550,7 +567,7 @@ Superuser created successfully.
 
 :::
 
-::: details STEP 4. 国际化
+::: details <Badge>STEP 4</Badge> 国际化
 
 ::: code-group
 
@@ -561,9 +578,7 @@ LANGUAGE_CODE = 'zh-hans'
 
 :::
 
-::: details 例：注册模型并创建访问超级用户
-
-向`admin.py`中注册`UserModel`模型
+> 例：向`admin.py`中注册`UserModel`模型，创建访问超级用户
 
 ::: code-group
 
@@ -608,5 +623,3 @@ Superuser created successfully.
     |- models.py // [!code hl]
   |- manage.py
 ```
-
-:::

@@ -6,7 +6,7 @@ https://mp.weixin.qq.com/s/aud0xe7HbcUw1GJhfph1nw
 
 用于在组件树中的多个组件之间共享全局状态数据
 
-[详见`createContext()`](../built-in-apis/methods.md#createcontext)
+详见 [`createContext()`](../built-in-apis/methods.md#createcontext)
 
 ```tsx{0}
 import React, { createContext } from "react";

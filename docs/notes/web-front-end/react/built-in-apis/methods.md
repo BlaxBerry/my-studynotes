@@ -29,7 +29,7 @@ function memo<T extends ComponentType<any>>( // [!code focus]
 - 被包裹的组件除了自身的初次渲染外，仅在`props`中数据变化时才会重新渲染
 - 若被包裹的组件没有`props`则组件仅会初次渲染一次
 
-可有效避免父组件重新渲染导致的不必要的重新渲染 [详见性能优化](../performance/re-render.md#记忆子组件)
+可有效避免父组件重新渲染导致的不必要的重新渲染 详见 [性能优化](../performance/re-render.md#记忆子组件)
 
 ::: details 例子：
 

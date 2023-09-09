@@ -2,36 +2,51 @@
 
 ## 简介
 
+https://codelab.website/django-models-py-split/
+
+https://office54.net/python/django/django-model-database
+
 模型是个类，映射到数据库中的表与字段
 
 模型创建后需要进行数据迁移，以生成数据库中的表与字段
 
+### 位置
+
+也可根据需求以包的形式定义多个独立的模型模块
+
 ::: code-group
 
-```shell [目录]
+```shell [单一文件]
 |- 项目目录
   |- 主应用
   |- 自定义应用
+    |- __init__.py
     |- ...
     |- models.py // [!code hl]
   |- manage.py
 ```
 
-```shell [目录]
+```shell [定义为包]
 |- 项目目录
   |- 主应用
   |- 自定义应用
+    |- __init__.py
     |- ...
-    |- models
+    |- 自定义模块包
       |- __init__.py // [!code hl]
-      |- 模型.py // [!code hl]
-      |- 模型.py // [!code hl]
+      |- 模型模块.py // [!code hl]
+      |- 模型模块.py // [!code hl]
   |- manage.py
+```
+
+```python [models/__init__.py]
+from 自定义应用.自定义模块包.模型模块 import *
+from 自定义应用.自定义模块包.模型模块 import 模型
 ```
 
 :::
 
-### 模型定义
+## 模型定义
 
 模型类需要继承自`django.bd.models.Model`类
 
@@ -47,7 +62,7 @@ class 模型名(models.Model):
     类属性 = models.字段(设置=值)
 ```
 
-### 字段类型
+## 字段类型
 
 Django 会默认为数据表自动生成增长的主键列
 
@@ -146,9 +161,10 @@ class Migration(migrations.Migration):
 |- django_app
   |- django_app
   |- my_app
+    |- __init__.py
     |- ...
     |- migrations
-      |- 0001_initial
+      |- 0001_initial.py // [!code hl]
   |- manage.py
 ```
 
@@ -222,6 +238,7 @@ DATABASE = {
 ```shell [目录]
 |- 项目名
   |- 主应用
+    |- __init__.py
     |- ...
   |- ...
   |- db.sqlite3 // [!code hl]
@@ -236,9 +253,11 @@ https://www.bilibili.com/video/BV1fh4y1Z7jp/?p=9&spm_id_from=pageDriver&vd_sourc
 
 ## 模型操作
 
-### 模型.objects.all()
+https://office54.net/python/django/orm-database-operate
 
-模型.objects.all()
+### 查找
+
+模型类.objects.all()
 
 获取该模型对应的数据表中所有数据
 
@@ -283,3 +302,15 @@ urlpatterns = [
 ```
 
 :::
+
+---
+
+### 过滤
+
+---
+
+### 增加
+
+---
+
+### 删除

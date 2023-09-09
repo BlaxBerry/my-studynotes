@@ -18,7 +18,8 @@
 
 ::: details 子 → 父
 
-利用`props`传递回调函数
+- 利用`props`传递回调函数
+- 利用[`useImperativeHandle()`](../built-in-apis/hooks.md#useimperativehandle)钩子通过子组件 Ref 返回父组件
 
 :::
 
@@ -347,10 +348,10 @@ export default function Page() {
 
 ---
 
-### Hooks 模式
+### 钩子函数 ( Hooks )
 
 使用钩子函数 ( Hooks ) 实现状态与逻辑的共享，减少组件的耦合与重复
 
-[详见 React 内置 Hooks](../built-in-apis/hooks.md)
+详见 [React 内置 Hooks](../built-in-apis/hooks.md)
 
 ---

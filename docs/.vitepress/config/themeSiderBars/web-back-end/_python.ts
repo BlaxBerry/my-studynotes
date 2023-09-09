@@ -12,15 +12,7 @@ export default [
       { text: "流程控制", link: `${PATH}/basics/control-flow` },
       { text: "异常处理", link: `${PATH}/basics/error-exception` },
       { text: "类", link: `${PATH}/basics/class` },
-      {
-        text: "内置对象方法",
-        collapsed: true,
-        items: [
-          { text: "List", link: `${PATH}/built-in-apis/List` },
-          { text: "String", link: `${PATH}/built-in-apis/String` },
-          { text: "Dict", link: `${PATH}/built-in-apis/Dict` },
-        ],
-      },
+      { text: "模块与包", link: `${PATH}/basics/module-package` },
       {
         text: "内置模块",
         collapsed: true,
@@ -39,9 +31,17 @@ export default [
           { text: "PDM", link: `${PATH}/package-management/PDM` },
         ],
       },
+      {
+        text: "内置对象方法",
+        collapsed: true,
+        items: [
+          { text: "List", link: `${PATH}/built-in-apis/List` },
+          { text: "String", link: `${PATH}/built-in-apis/String` },
+          { text: "Dict", link: `${PATH}/built-in-apis/Dict` },
+        ],
+      },
     ],
   },
-
   {
     text: "Web 应用框架",
     collapsed: true,
@@ -57,4 +57,5 @@ export default [
     collapsed: true,
     items: [{ text: "？", link: "？" }],
   },
+  { text: "目录首页", link: `${PATH}/` },
 ];

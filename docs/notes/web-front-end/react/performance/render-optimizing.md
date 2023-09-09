@@ -39,7 +39,7 @@ export default function Component() {
 
 不推荐大量使用 CSS-in-JS 的内联样式，一方面有代码可读性差功能不全等问题，另一方面组件每次渲染时都会重新创建`style`中内联样式对象
 
-建议可在组件外部定义样式对象，或采用其他代替方式 [详见](../basics/styling.md)
+建议可在组件外部定义样式对象，或采用[其他代替方式](../basics/styling.md)
 
 ::: code-group
 
