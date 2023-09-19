@@ -29,6 +29,9 @@ hero:
       text: Django
       link: /notes/web-back-end/django/
     - theme: alt
+      text: Gin
+      link: /notes/web-back-end/gin/
+    - theme: alt
       text: Ruby on Rails
       link: /notes/web-back-end/ruby-on-rails/
 # features:

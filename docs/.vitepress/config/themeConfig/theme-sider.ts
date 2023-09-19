@@ -18,6 +18,7 @@ import _expressJs from "../themeSiderBars/web-back-end/_express-js";
 import _koaJs from "../themeSiderBars/web-back-end/_koa-js";
 import _nestJs from "../themeSiderBars/web-back-end/_nest-js";
 import _golang from "../themeSiderBars/web-back-end/_golang";
+import _gin from "../themeSiderBars/web-back-end/_gin";
 import _python from "../themeSiderBars/web-back-end/_python";
 import _django from "../themeSiderBars/web-back-end/_django";
 import _ruby from "../themeSiderBars/web-back-end/_ruby";
@@ -57,6 +58,7 @@ export default {
   "/notes/web-back-end/koa-js/": _koaJs,
   "/notes/web-back-end/nest-js/": _nestJs,
   "/notes/web-back-end/golang/": _golang,
+  "/notes/web-back-end/gin/": _gin,
   "/notes/web-back-end/python/": _python,
   "/notes/web-back-end/django/": _django,
   "/notes/web-back-end/ruby/": _ruby,

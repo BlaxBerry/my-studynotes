@@ -20,13 +20,9 @@ yarn global add typescript
 
 :::
 
-## 配置文件
+## tsconfig.json
 
-项目中 TS 的配置位于[`tsconfig.json`](#tsconfig-json)文件
-
----
-
-### tsconfig.json
+项目中 TS 的配置位于`tsconfig.json`文件
 
 可通过命令初始化自动生成，或者局部安装后自行手写
 
@@ -217,3 +213,5 @@ tsc --target [JS版本] 文件.ts # target option must be: 'es3', 'es5', 'es6', 
 5 个 TS 库：https://www.cnblogs.com/sexintercourse/p/16786524.html
 
 高级用法：https://mp.weixin.qq.com/s/BRZ102Ce3hV7oKfwhwljWw
+
+Airbnb React/JSX Style Guide： https://airbnb.io/javascript/react/

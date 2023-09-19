@@ -21,11 +21,11 @@ asdf reshim nodejs
 node --version
 ```
 
-> 如下：本文使用 Node.js v16.15.0
+> 如下：本文使用 Node.js v18.18.0
 
 ```shell
 % node --version
-v16.15.0
+v18.18.0
 ```
 
 ## 项目启动

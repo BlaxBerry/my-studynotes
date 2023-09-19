@@ -20,7 +20,6 @@ Developing ...
 
 ```shell
 |- .github
-|- .husky
 |- .vscode
 |- docs
   |- .vitepress # Vitepress's Theme Configurations

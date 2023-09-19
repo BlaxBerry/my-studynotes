@@ -12,3 +12,6 @@ enum Status {
 
 console.log(Object.values(Status));
 ```
+
+TS Enum の問題点と代替手段：
+https://typescriptbook.jp/reference/values-types-variables/enum/enum-problems-and-alternatives-to-enums

@@ -4,7 +4,7 @@
 
 ## 介绍
 
-Django 是个基于 Python 的重型框架，用于 Web 开发，采用了 MTV 设计模式
+Django 是个基于 Python 的重型 Web 框架，采用了 MTV 设计模式
 
 ::: details MTV 设计模式：
 
@@ -548,12 +548,14 @@ class UserModel(models.Model):
 
 ```shell
 python manage.py createsuperuser
+# 或
+./manage.py createsuperuser
 ```
 
 ::: code-group
 
 ```shell [创建过程]
-(.venv) % python manage.py createsuperuser // [!code hl]
+(.venv) % ./manage.py createsuperuser // [!code hl]
 Username (leave blank to use '电脑名'): 自定义超级用户名
 Email address:
 Password:

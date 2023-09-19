@@ -6,7 +6,7 @@ export default [
         collapsed: true,
         items: [
             { text: "git stash", link: `${PATH}/commands/git-stash` },
-            { text: "?", link: `${PATH}/` },
+            { text: "git commit", link: `${PATH}/commands/git-commit` },
         ],
     },
     {
@@ -31,6 +31,14 @@ export default [
         items: [
             { text: "?", link: `${PATH}/` },
             { text: "?", link: `${PATH}/` },
+        ],
+    },
+    {
+        text: "托管平台",
+        collapsed: true,
+        items: [
+            { text: "Github", link: `${PATH}/` },
+            { text: "GitLab", link: `${PATH}/` },
         ],
     },
 ];
