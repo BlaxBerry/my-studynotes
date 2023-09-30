@@ -7,7 +7,7 @@ titleTemplate: BlaxBerry
 
 hero:
   name: 学习笔记
-  text: BlaxBerry的编程记录
+  text: BlaxBerry的编程
   tagline: 一个半路出家程序员的避坑指南
   image:
     src: /images/main.webp
@@ -25,27 +25,27 @@ hero:
 features:
   - title: Nuxt.js
     icon:
-      src: /assets/svg/nuxt-js.svg
+      src: /svgs/nuxt-js.svg
     link: /notes/web-front-end/nuxt-js/
   - title: Next.js
     icon:
-      light: /assets/svg/next-js.svg
-      dark: /assets/svg/next-js-dark.svg
+      light: /svgs/next-js.svg
+      dark: /svgs/next-js-dark.svg
     link: /notes/web-front-end/next-js/
   - title: Deno
     icon:
-      src: /assets/svg/deno.svg
+      src: /svgs/deno.svg
     link: /notes/web-back-end/deno/
   - title: Django
     icon:
-      src: /assets/svg/django.svg
+      src: /svgs/django.svg
     link: /notes/web-back-end/django/
   - title: Gin
     icon:
-      src: /assets/svg/gin.svg
+      src: /svgs/gin.svg
     link: /notes/web-back-end/gin/
   - title: Ruby on Rails
     icon:
-      src: /assets/svg/ruby-on-rails.svg
+      src: /svgs/ruby-on-rails.svg
     link: /notes/web-back-end/ruby-on-rails/
 ---
