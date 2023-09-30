@@ -8,11 +8,10 @@ Developing ...
 
 ## Stacks
 
-- [Vitepress]()
+- [Vitepress]() v1.0.0-beta.1
 - [TypeScript]()
-- [CSS]()
+- [Sass]()
 - [Markdown]()
-- [yarn]()
 - [Github Pages]()
 - [Github Actions]()
 
@@ -31,7 +30,7 @@ Developing ...
         |- ...
       |- index.ts
     |- theme
-      |- custom.css
+      |- custom.scss
       |- index.ts
   |- notes # Markdown Notes
     |- ...

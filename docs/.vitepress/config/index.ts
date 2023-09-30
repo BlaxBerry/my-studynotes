@@ -1,5 +1,5 @@
 import { defineConfig } from "vitepress";
-// import siteHead from "./siteHeadConfig";
+import siteHead from "./siteHeadConfig";
 import themeConfig from "./themeConfig";
 
 export default defineConfig({
@@ -7,7 +7,7 @@ export default defineConfig({
   title: "学习笔记",
   titleTemplate: ":title | BlaxBerry学习笔记",
   description: "BlaxBerry的学习记录",
-//   head: siteHead,
+  head: siteHead,
 
   // 站点部署 https://blaxberry.github.io/my-studynotes/
   base: "/my-studynotes/",

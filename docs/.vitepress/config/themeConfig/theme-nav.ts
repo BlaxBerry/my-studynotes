@@ -23,7 +23,7 @@ export default [
           { text: "Node.js", link: "/notes/web-back-end/node-js/" },
           { text: "Python", link: "/notes/web-back-end/python/" },
           { text: "Golang", link: "/notes/web-back-end/golang/" },
-          { text: "Ruby", link: "/notes/web-back-end/ruby/" },
+          // { text: "Ruby", link: "/notes/web-back-end/ruby/" },
         ],
       },
       { text: "目录首页", link: "/notes/web-back-end/" },

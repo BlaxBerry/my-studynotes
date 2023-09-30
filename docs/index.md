@@ -20,25 +20,32 @@ hero:
       text: Web 后端
       link: /notes/web-back-end/
     - theme: alt
-      text: Next.js
-      link: /notes/web-front-end/next-js/
-    - theme: alt
-      text: Nuxt.js
-      link: /notes/web-front-end/nuxt-js/
-    - theme: alt
-      text: Django
-      link: /notes/web-back-end/django/
-    - theme: alt
-      text: Gin
-      link: /notes/web-back-end/gin/
-    - theme: alt
-      text: Ruby on Rails
-      link: /notes/web-back-end/ruby-on-rails/
-# features:
-#   - title: 永不妥协
-#     details: 道阻且长行则将至
-#   - title: Nothing is Simple
-#     details: Things Change Roll With It
-#   - title: 不解释，不后悔，不抱怨
-#     details: 想要佩服谁，我就照镜子
+      text: 开发工具
+      link: /notes/dev-tools/
+features:
+  - title: Nuxt.js
+    icon:
+      src: /assets/svg/nuxt-js.svg
+    link: /notes/web-front-end/nuxt-js/
+  - title: Next.js
+    icon:
+      light: /assets/svg/next-js.svg
+      dark: /assets/svg/next-js-dark.svg
+    link: /notes/web-front-end/next-js/
+  - title: Deno
+    icon:
+      src: /assets/svg/deno.svg
+    link: /notes/web-back-end/deno/
+  - title: Django
+    icon:
+      src: /assets/svg/django.svg
+    link: /notes/web-back-end/django/
+  - title: Gin
+    icon:
+      src: /assets/svg/gin.svg
+    link: /notes/web-back-end/gin/
+  - title: Ruby on Rails
+    icon:
+      src: /assets/svg/ruby-on-rails.svg
+    link: /notes/web-back-end/ruby-on-rails/
 ---
