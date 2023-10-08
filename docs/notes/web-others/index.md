@@ -1,4 +1,4 @@
-# Web 开发高级相关
+# Web 开发相关
 
 - web server/application server
 - server-side rendering vs client-side rendering

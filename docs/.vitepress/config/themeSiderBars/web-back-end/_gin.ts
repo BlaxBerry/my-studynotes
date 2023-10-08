@@ -1,4 +1,4 @@
-const PATH = "/notes/web-back-end/gin";
+const PATH = "/notes/web-back-end/golang/web-frameworks/gin";
 
 export default [
   {

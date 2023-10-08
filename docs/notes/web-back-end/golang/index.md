@@ -4,7 +4,7 @@
 
 ## 安装
 
-> 本文为 Mac 环境下使用 [asdf](../../dev-tools/asdf/index.md)
+> 本文为 Mac 环境下使用 [asdf](../../web-others/web-dev-tools/asdf/index.md)
 
 ```shell
 # 1.
@@ -26,14 +26,54 @@ go version
 go version go1.18 darwin/amd64
 ```
 
+## 目录结构
+
+### GOPATH <Badge type="warning">弃用</Badge>
+
+> Golang 旧版本的约定
+
+所有项目与包都存放于`GOPATH`工作目录下
+
 ```shell
+|- [GOPATH]
+    |- bin # 存放编译后生成的二进制可执行文件
+    |- pkg # 存放编译后的中间文件
+    |- src # 存放项目源码
+        |- GO项目
+        |- GO项目
+        |- ...
+```
+
+::: code-group
+
+```shell [获取 GOPATH]
 % go env GOPATH
 /Users/用户/.asdf/installs/golang/1.18/packages
 ```
 
+:::
+
+---
+
+### Go Modules
+
+> 默认的项目存放位置与依赖包的管理方式
+
+不再依靠`GOPATH`目录，可在任何目录下创建项目
+
+通过`go mod`相关命令管理项目与其依赖包
+
 ```shell
-% go env GOROOT
-/Users/用户/.asdf/installs/golang/1.18/go
+|- [任意位置]
+    |- GO项目
+        |- 自定义功能包
+            |- 细分的功能.go
+            |- 细分的功能.go
+            |- ...
+        |- ...
+        |- main.go
+        |- go.mod
+        |- go.sum
 ```
 
 ## 编译与执行
@@ -72,22 +112,6 @@ Go 是个编译型静态语言，文件需要先编译后才能执行
 
 :::
 
-## 注释
-
-::: code-group
-
-```go [行注释]
-// 行注释
-// 行注释
-// 行注释
-```
-
-```go [块注释]
-/* 块注释 */
-```
-
-:::
-
 ## 格式化
 
 ```shell
@@ -97,3 +121,5 @@ gofmt -w 目标文件.go
 <br/>
 
 中文网：http://c.biancheng.net/golang/syntax/
+
+Go 语言常用内置包简介： http://c.biancheng.net/view/4306.html

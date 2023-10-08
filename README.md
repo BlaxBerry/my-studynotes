@@ -1,6 +1,6 @@
 # Personal StudyNote Site
 
-[Github Page](https://github.com/BlaxBerry/my-studynotes)
+[Github Page](https://blaxberry.github.io/my-studynotes/)
 
 ## Progress
 

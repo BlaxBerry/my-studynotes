@@ -1,4 +1,4 @@
-const PATH = "/notes/web-front-end/gatsby-js";
+const PATH = "/notes/web-front-end/react/web-frameworks/gatsby-js";
 
 export default [
   {

@@ -34,8 +34,14 @@ export default [
     text: "Web 应用框架",
     collapsed: true,
     items: [
-      { text: "Next.js", link: "/notes/web-front-end/next-js/" },
-      { text: "Gatsby.js", link: "/notes/web-front-end/gatsby-js/" },
+      {
+        text: "Next.js",
+        link: "/notes/web-front-end/react/web-frameworks/next-js/",
+      },
+      {
+        text: "Gatsby.js",
+        link: "/notes/web-front-end/react/web-frameworks/gatsby-js/",
+      },
     ],
   },
 ];

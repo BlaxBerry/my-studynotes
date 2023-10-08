@@ -1,4 +1,4 @@
-const PATH = "/notes/web-front-end/nuxt-js";
+const PATH = "/notes/web-front-end/vue/web-frameworks/nuxt-js";
 
 export default [
   {
@@ -9,4 +9,5 @@ export default [
       { text: "?", link: `${PATH}/` },
     ],
   },
+  { text: "目录首页", link: `${PATH}/` },
 ];

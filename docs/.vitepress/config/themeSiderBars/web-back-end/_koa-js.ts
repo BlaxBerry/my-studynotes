@@ -1,4 +1,4 @@
-const PATH = "/notes/web-back-end/koa-js";
+const PATH = "/notes/web-back-end/node-js/web-frameworks/koa-js";
 
 export default [
   {
@@ -6,6 +6,8 @@ export default [
     collapsed: true,
     items: [
       { text: "?", link: `${PATH}/` },
+      { text: "?", link: `${PATH}/` },
     ],
   },
+  { text: "目录首页", link: `${PATH}/` },
 ];

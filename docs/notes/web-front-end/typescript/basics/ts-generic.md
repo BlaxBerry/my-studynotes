@@ -1,21 +1,60 @@
 # TS 泛型 ( Generic )
 
-TypeScript 支持泛型，它允许我们编写可以重用的代码组件，同时可以适用于多种类型。
+## 简介
 
-在 TypeScript 中，可以使用泛型来指定某个类型在编译时是未知的。通过使用泛型，可以在不同的地方使用相同的代码，但传入不同的类型作为参数。这样可以增加代码的灵活性和重用性。
+::: tip 命名参照：
 
-泛型可以应用于函数、接口和类。以下是一些示例：
+- `<K>`: ( Key ) 对象键的类型
+- `<V>`: ( Value ) 对象值的类型
+- `<E>`: ( Element ) 元素的类型
 
-1. 函数泛型：
+:::
 
-```typescript
-function identity<T>(arg: T): T {
-  return arg;
+## 泛型约束
+
+### extends
+
+https://static.kancloud.cn/cyyspring/tyscript/2686237
+
+---
+
+### inter
+
+https://www.bilibili.com/video/BV1qv4y1P7D2/?spm_id_from=333.337.search-card.all.click
+
+## 常见用法
+
+### 函数泛型
+
+::: code-group
+
+```ts [普通函数]
+// 定义
+function myFunction<T>(params: T): T {
+  return params;
 }
-let output = identity<string>("Hello Generics");
+
+// 使用
+const a = myFunction<string>("xxx");
+const b = myFunction<number>(111);
 ```
 
-2. 接口泛型：
+```ts [箭头函数]
+// 定义
+const doSomething = <T>(params: T): T => {
+  return params;
+};
+
+// 使用
+const a = doSomething<string>("xxx");
+const b = doSomething<number>(111);
+```
+
+:::
+
+---
+
+### 接口泛型
 
 ```typescript
 interface CustomArray<T> {
@@ -35,7 +74,9 @@ let arr: CustomArray<number> = {
 };
 ```
 
-3. 类泛型：
+---
+
+### 类泛型
 
 ```typescript
 class Queue<T> {
@@ -56,47 +97,91 @@ queue.enqueue(2);
 console.log(queue.dequeue()); // 1
 ```
 
-通过使用泛型，可以实现更灵活和可重用的代码，同时提高类型安全性。
+---
 
-Inter:
-https://www.bilibili.com/video/BV1qv4y1P7D2/?spm_id_from=333.337.search-card.all.click
-
-使用时尽量命名为一些可懂的，比如：
-
-- `<K>`: Key 对象键的类型
-- `<V>`: Value 对象值的类型
-- `<E>`: Element 元素的类型
-
-### 函数
+### 组件泛型
 
 ::: code-group
 
-```ts [普通函数]
-function myFunction<T>(params: T): T {
-  return params;
+```tsx [React 函数组件]
+interface Props<T> {
+  固定类型的属性: 类型;
+  不定类型的属性: T;
 }
 
-const a = myFunction<string>("xxx");
-const b = myFunction<number>(111);
+// 定义
+function 子组件<T>(props: Props<T>) {
+  return <></>;
+}
+
+// 使用
+function 父组件() {
+  return (
+    <>
+      <子组件<类型> {...props} />
+      <子组件<类型> {...props} />
+    </>
+  );
+}
 ```
 
-```ts [箭头函数]
-const doSomething = <T>(params: T): T => {
-  return params;
-};
+```tsx [React.meo() 记忆组件]
+import React from "react";
 
-const a = doSomething<string>("xxx");
-const b = doSomething<number>(111);
+interface Props<T> {
+  固定类型的属性: 类型;
+  不定类型的属性: T;
+}
+
+// 定义
+function 子组件<T>({ data }: Props<T>) {
+  return <></>;
+}
+const 子组件Memorized = React.memo(子组件); // [!code --]
+const memoWithGeneric: <T>(component: T) => T = React.memo; // [!code ++]
+const 子组件Memorized = memoWithGeneric(子组件); // [!code ++]
+
+// 使用
+function 父组件() {
+  return (
+    <>
+      <子组件Memorized<类型> {...props} />
+      <子组件Memorized<类型> {...props} />
+    </>
+  );
+}
 ```
 
 :::
 
----
+::: details 例子：React 函数组件
 
-### 泛型接口
+```tsx
+import { memo } from "react";
 
-## 泛型约束
+function Child<T>(props: {
+  data: T;
+}) {
+  console.log(props.data);
+  return null;
+}
+const memoWithGeneric: <T>(component: T) => T = memo;
+const ChildMemo = memoWithGeneric(Child);
 
-### extends
+function Father() {
+  return (
+    <>
+      <Child<number> data={100} />
+      <Child<{ name: string; age: number }>
+        data={{ name: "xxx", age: 100 }}
+      />
 
-https://static.kancloud.cn/cyyspring/tyscript/2686237
+      <ChildMemo<number> data={100} />
+      <ChildMemo<{ name: string; age: number }>
+        data={{ name: "xxx", age: 100 }}
+      />
+  );
+}
+```
+
+:::

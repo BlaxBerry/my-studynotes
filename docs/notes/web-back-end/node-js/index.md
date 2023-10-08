@@ -4,9 +4,11 @@
 
 ## 简介
 
+Node.js 是能够在服务器端运行的基于 V8 引擎的 JavaScript 运行时
+
 ## 安装
 
-> 本文为 Mac 环境下使用 [asdf](../../dev-tools/asdf/index.md)
+> 本文为 Mac 环境下使用 [asdf](../../web-others/web-dev-tools/asdf/index.md)
 
 ```shell
 # 1.
@@ -28,9 +30,13 @@ node --version
 v18.18.0
 ```
 
-## 项目启动
+## 执行文件
 
-### nodemon
+```shell
+node 文件.js
+```
+
+::: tip nodemon
 
 ::: code-group
 

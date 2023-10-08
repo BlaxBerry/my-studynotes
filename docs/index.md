@@ -20,32 +20,33 @@ hero:
       text: Web 后端
       link: /notes/web-back-end/
     - theme: alt
-      text: 开发工具
-      link: /notes/dev-tools/
+      text: 其他
+      link: /notes/web-others/
+
 features:
+  - title: Express.js
+    icon:
+      src: /svgs/express-js.svg
+    link: /notes/web-back-end/node-js/web-frameworks/express-js/
   - title: Nuxt.js
     icon:
       src: /svgs/nuxt-js.svg
-    link: /notes/web-front-end/nuxt-js/
+    link: /notes/web-front-end/vue/web-frameworks/nuxt-js/
   - title: Next.js
     icon:
       light: /svgs/next-js.svg
       dark: /svgs/next-js-dark.svg
-    link: /notes/web-front-end/next-js/
-  - title: Deno
-    icon:
-      src: /svgs/deno.svg
-    link: /notes/web-back-end/deno/
-  - title: Django
-    icon:
-      src: /svgs/django.svg
-    link: /notes/web-back-end/django/
+    link: /notes/web-front-end/react/web-frameworks/next-js/
   - title: Gin
     icon:
       src: /svgs/gin.svg
-    link: /notes/web-back-end/gin/
+    link: /notes/web-back-end/golang/web-frameworks/gin/
+  - title: Django
+    icon:
+      src: /svgs/django.svg
+    link: /notes/web-back-end/python/web-frameworks/django/
   - title: Ruby on Rails
     icon:
       src: /svgs/ruby-on-rails.svg
-    link: /notes/web-back-end/ruby-on-rails/
+    link: /notes/web-back-end/ruby/web-frameworks/ruby-on-rails/
 ---

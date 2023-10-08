@@ -1,4 +1,23 @@
 {
-    "files.autoSave": "off", 
-    "editor.formatOnSave": true,
+  "files.autoSave": "off",
+  "editor.formatOnSave": true,
+  "cSpell.words": [
+    "Blax",
+    "deno",
+    "gofmt",
+    "Googlebot",
+    "GOPATH",
+    "numpy",
+    "nuxt",
+    "Pylance",
+    "pyvenv",
+    "reshim",
+    "setuptools",
+    "Sider",
+    "studynotes",
+    "svgs",
+    "venv",
+    "vitepress",
+    "webp"
+  ]
 }

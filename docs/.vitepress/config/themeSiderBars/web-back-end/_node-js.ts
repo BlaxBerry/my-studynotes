@@ -19,16 +19,39 @@ export default [
           { text: "util", link: `` },
         ],
       },
+      {
+        text: "包管理工具",
+        collapsed: true,
+        items: [
+          {
+            text: "npm",
+            link: "/notes/web-back-end/node-js/package-management/npm",
+          },
+          {
+            text: "yarn",
+            link: "/notes/web-back-end/node-js/package-management/yarn",
+          },
+        ],
+      },
     ],
   },
-
   {
     text: "Web 应用框架",
     collapsed: true,
     items: [
-      { text: "Express.js", link: "/notes/web-back-end/express-js/" },
-      { text: "Koa.js", link: "/notes/web-back-end/koa-js/" },
-      { text: "Nest.js", link: "/notes/web-back-end/nest-js/" },
+      {
+        text: "Express.js",
+        link: "/notes/web-back-end/node-js/web-frameworks/express-js/",
+      },
+      {
+        text: "Koa.js",
+        link: "/notes/web-back-end/node-js/web-frameworks/koa-js/",
+      },
+      {
+        text: "Nest.js",
+        link: "/notes/web-back-end/node-js/web-frameworks/nest-js/",
+      },
     ],
   },
+  { text: "目录首页", link: `${PATH}/` },
 ];

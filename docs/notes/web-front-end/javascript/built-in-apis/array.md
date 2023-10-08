@@ -8,16 +8,32 @@ https://www.xiaohongshu.com/explore/64b7908e000000001e01ae69
 
 ### new Array()
 
+创建一个数组
+
 ```js
-new Array(3);
-// [empty × 3]
-
-[...new Array(3)];
-// [undefined, undefined, undefined]
-
-const array = [...new Array(3)].map(() => "xxx");
-// ["xxx", "xxx", "xxx"]
+const 数组 = new Array(元素个数);
 ```
+
+::: details 例子：
+
+```js{0}
+new Array(3);                       // [empty × 3]
+[...new Array(3)];                  // [undefined, undefined, undefined]
+[...new Array(3)].map(() => "xxx"); // ["xxx", "xxx", "xxx"]
+
+new Array("xxx");                   // ["xxx"]
+new Array(1, 2, 3);                 // [1, 2, 3]
+```
+
+:::
+
+::: tip
+更建议使用`[]`创建数组，来提高效率
+:::
+
+---
+
+### at()
 
 ---
 
@@ -36,18 +52,29 @@ https://www.xiaohongshu.com/explore/64a4d756000000002f02b10e
 > 会修改原数组
 
 - 剔除
-- 修改 / 替换
-- 截取 ( 剔除/修改/替换出的返回值 )
+- 替换/修改
+- 截取 ( 剔除/修改/替换 的返回值 )
 
-```js
-// 剔除
+::: code-group
+
+```js [剔除]
+// 修改原数组，从中剔除元素
 数组.splice(开始下标, 个数);
-// 替换
-数组.splice(下标, 个数, 新元素);
-// 截取 ( 剔除出的返回值 )
-const 被剔除元素组成的数组 = 数组.splice(开始下标, 个数);
-const 被替换元素组成的数组 = 数组.splice(开始下标, 个数, 新元素);
 ```
+
+```js [替换]
+// 修改原数组，从中替换元素
+数组.splice(下标, 个数, 新元素);
+```
+
+```js [截取]
+// 返回值为所有被剔除元素
+const 数组 = 数组.splice(开始下标, 个数);
+// 返回值为所有被替换元素
+const 数组 = 数组.splice(开始下标, 个数, 新元素);
+```
+
+:::
 
 ::: details 例子
 
@@ -56,7 +83,6 @@ const list = [
   { id: 11, name: "A" },
   { id: 22, name: "B" },
   { id: 33, name: "C" },
-  { id: 44, name: "D" },
 ];
 ```
 
@@ -65,15 +91,32 @@ const list = [
 ```js [剔除]
 // 删除 id 为 22 的对象
 
-const newList = [...list];
 const index = list.findIndex((item) => item.id === 22);
-newList.splice(index, 1);
+list.splice(index, 1);
 
-console.log(newList);
-// [
-//     { id: 11, name: 'A' },
-//     { id: 33, name: 'C' }
-// ]
+console.log(list);
+/*
+[
+  { id: 11, name: "A" },
+  { id: 33, name: "C" },
+];
+*/
+```
+
+```js [替换]
+// 替换 id 为 22 的对象为字符串 xxx
+
+const index = list.findIndex((item) => item.id === 22);
+list.splice(index, 1, "xxx");
+
+console.log(list);
+/*
+[
+  { id: 11, name: "A" },
+  "xxx",
+  { id: 33, name: "C" },
+];
+*/
 ```
 
 :::

@@ -1,6 +1,6 @@
 # pip
 
-## 介绍
+## 简介
 
 Python 官方指定包管理工具
 
@@ -21,6 +21,14 @@ pip install <name>==版本
 
 ```shell
 pip install --upgrade pip
+```
+
+---
+
+### pip install -r requirements.txt
+
+```shell
+pip install -r requirements.txt
 ```
 
 ---

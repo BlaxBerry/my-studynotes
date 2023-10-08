@@ -19,12 +19,27 @@
   }
 }
 
-// 首页按钮
+// 首页按钮 主按钮
 .VPButton.brand {
   border-color: #47caff !important;
   background-image: -webkit-linear-gradient(
     -45deg,
     #bd34fe,
+    #47caff
+  ) !important;
+  transition: 0.5s;
+  background-size: 200% auto;
+  &:hover {
+    background-position: right center;
+  }
+}
+// 首页按钮 副按钮
+.VPButton.alt {
+  color: white !important;
+  border-color: #47caff !important;
+  background-image: -webkit-linear-gradient(
+    -45deg,
+    #5672cd,
     #47caff
   ) !important;
   transition: 0.5s;
@@ -46,6 +61,7 @@
     align-items: center !important;
 
     img.VPImage {
+      border-radius: 10px;
       margin: 0 !important;
       margin-right: 20px !important;
     }

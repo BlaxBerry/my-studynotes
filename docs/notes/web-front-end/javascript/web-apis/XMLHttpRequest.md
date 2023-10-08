@@ -19,3 +19,9 @@ setTimeout(() => {
   xhr.abort();
 }, 10);
 ```
+
+### 其他请求方式
+
+- [Fetch](./Fetch-API.md)
+- [Ajax]()
+- [Axios]()

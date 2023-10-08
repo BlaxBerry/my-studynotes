@@ -3,10 +3,28 @@ const PATH = "/notes/web-back-end/golang";
 export default [
   {
     text: "Go 基础",
+    collapsed: true,
     items: [
-      { text: "包、模块", link: `${PATH}/basics/package-module` },
       {
-        text: "常用内置包",
+        text: "模块与包",
+        collapsed: true,
+        items: [
+          { text: "模块 ( modules )", link: `${PATH}/basics/modules` },
+          { text: "包 ( packages )", link: `${PATH}/basics/package` },
+        ],
+      },
+      {
+        text: "包管理",
+        collapsed: true,
+        items: [
+          {
+            text: "Go Modules",
+            link: `${PATH}/package- management/go-modules`,
+          },
+        ],
+      },
+      {
+        text: "内置包",
         collapsed: true,
         items: [
           { text: "fmt", link: `${PATH}/built-in-apis/fmt` },
@@ -22,11 +40,12 @@ export default [
       { text: "流程控制", link: `${PATH}/basics/control-flow` },
     ],
   },
-
   {
     text: "Web 应用框架",
     collapsed: true,
-    items: [{ text: "Gin", link: '/notes/web-back-end/gin/' }],
+    items: [
+      { text: "Gin", link: "/notes/web-back-end/golang/web-frameworks/gin/" },
+    ],
   },
   { text: "目录首页", link: `${PATH}/` },
 ];

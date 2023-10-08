@@ -24,7 +24,11 @@ export default [
     text: "Web 应用框架",
     collapsed: true,
     items: [
-      { text: "Ruby on Rails", link: "/notes/web-back-end/ruby-on-rails/" },
+      {
+        text: "Ruby on Rails",
+        link: "/notes/web-back-end/ruby/web-frameworks/ruby-on-rails/",
+      },
     ],
   },
+  { text: "目录首页", link: `${PATH}/` },
 ];

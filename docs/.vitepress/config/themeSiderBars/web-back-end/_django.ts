@@ -1,4 +1,4 @@
-const PATH = "/notes/web-back-end/django";
+const PATH = "/notes/web-back-end/python/web-frameworks/django";
 
 export default [
   {

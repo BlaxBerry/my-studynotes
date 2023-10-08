@@ -14,7 +14,7 @@ a == 0; // false
 b == 0; // false
 ```
 
-### ??
+### 空值判断 ( ?? )
 
 > null 判断运算符( Nullish Coalescing Operator )
 
@@ -34,7 +34,7 @@ undefined ?? "xxx"; // "xxx"
 false ?? "xxx"; // false
 ```
 
-### ?.
+### 链判断 ( ?. )
 
 > 链判断运算符（ Optional Chaining Operator ）
 
@@ -119,3 +119,16 @@ a?.b = c; // [!code error] // 报错
 ```
 
 :::
+
+## 展开 ( ... )
+
+> 展开语法 ( Spread Syntax )
+
+展开数组、对象、字符串
+
+```js
+const 对象 = {
+  ...对象,
+  ...(条件 ? {} : {}),
+};
+```

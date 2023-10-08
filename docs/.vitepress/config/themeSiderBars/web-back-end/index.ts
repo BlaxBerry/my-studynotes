@@ -2,38 +2,64 @@ const PATH = "/notes/web-back-end";
 
 export default [
   {
-    text: "常用语言",
+    text: "常用语言・运行时",
     collapsed: true,
     items: [
-      { text: "Go", link: `${PATH}/golang/` },
+      { text: "Node.js", link: `${PATH}/node-js/` },
+      { text: "Deno", link: `${PATH}/deno/` },
       { text: "Python", link: `${PATH}/python/` },
+      { text: "Golang", link: `${PATH}/golang/` },
       { text: "Ruby", link: `${PATH}/ruby/` },
     ],
   },
   {
-    text: "常用框架・运行环境",
+    text: "常用框架",
     collapsed: true,
     items: [
-      { text: "Node.js", link: `${PATH}/node-js/` },
-      { text: "Django", link: `${PATH}/django/` },
-      { text: "Gin", link: `${PATH}/gin/` },
-      { text: "Ruby on Rails", link: `${PATH}/ruby-on-rails/` },
+      {
+        text: "Express.js",
+        link: `${PATH}/node-js/web-frameworks/express-js/`,
+      },
+      {
+        text: "Fresh",
+        link: `${PATH}/deno/web-frameworks/fresh/`,
+      },
+      { text: "Django", link: `${PATH}/python/web-frameworks/django/` },
+      { text: "Gin", link: `${PATH}/golang/web-frameworks/gin/` },
+      {
+        text: "Ruby on Rails",
+        link: `${PATH}/ruby/web-frameworks/ruby-on-rails/`,
+      },
     ],
   },
   {
     text: "数据库",
     collapsed: true,
     items: [
-      { text: "MySQL", link: `${PATH}/mysql/` },
-      { text: "MongoDB", link: `${PATH}/mongodb/` },
+      {
+        text: "关系型 ( SQL )",
+        collapsed: true,
+        items: [
+          { text: "MySQL", link: `${PATH}/databases/mysql/` },
+          { text: "PostgreSQL", link: `${PATH}/databases/postgreSQL/` },
+        ],
+      },
+      {
+        text: "非关系型 ( NoSQL )",
+        collapsed: true,
+        items: [
+          { text: "MongoDB", link: `${PATH}/databases/mongodb/` },
+          { text: "Redis", link: `${PATH}/databases/redis/` },
+        ],
+      },
     ],
   },
   {
     text: "服务器",
     collapsed: true,
     items: [
-      { text: "Apache", link: `${PATH}/apache/` },
-      { text: "Nginx", link: `${PATH}/nginx/` },
+      { text: "Apache", link: `${PATH}/servers/apache/` },
+      { text: "Nginx", link: `${PATH}/servers/nginx/` },
     ],
   },
 ];

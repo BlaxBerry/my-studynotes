@@ -27,7 +27,7 @@ JavaScript 有两个运行环境：
 
 ::: details 2. 在终端中执行
 
-详见 [Node.js](../../web-back-end/node-js/index.md#安装)
+详见 [Node.js](../../web-back-end/node-js/index.md)、[Deno](../../web-back-end/deno/index.md)
 
 :::
 

@@ -45,7 +45,12 @@ export default [
   {
     text: "Web 应用框架",
     collapsed: true,
-    items: [{ text: "Django", link: "/notes/web-back-end/django/" }],
+    items: [
+      {
+        text: "Django",
+        link: "/notes/web-back-end/python/web-frameworks/django/",
+      },
+    ],
   },
   {
     text: "数据分析",

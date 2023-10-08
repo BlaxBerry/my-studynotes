@@ -6,9 +6,9 @@ https://www.ruanyifeng.com/blog/2020/12/fetch-tutorial.html
 
 ## 简介
 
-Fetch API 提供了获取资源的接口 ( 静态资源、跨网络通信 )
+Fetch API 可理解为[`XMLHttpRequest`](XMLHttpRequest.md)的升级版
 
-可理解为[`XMLHttpRequest`](XMLHttpRequest.md)的升级版
+提供了一个全局方法[`fetch()`](#fetch)
 
 - 使用 Promise，不使用回调函数
 - 通过数据流（Stream 对象）处理数据，可以分块读取，有利于提高网站性能表现，减少内存占用，对于请求大文件或者网速慢的场景相当有用
@@ -121,6 +121,12 @@ setTimeout(() => abortController.abort();, 延迟时间毫秒); // [!code hl]
 ::: details 例子：
 
 :::
+
+### 其他请求方式
+
+- [XHR](./XMLHttpRequest.md)
+- [Ajax]()
+- [Axios]()
 
 - fetch：
   https://www.ruanyifeng.com/blog/2020/12/fetch-tutorial.html
