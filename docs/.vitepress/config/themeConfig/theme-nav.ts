@@ -33,16 +33,9 @@ export default [
     text: "其他",
     items: [
       { text: "互联网基础", link: "/notes/web-others/web-fundamental/" },
-      { text: "Linux 基础", link: "/notes/operating-systems/linux/" },
-      {
-        text: "常用开发工具",
-        items: [
-          { text: "asdf", link: "/notes/web-others/web-dev-tools/asdf/" },
-          { text: "Git", link: "/notes/web-others/web-dev-tools/git/" },
-          { text: "Docker", link: "/notes/web-others/web-dev-tools/docker/" },
-        ],
-      },
-      { text: "目录首页", link: "/notes/web-others/" },
+      { text: "常用开发工具", link: "/notes/web-others/web-dev-tools/" },
+      { text: "云开发", link: "/notes/web-others/cloud-dev/" },
+      // { text: "Linux 基础", link: "/notes/operating-systems/linux/" },
     ],
   },
 ];

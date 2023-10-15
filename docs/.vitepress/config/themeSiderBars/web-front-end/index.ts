@@ -39,4 +39,16 @@ export default [
       { text: "Vite", link: `${PATH}` },
     ],
   },
+  {
+    text: "跨平台",
+    collapsed: true,
+    items: [
+      {
+        text: "React Native",
+        link: `/notes/web-others/cross-device/react-native/`,
+      },
+      { text: "Flutter", link: `/notes/web-others/cross-device/flutter/` },
+      { text: "Electron", link: `/notes/web-others/cross-device/electron/` },
+    ],
+  },
 ];

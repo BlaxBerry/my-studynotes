@@ -2,6 +2,8 @@
 
 ![](/images/django-rest-framework.webp)
 
+https://di-acc2.com/programming/python/10325/
+
 ## 安装
 
 ```shell

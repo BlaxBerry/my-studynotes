@@ -1,147 +1,283 @@
-# Django 应用
+# Django 应用 ( Application )
 
 ## 简介
 
-Django 中的应用 ( Application ) 可视为模块化开发中的模块
+Django 项目将各个业务功能以应用的形式定义，每个应用都是个 Python 包
 
-一般中大型项目会有多个应用分别处理不同业务功能，每个应用都可以有独自的数据库表结构、视图函数、渲染模版等内容
+一个项目主应用加多个自定义应用构成一个项目
 
-::: details 主应用：
+::: tip 应用分为两类：
 
-- 在通过[`django-admin startproject`](../index.md#项目创建)创建项目时自动创建
-- 包含当前该 Django 项目配置相关的内容，故多命名为`config`
-
-```shell
-django-admin startproject config .
-```
+- **主应用**：存放项目配置 ( 可称为项目配置应用 ) 故建议命名为`config`
+- **自定义应用**：存放具体业务功能
 
 :::
 
-::: details 自定义应用：
+## 创建应用
 
-- 需自行通过[`python manage.py startapp`](#应用创建)创建
-- 不是必须，用于模块化处理中大型项目中复杂独立的功能
-- 包含 MTV 相关的目录
+- <Badge>主应用</Badge> 在项目创建时自动创建 详见 [创建 Django 项目](../index.md#项目创建)
 
-```shell
-django-admin startapp 自定义应用 .
-```
-
-:::
+- <Badge>自定义应用</Badge> 需要执行 Django 命令创建
 
 ::: code-group
 
-```shell{3-8} [主应用]
-|- 项目目录
-  |- .venv
-  |- 主应用
-    |- __init__.py # 告知 Python 该目录为一个包
-    |- settings.py # 项目的配置文件
-    |- urls.py # 项目的路由映射
-    |- swgi.py # Python 服务网关接口 ( Python Web Server Gateway Interface ) 项目上线部署相关
-    |- asgi.py # 定义 ASGI 接口信息用于启动异步通信处理高并发 ( Django3.0后新增 ) 项目上线部署相关
-  |- 自定应用
-  |- ...
-  |- manage.py
+```shell [自定义应用]
+# cd 项目根目录
+python manage.py startapp 自定义应用名   // [!code focus]
 ```
 
-```shell{4-15} [自定义应用]
-|- 项目目录
-  |- .venv
-  |- 主应用
-  |- 自定应用
-    |- __init__.py # 告知 Python 该目录为一个包
-    |- migrations # 迁移文件夹
-      |- __init__.py # 告知 Python 该目录为一个包
-      |- ...
-    |- templates # 存放 HTML 渲染模版
-      |- ...
-    |- admin.py # 后台管理系统相关
-    |- apps.py # 该自定应用的配置
-    |- models.py # 模型相关
-    |- tests.py # 单元测试相关
-    |- views.py # 视图函数相关
-  |- ...
-  |- manage.py
+```shell [主应用]
+# % source .venv/bin/active
+
+# 创建方法一：初始化新项目
+diango-admin startproject 项目名        //[!code focus]
+cd 项目名
+mv 项目名 新的自定义名
+
+# 创建方法二：现有根目录下添加
+cd 现有项目目录
+diango-admin startproject 主应用名 .    //[!code focus]
 ```
 
 :::
 
-## 应用创建
+自定义应用在创建后需要注册才能使用 详见下文 [注册应用](#注册应用)
 
-在创建项目时会自动创建一个主应用
+## 应用位置
 
-其他自定义应用则需在项目目录下执行下文命令来创建
+一般开发会有多个自定义应用，有两种位置的设计：
 
-命令执行后会在项目目录下创建一个为`应用名`的目录 详见 [Django 项目目录](../index.md#项目目录)
+- 多个自定义应用直接分别存放在项目根目录下
+- 多个自定义应用以子包的形式存放某个包目录下
 
 ::: code-group
 
-```shell [命令]
-python manage.py startapp 应用名
-# 或
-django-admin startapp 应用名
+```shell [目录结构设计一]
+[项目目录]
+|- [主应用]
+|- [自定义应用]
+|- [自定义应用]
+|- ...
+|- manage.py
+|- ...
 ```
 
-```shell [目录]
-|- 项目目录
-  |- .venv
-  |- 主应用
-  |- 应用名
-    |- __init__.py // [!code hl]
-    |- ... // [!code hl]
-  |- ...
-  |- manage.py
+```shell [目录结构设计二]
+[项目目录]
+|- [主应用]
+|- [自定义包名]
+    |- __init__.py
+    |- [自定义应用]
+    |- [自定义应用]
+    |- ...
+|- manage.py
+|- ...
 ```
 
 :::
 
-::: details 例：在名为`django_app`的项目下创建名为`main`的主应用与`aaa`、`bbb`的两个自定义应用
+## 应用目录
+
+目录结构没有特别的约定，具体取决于开发团队
+
+建议模块化开发尽量细分功能，可参照[推荐的项目目录结构](../index.md#项目目录)
 
 ::: code-group
 
-```shell [命令]
-(.venv) % cd django_app
-(.venv) % django-admin startproject main .
-(.venv) % python manage.py startapp aaa
-(.venv) % python manage.py startapp bbb
+```shell [默认自定义应用目录]
+[自定义应用]
+|- migrations   # 模型迁移文件
+    |- __init__.py
+|- __init__.py
+|- admin.py     # Django 管理系统
+|- apps.py      # 应用信息
+|- models.py    # 模型
+|- views.py     # 视图
+|- test.py      # 单元测试
+|- urls.py      # 子路由
 ```
 
-```shell [目录]
-|- django_app
-  |- main
-  |- aaa
-  |- bbb
-  |- manage.py
+```shell [默认主应用目录]
+[主应用]
+|- __init__.py
+|- asgi.py      # 异步、并发处理
+|- wsgi.py      # 服务器网关接口
+|- settings.py  # 项目配置
+|- urls.py      # 主路由
 ```
 
-```python [配置文件]
-INSTALLED_APPS = [
-    # ...
+:::
 
-    'aaa', // [!code hl]
-    'bbb', // [!code hl]
+> 如下：应用创建后自动生成文件夹与文件：
+
+::: details `migrations`
+
+详见 [数据迁移](./model.md#数据迁移)
+
+::: code-group
+
+```shell [默认位置]
+[自定义应用]
+|- ...
+|- migrations
+    |- __init__.py
+    |- ...
+```
+
+:::
+
+::: details 自定义应用 / `admin.py`
+
+详见 [管理系统](./admin.md)
+
+::: code-group
+
+```shell [默认位置]
+[自定义应用]
+|- ...
+|- admin.py
+```
+
+```py [默认内容]
+from django.contrib import admin
+
+# Register your models here.
+
+```
+
+:::
+
+::: details 自定义应用 / `apps.py`
+
+当前应用信息定义文件，其中定义了`AppConfig`类
+
+::: code-group
+
+```shell [默认位置]
+[自定义应用]
+|- ...
+|- apps.py
+```
+
+```py [默认内容]
+from django.apps import AppConfig
+
+
+class 自定义应用名Config(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = '自定义应用名'
+
+```
+
+:::
+
+::: details 自定义应用 / `models.py`
+
+详见 [模块 ( Model )](./model.md)
+
+::: code-group
+
+```shell [默认位置]
+[自定义应用]
+|- ...
+|- models.py
+```
+
+```py [默认内容]
+from django.db import models
+
+# Create your models here.
+
+```
+
+:::
+
+::: details 自定义应用 / `views.py`
+
+详见 [视图 ( View )](./view.md)
+
+::: code-group
+
+```shell [默认位置]
+[自定义应用]
+|- ...
+|- views.py
+```
+
+```py [默认内容]
+from django.shortcuts import render
+
+# Create your views here.
+
+```
+
+:::
+
+::: details 自定义应用 / `tests.py`
+
+详见 [单元测试](./tests.md)
+
+::: code-group
+
+```shell [默认位置]
+[自定义应用]
+|- ...
+|- tests.py
+```
+
+```py [默认内容]
+from django.test import TestCase
+
+# Create your tests here.
+
+```
+
+:::
+
+::: details `urls.py`
+
+详见 [路由](./route.md)
+
+::: code-group
+
+```shell [默认位置]
+[项目目录]
+|- [主应用]
+    |- urls.py
+|- [自定义应用]
+    |- ...
+    |- urls.py
+|- ...
+```
+
+```py [主路由默认内容]
+from django.contrib import admin
+from django.urls import path
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
 ]
-
 ```
 
 :::
 
-## 应用注册
+## 注册应用
 
-应用创建后需要注册，否则无法使用
+- <Badge>主应用</Badge> 不需要注册
+- <Badge>自定义应用</Badge> 在创建后需要添加到项目配置文件的[`INSTALLED_APPS`](settings.md#installed-apps)字段
 
-手动追加到主应用的配置文件[`settings.py`](../index.md#settings-py)中的`INSTALLED_APPS`
+```py [默认]
+INSTALLED_APPS = [                              // [!code focus]
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
 
-::: code-group
-
-```python [settings.py]
-INSTALLED_APPS = [
-    # ...
-
-    "自定义应用",
-    "自定义应用"
-]
+    # 直接存放在项目根目录下的自定义应用
+    "自定义应用名",                               // [!code focus]
+    # 以包的形式存放在某个目录下的多个自定义应用
+    "存放目录.自定义应用名.apps.自定义应用名Config", // [!code focus]
+]                                              // [!code focus]
 ```
-
-:::

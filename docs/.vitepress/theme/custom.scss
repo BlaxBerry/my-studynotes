@@ -68,7 +68,7 @@
   }
 }
 
-// <div class="vp-code-group"> 中 tabs 的下划线
+// <div class="vp-code-group"> 中 tabs 的下划线提升
 .vp-code-group {
   .tabs label::after {
     z-index: 9;
@@ -76,18 +76,21 @@
 }
 
 // <details class="custom-block"> 的 details、tip、warning、danger
-.vp-doc .custom-block {
+.custom-block {
   overflow: hidden;
+  // 文档跳转链接
+  a {
+    color: var(--vp-c-brand) !important;
+  }
 }
 
-.vp-doc details.custom-block {
-  // <details class="custom-block"> 中的 <a>
-  a {
-    color: var(--vp-c-brand);
-  }
-
-  // <details class="custom-block"> 中的 <code>
-  code {
-    background-color: var(--vp-custom-block-tip-code-bg);
+// 仅替换 <details class="custom-block"> 的 details 中的文本内容的代码块背景色
+details.custom-block {
+  & > summary,
+  & > p {
+    // 代码块
+    code {
+      background-color: var(--vp-custom-block-tip-code-bg) !important;
+    }
   }
 }

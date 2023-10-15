@@ -48,7 +48,11 @@ export default [
     items: [
       {
         text: "Django",
-        link: "/notes/web-back-end/python/web-frameworks/django/",
+        link: `${PATH}/web-frameworks/django/`,
+      },
+      {
+        text: "Flask",
+        link: "",
       },
     ],
   },

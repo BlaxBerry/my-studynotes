@@ -11,6 +11,9 @@ import _vue from "../themeSiderBars/web-front-end/_vue";
 import _nuxt from "../themeSiderBars/web-front-end/_nuxt-js";
 import _next from "../themeSiderBars/web-front-end/_next-js";
 import _gatsby from "../themeSiderBars/web-front-end/_gatsby-js";
+import _electron from "../themeSiderBars/web-others/cross-device/_electron";
+import _flutter from "../themeSiderBars/web-others/cross-device/_flutter";
+import _reactNative from "../themeSiderBars/web-others/cross-device/_react-native";
 
 import webBackEnd from "../themeSiderBars/web-back-end";
 import _nodeJs from "../themeSiderBars/web-back-end/_node-js";
@@ -26,13 +29,14 @@ import _django from "../themeSiderBars/web-back-end/_django";
 import _ruby from "../themeSiderBars/web-back-end/_ruby";
 import _rubyOnRails from "../themeSiderBars/web-back-end/_ruby-on-rails";
 
-import webOthers from "../themeSiderBars/web-others";
-import webFundamental from "../themeSiderBars/web-others/web-fundamental";
+import webDevTools from "../themeSiderBars/web-others/web-dev-tools";
+
+import cloudDev from "../themeSiderBars/web-others/cloud-dev";
 import _aws from "../themeSiderBars/web-others/cloud-dev/_aws";
-import _electron from "../themeSiderBars/web-others/cross-device/_electron";
-import _flutter from "../themeSiderBars/web-others/cross-device/_flutter";
-import _reactNative from "../themeSiderBars/web-others/cross-device/_react-native";
-import _git from "../themeSiderBars/web-others/web-dev-tools/_git";
+import _googleCloud from "../themeSiderBars/web-others/cloud-dev/_google-cloud";
+
+import webFundamental from "../themeSiderBars/web-others/web-fundamental";
+
 import _linux from "../themeSiderBars/operating-systems/_linux";
 
 export default {
@@ -49,6 +53,9 @@ export default {
   "/notes/web-front-end/vue/web-frameworks/nuxt-js/": _nuxt,
   "/notes/web-front-end/react/web-frameworks/next-js/": _next,
   "/notes/web-front-end/react/web-frameworks/gatsby-js/": _gatsby,
+  "/notes/web-others/cross-device/electron": _electron,
+  "/notes/web-others/cross-device/flutter": _flutter,
+  "/notes/web-others/cross-device/react-native": _reactNative,
 
   "/notes/web-back-end/": webBackEnd,
   "/notes/web-back-end/node-js/": _nodeJs,
@@ -64,13 +71,13 @@ export default {
   "/notes/web-back-end/ruby/": _ruby,
   "/notes/web-back-end/ruby/web-frameworks/ruby-on-rails/": _rubyOnRails,
 
-  "/notes/web-others/": webOthers,
+  "/notes/web-others/web-dev-tools/": webDevTools,
+
   "/notes/web-others/web-fundamental/": webFundamental,
-  "/notes/web-others/cloud-dev/aws": _aws,
-  "/notes/web-others/cross-device/electron": _electron,
-  "/notes/web-others/cross-device/flutter": _flutter,
-  "/notes/web-others/cross-device/react-native": _reactNative,
-  "/notes/web-others/web-dev-tools/git/": _git,
+
+  "/notes/web-others/cloud-dev/": cloudDev,
+  "/notes/web-others/cloud-dev/aws/": _aws,
+  "/notes/web-others/cloud-dev/google-cloud/": _googleCloud,
 
   "/notes/operating-systems/linux": _linux,
 };

@@ -28,42 +28,10 @@ go version go1.18 darwin/amd64
 
 ## 目录结构
 
-### GOPATH <Badge type="warning">弃用</Badge>
-
-> Golang 旧版本的约定
-
-所有项目与包都存放于`GOPATH`工作目录下
-
-```shell
-|- [GOPATH]
-    |- bin # 存放编译后生成的二进制可执行文件
-    |- pkg # 存放编译后的中间文件
-    |- src # 存放项目源码
-        |- GO项目
-        |- GO项目
-        |- ...
-```
-
+详见 [包管理](./package-management/index.md)
 ::: code-group
 
-```shell [获取 GOPATH]
-% go env GOPATH
-/Users/用户/.asdf/installs/golang/1.18/packages
-```
-
-:::
-
----
-
-### Go Modules
-
-> 默认的项目存放位置与依赖包的管理方式
-
-不再依靠`GOPATH`目录，可在任何目录下创建项目
-
-通过`go mod`相关命令管理项目与其依赖包
-
-```shell
+```shell [Modules]
 |- [任意位置]
     |- GO项目
         |- 自定义功能包
@@ -75,6 +43,18 @@ go version go1.18 darwin/amd64
         |- go.mod
         |- go.sum
 ```
+
+```shell [GOPATH<Badge type="warning">弃用</Badge>]
+|- [GOPATH]
+    |- bin # 存放编译后生成的二进制可执行文件
+    |- pkg # 存放编译后的中间文件
+    |- src # 存放项目源码
+        |- GO项目
+        |- GO项目
+        |- ...
+```
+
+:::
 
 ## 编译与执行
 

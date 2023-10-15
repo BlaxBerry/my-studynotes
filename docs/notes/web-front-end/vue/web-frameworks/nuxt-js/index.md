@@ -4,6 +4,10 @@
 
 ## 简介
 
+Nuxt.js 是个基于 Vue.js 的轻量级 Web 框架
+
+可用来创建 SSR、SSG 应用
+
 ## 安装
 
 ```shell

@@ -4,6 +4,10 @@
 
 ## 简介
 
+Next.js 是个基于 Node.js 的 web 框架
+
+是 React 官方推荐的 SSR 应用的开发工具
+
 ## 安装
 
 ::: code-group

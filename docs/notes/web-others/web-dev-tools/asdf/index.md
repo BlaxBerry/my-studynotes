@@ -1,5 +1,7 @@
 # asdf
 
+![](https://willsena.dev/content/images/2022/11/asdf.jpg)
+
 ## 简介
 
 asdf 是个多版本自动管理工具，可在同一台机器上同时安装管理多个版本的语言运行时环境，通过下载对应扩展插件来替代以往分别安装 NVM、pyenv、RVM 等工具的版本管理方式

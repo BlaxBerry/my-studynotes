@@ -11,16 +11,7 @@ export default [
         items: [
           { text: "模块 ( modules )", link: `${PATH}/basics/modules` },
           { text: "包 ( packages )", link: `${PATH}/basics/package` },
-        ],
-      },
-      {
-        text: "包管理",
-        collapsed: true,
-        items: [
-          {
-            text: "Go Modules",
-            link: `${PATH}/package- management/go-modules`,
-          },
+          { text: "包的管理方式", link: `${PATH}/package-management/` },
         ],
       },
       {

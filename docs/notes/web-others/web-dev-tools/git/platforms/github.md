@@ -53,3 +53,7 @@ remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
 branch.main.remote=origin
 branch.main.merge=refs/heads/main
 ```
+
+## github Actions
+
+https://docs.github.com/en/actions

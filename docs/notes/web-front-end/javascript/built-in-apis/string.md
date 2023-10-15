@@ -6,6 +6,24 @@
 const lastElement = list[list.length - 1];
 ```
 
+## repeat()
+
+```js
+const 新字符串 = "字符串".repeat(重复次数);
+```
+
+::: details 例子：
+
+```js{0}
+const str = "ABC";
+
+console.log(str.repeat(3)); // "ABCABCABC"
+console.log(str.repeat(0)); // ""
+console.log(str);           // "ABC"
+```
+
+:::
+
 ## slice()
 
 ## split()

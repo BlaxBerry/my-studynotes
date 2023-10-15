@@ -19,9 +19,9 @@ hero:
     - theme: brand
       text: Web 后端
       link: /notes/web-back-end/
-    - theme: alt
-      text: 其他
-      link: /notes/web-others/
+    # - theme: alt
+    #   text: 其他
+    #   link: /notes/web-others/
 
 features:
   - title: Express.js
