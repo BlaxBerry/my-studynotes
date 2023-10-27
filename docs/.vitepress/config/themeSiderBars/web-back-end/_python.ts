@@ -5,10 +5,20 @@ export default [
     text: "Python 基础",
     collapsed: true,
     items: [
-      { text: "变量", link: `${PATH}` },
+      { text: "变量", link: `${PATH}/basics/variable` },
       { text: "函数", link: `${PATH}/basics/function` },
       { text: "运算符", link: `${PATH}/basics/operator` },
       { text: "数据类型", link: `${PATH}/basics/data-types` },
+      { text: "静态数据类型", link: `${PATH}/basics/static-data-types` },
+      {
+        text: "内置对象方法",
+        collapsed: true,
+        items: [
+          { text: "List", link: `${PATH}/built-in-apis/List` },
+          { text: "String", link: `${PATH}/built-in-apis/String` },
+          { text: "Dict", link: `${PATH}/built-in-apis/Dict` },
+        ],
+      },
       { text: "流程控制", link: `${PATH}/basics/control-flow` },
       { text: "异常处理", link: `${PATH}/basics/error-exception` },
       { text: "类", link: `${PATH}/basics/class` },
@@ -29,15 +39,6 @@ export default [
         items: [
           { text: "pip", link: `${PATH}/package-management/pip` },
           { text: "PDM", link: `${PATH}/package-management/PDM` },
-        ],
-      },
-      {
-        text: "内置对象方法",
-        collapsed: true,
-        items: [
-          { text: "List", link: `${PATH}/built-in-apis/List` },
-          { text: "String", link: `${PATH}/built-in-apis/String` },
-          { text: "Dict", link: `${PATH}/built-in-apis/Dict` },
         ],
       },
     ],

@@ -28,6 +28,14 @@ type T = 任何类型 | unknown; // unknown
 
 :::
 
+```ts
+const arrA = ["a", "b", "c"];
+type itemA = (typeof arrA)[number]; // string
+
+const arrB = ["a", "b", "c"] as const;
+type itemB = (typeof arrB)[number]; // "a" | "b" | "c"
+```
+
 ## 交叉类型
 
 交叉类型 ( Intersection Types ) 是通过`&`连接多个类型后返回一个新类型

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Deno 相关
 
 ![](/images/deno.webp)
@@ -32,7 +37,7 @@ v8 11.8.172.6
 typescript 5.2.2
 ```
 
-## 执行文件
+## 程序执行
 
 ```shell
 deno run 文件.ts

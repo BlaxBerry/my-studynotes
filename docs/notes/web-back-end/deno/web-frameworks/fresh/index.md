@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Fresh 相关
 
 ![](/images/fresh.webp)

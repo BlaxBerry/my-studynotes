@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # CSS 相关
 
 ![](/images/css.webp)

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Next.js 相关
 
 ![](/images/next-js.webp)

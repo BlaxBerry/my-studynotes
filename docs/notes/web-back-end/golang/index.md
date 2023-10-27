@@ -1,6 +1,16 @@
+---
+prev: false
+next: false
+---
+
 # Go 相关
 
 ![](/images/golang.webp)
+
+## 简介
+
+- 中文网：http://c.biancheng.net/golang/syntax/
+- Go 语言常用内置包简介： http://c.biancheng.net/view/4306.html
 
 ## 安装
 
@@ -26,12 +36,41 @@ go version
 go version go1.18 darwin/amd64
 ```
 
-## 目录结构
+## 运行环境
 
-详见 [包管理](./package-management/index.md)
+Go environments
+https://www.freecodecamp.org/news/golang-environment-gopath-vs-go-mod/
+
+1. Traditional GOPATH environment
+2. go mod based environment
+
+---
+
+### 单一工作区 <Badge type="warning">已弃用</Badge>
+
 ::: code-group
 
-```shell [Modules]
+```shell [工作区目录结构]
+|- [GOPATH]
+    |- bin # 存放编译后生成的二进制可执行文件
+    |- pkg # 存放编译后的中间文件
+    |- src # 存放项目源码
+        |- GO项目
+        |- GO项目
+        |- ...
+```
+
+:::
+
+---
+
+### 模块化
+
+详见 [包管理](./package-management/index.md)
+
+::: code-group
+
+```shell [项目目录结构]
 |- [任意位置]
     |- GO项目
         |- 自定义功能包
@@ -44,19 +83,9 @@ go version go1.18 darwin/amd64
         |- go.sum
 ```
 
-```shell [GOPATH<Badge type="warning">弃用</Badge>]
-|- [GOPATH]
-    |- bin # 存放编译后生成的二进制可执行文件
-    |- pkg # 存放编译后的中间文件
-    |- src # 存放项目源码
-        |- GO项目
-        |- GO项目
-        |- ...
-```
-
 :::
 
-## 编译与执行
+## 程序执行
 
 Go 是个编译型静态语言，文件需要先编译后才能执行
 
@@ -97,9 +126,3 @@ Go 是个编译型静态语言，文件需要先编译后才能执行
 ```shell
 gofmt -w 目标文件.go
 ```
-
-<br/>
-
-中文网：http://c.biancheng.net/golang/syntax/
-
-Go 语言常用内置包简介： http://c.biancheng.net/view/4306.html

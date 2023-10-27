@@ -201,7 +201,7 @@ export default function Component() {
 
 `React.forwardRef()`用于使子组件接收来自父组件向下传递的引用对象 Ref
 
-```ts{0}
+```tsx{0}
 import React from "react";
 
 const 父组件 = () => {
@@ -214,37 +214,79 @@ const 子组件 = React.forwardRef<Ref类型, Props类型>((prop, ref) => { // [
 }); // [!code focus]
 ```
 
-::: details 例子：
+:::details 例子：子组件内部节点使用接收的`ref`
 
-```tsx{0}
-import React, { createContext, forwardRef, useContext, useImperativeHandle, useRef } from "react";
+```tsx
+import React from "react";
 
-type MyComponentProps = {};
-type MyComponentRef = {
-  focus: () => void;
-};
+type Props = { ... }
 
-export default function Father() {
-  const childRef = useRef<MyComponentRef>(null); // [!code focus]
-  const handleClick = () => childRef.current?.focus(); // [!code focus]
-
+const Father = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
   return (
     <>
-      <Child ref={childRef} /> // [!code focus]
-      <button onClick={handleClick}>Focus</button> // [!code focus]
+      <Child ref={ref} />
+      <button onClick={() => console.log(inputRef.current?.value)}>
+        get value
+      </button>
     </>
   );
-}
+};
 
-const Child = forwardRef<MyComponentRef, MyComponentProps>((_, ref) => { // [!code focus]
-  const inputRef = useRef<HTMLInputElement>(null); // [!code focus]
+const Child: ForwardRefRenderFunction<HTMLInputElement, Props> = (props, ref) => {
+  return <input ref={ref} />;
+};
+```
 
-  useImperativeHandle(ref, () => ({ // [!code focus]
-    focus: () => inputRef.current?.focus(), // [!code focus]
-  })); // [!code focus]
+:::
 
-  return <input ref={inputRef} /> // [!code focus]
-}); // [!code focus]
+:::details 例子：子组件通过`ref`传递某数据给父组件
+
+```tsx
+import React from "react";
+
+type Props = { ... }
+type Ref = { sayHello: () => void }
+
+const Father = () => {
+  const inputRef = useRef<Ref>(null);
+  return (
+    <>
+      <Child ref={ref} />
+      <button onClick={inputRef.current?.sayHello}>
+        call child function
+      </button>
+    </>
+  );
+};
+
+const Child: ForwardRefRenderFunction<Ref, Props> = (props, ref) => {
+  useImperativeHandle(ref, () => ({
+    sayHello: sayHello
+  }), [sayHello]);
+
+  const sayHello = () => console.log("hello")
+
+  return ...;
+};
+```
+
+:::
+
+:::details 例子：`React.memo()`+`React.forwardRef()`
+
+```tsx{0}
+import React from "react";
+
+type Props = ...
+type Ref = ...
+
+const Child: ForwardRefRenderFunction<Ref, Props> = (props, ref) => { // [!code focus]
+  return ...
+};  // [!code focus]
+
+const ChildMemo = memo(forwardRef(Modal));  // [!code focus]
+export default ChildMemo;                   // [!code focus]
 ```
 
 :::

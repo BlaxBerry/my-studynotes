@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Django 相关
 
 ![](/images/django.webp)

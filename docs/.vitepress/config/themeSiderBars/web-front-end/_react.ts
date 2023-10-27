@@ -10,15 +10,15 @@ export default [
       { text: "组件样式", link: `${PATH}/basics/styling` },
       { text: "状态管理", link: `${PATH}/basics/manage-states` },
       { text: "表单管理", link: `${PATH}/basics/manage-forms` },
-    ],
-  },
-  {
-    text: "内置 API",
-    collapsed: true,
-    items: [
-      { text: "内置组件", link: `${PATH}/built-in-apis/components` },
-      { text: "内置方法", link: `${PATH}/built-in-apis/methods` },
-      { text: "钩子函数 ( Hooks )", link: `${PATH}/built-in-apis/hooks` },
+      {
+        text: "内置 API",
+        collapsed: true,
+        items: [
+          { text: "内置组件", link: `${PATH}/built-in-apis/components` },
+          { text: "内置方法", link: `${PATH}/built-in-apis/methods` },
+          { text: "钩子函数 ( Hooks )", link: `${PATH}/built-in-apis/hooks` },
+        ],
+      },
     ],
   },
   {

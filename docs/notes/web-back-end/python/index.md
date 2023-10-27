@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Python 相关
 
 ![](/images/python.webp)
@@ -24,13 +29,15 @@ asdf reshim python
 Python 3.10.0
 ```
 
-## 解析器
+## 解释器
 
-Python 环境需要指明 Python 版本对应的解析器 ( 解释器 )
+> Python Interpreter
 
-可通过`which python`获取当前工作目录所使用的 Python 版本的解析器位置，然后在代码编辑器设定即可
+Python 环境需要指明版本对应的解释器
 
-```shell [获取Python解析器位置]
+可通过`which python`获取当前工作目录所使用的 Python 版本的解释器位置
+
+```shell [获取Python解释器位置]
 % which python
 # /Users/用户/.asdf/shims/python
 # /Users/用户/工作区目录/.venv/bin/python
@@ -38,13 +45,15 @@ Python 环境需要指明 Python 版本对应的解析器 ( 解释器 )
 
 > VSCode 需要下载插件 Python、Pylance
 
+一般 Python 都建议在运行在[虚拟环境](#虚拟环境)中，以防止安装的包污染到系统环境
+
 ## 虚拟环境
 
-虚拟环境用于隔离系统环境
+> Virtual Environments
 
-一般 Python 工作区/项目都建议在运行在虚拟环境中，以防止安装的包污染到系统环境
+虚拟环境用于隔离系统环境，一般将自虚拟环境命名为`.venv`
 
-一般将自虚拟环境命名为`.venv`
+Python 工作区/项目都建议在运行在虚拟环境中，以防止安装的包污染到系统环境
 
 ::: code-group
 
@@ -127,7 +136,7 @@ python -m venv 自定义虚拟环境名称
 
 - 在有虚拟环境目录的工作区命令执行会在当前终端启用 ( 进入 ) 虚拟环境
 - 在当前终端窗口会以`(虚拟环境名称) %`展示
-- 使用虚拟环境后 Python 解析器位置：
+- 使用虚拟环境后 Python 解释器位置：
 
 ```shell
 (虚拟环境名称) % which python
@@ -142,24 +151,26 @@ python -m venv 自定义虚拟环境名称
 (虚拟环境名称) % deactivate
 
 % which python
-/Users/用户/python解析器路径
+/Users/用户/python解释器路径
 # 比如：/Users/用户/.asdf/shims/python
 ```
 
 - 在有虚拟环境目录的工作区命令执行会在当前终端停止 ( 退出 ) 虚拟环境
-- 从虚拟环境退出前后 Python 解析器位置：
+- 从虚拟环境退出前后 Python 解释器位置：
 
 ```shell
 (虚拟环境名称) % which python
 /Users/用户/路径/虚拟环境名称/bin/python
 (虚拟环境名称) % deactivate
 % which python
-/Users/用户/python解析器路径
+/Users/用户/python解释器路径
 ```
 
 :::
 
 > 如下： 以 asdf 下载的 3.10.0 版本的 Python
+
+::: details 例子：开启虚拟环境 → pip 下载包 → 退出虚拟环境
 
 ```shell
 # 创建并进入一个空工作区 & 查看系统 Python 所在
@@ -196,8 +207,6 @@ pip        21.2.3
 setuptools 57.4.0
 ```
 
-::: code-group
-
 :::
 
 ---
@@ -205,3 +214,105 @@ setuptools 57.4.0
 ### pyvenv <Badge type="warning" text="弃用"/>
 
 Python 3.3、3.4 版本创建虚拟环境的推荐工具，3.6 以后弃用
+
+## 程序执行
+
+```shell
+python 文件.py
+```
+
+## 代码注释
+
+Python 中有两种注释形式：
+
+:::code-group
+
+```py [1. 单行注释]
+# 一行注释
+# 一行注释
+
+version = "0.1" # 一行注释
+author = "BlaxBerry" # 一行注释
+```
+
+```py [2. 多行注释]
+"""
+第一个Python程序 - hello, world
+
+Version: 0.1
+Author: BlaxBerry
+"""
+```
+
+:::
+
+## 代码格式化
+
+::: details black
+
+- 不妥协的严格的规范，不可自定义配置
+- CI/CD 管道集成有官方预提交挂钩
+
+```shell
+source .venv/bin/active
+pip install black // [!code focus]
+```
+
+:::code-group
+
+```toml [pyproject.toml]
+[tool.black]
+line-length = 79 # 设置一行最大数字符数为 79
+target-version = ["py39", "py310"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | migrations
+)/
+```
+
+```json [.vscode/settings.json]
+{
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  },
+  "python.formatting.provider": "black",
+  "black-formatter.args": [
+    "--line-length=80" // 设置一行最大数字符数为 79
+  ]
+}
+```
+
+:::
+
+::: details yapf
+
+- 可自定义规则配置
+- 不同团队的规范风格可能不一致，可能会造成混乱
+
+```shell
+source .venv/bin/active
+pip install yapf // [!code focus]
+```
+
+:::
+
+> 换行的底层逻辑实际是通过`\`进行代码换行
+
+## 输入、输出
+
+```py
+data: str = input("请输入: ")
+print(data)
+```

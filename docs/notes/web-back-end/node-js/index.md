@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Node.js 相关
 
 ![](/images/node-js.webp)
@@ -30,7 +35,7 @@ node --version
 v18.18.0
 ```
 
-## 执行文件
+## 程序执行
 
 ```shell
 node 文件.js

@@ -7,10 +7,11 @@ https://di-acc2.com/programming/python/10325/
 ## 安装
 
 ```shell
-pip install djangorestframework
+source .venv/bin/active
+pip install djangorestframework // [!code focus]
 
-# pip install markdown       # Markdown support for the browsable API.
-# pip install django-filter  # Filtering support
+# pip install markdown       # Markdown support for the browsable API. // [!code focus]
+# pip install django-filter  # Filtering support // [!code focus]
 ```
 
 ## 注册

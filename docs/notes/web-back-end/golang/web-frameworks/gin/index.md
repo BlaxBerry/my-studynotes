@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Gin 相关
 
 ![](/images/gin.webp)
