@@ -1,4 +1,4 @@
-# Python List
+# Python List 常用方法
 
 ## 增加、插入
 
@@ -105,7 +105,7 @@ print(items.index('Java', 3))      # ValueError: 'Java' is not in list
 
 ---
 
-### counts()
+### count()
 
 查找元素出现的次数
 

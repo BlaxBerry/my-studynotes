@@ -1,6 +1,16 @@
 # npm
 
+![](/images/npm.webp)
+
 ## npx
+
+npx 是个用于执行 Node 依赖包的工具
+
+可在不安装包到全局的情况下使用包
+
+```shell
+npx [包名]
+```
 
 ## package.json
 

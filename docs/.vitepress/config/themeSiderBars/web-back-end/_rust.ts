@@ -1,8 +1,8 @@
-const PATH = "/notes/web-front-end/jquery";
+const PATH = "/notes/web-back-end/rust";
 
 export default [
   {
-    text: "jQuery 基础",
+    text: "Rust 基础",
     collapsed: true,
     items: [
       { text: "?", link: `${PATH}/` },

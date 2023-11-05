@@ -36,4 +36,5 @@ export default [
       { text: "类 ( Class )", link: `${PATH}/basics/ts-class` },
     ],
   },
+  { text: "目录首页", link: `${PATH}/` },
 ];

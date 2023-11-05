@@ -35,8 +35,7 @@ export default [
   {
     text: "SEO",
     collapsed: true,
-    items: [
-      { text: "Meta标签", link: `${PATH}/SEO/meta-tags` },
-    ],
-  }
+    items: [{ text: "Meta标签", link: `${PATH}/SEO/meta-tags` }],
+  },
+  { text: "目录首页", link: `${PATH}/` },
 ];

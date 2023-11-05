@@ -23,7 +23,7 @@ export default [
     items: [{ text: "？", link: `${PATH}/` }],
   },
   {
-    text: "Web 应用框架",
+    text: "Web 应用开发",
     collapsed: true,
     items: [
       {
@@ -32,4 +32,5 @@ export default [
       },
     ],
   },
+  { text: "目录首页", link: `${PATH}/` },
 ];

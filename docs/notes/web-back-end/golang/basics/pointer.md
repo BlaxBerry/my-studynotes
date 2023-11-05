@@ -1,158 +1,156 @@
-# Golang 指针 ( Pointer )
+# Golang 指针
 
 ## 简介
 
-指针允许你直接或间接地引用和修改变量的值，以及在函数之间传递数据的引用
+Golang 指针 ( Pointer ) 即某指定变量的内存地址
+
+---
+
+### 取址、取值
 
 ```go
-&变量		// 指向该变量的内存地址
-*内存地址	// 向该变量的内存地址中存储的值
+// 获取指针 ( 获取一个变量的内存地址并存入变量 )
+const 指针 = &变量
+
+// 获取指针的值 ( 获取该指针指向的数据的值 )
+var 值 = *指针
 ```
 
-## 指针变量
+---
 
-指针变量用于存储内存地址
-
-一个指针变量可以指向另一个变量的内存地址，允许对该变量进行间接操作
+### 指针类型
 
 ```go
-var b = &a		// b 指向 a 变量的内存地址
-var data = *b	// data 指向 a 变量的内存地址中存储的数据
+*指针指向的数据的类型
 ```
 
-::: details 例子：
-::: code-group
+## 值传递、引用
 
-```go [代码]
-package main
+- **值传递 ( 值拷贝 )**：开辟新内存空间**存放原本数据值的拷贝副本**，不影响原本数据
+- **引用传递**：开辟新内存空间**存放原本数据的内存地址**，会影响到原本数据
 
-import "fmt"
+> 如下：以函数为例
 
-func main() { // [!code focus]
-	var a int = 10  // [!code focus]
+:::code-group
 
-	var b = &a  // [!code focus]
-	fmt.Printf("%v %T %v\n", b, b, *b)
+```go [值传递]
+func 函数(参数 参数类型) {
+	// 参数++
+}
 
-	*b += 10  // [!code focus]
-	fmt.Printf("%v %T %v\n", b, b, *b)
-	fmt.Println(a)
-} // [!code focus]
+var 数据 类型
+函数(数据)
+
+
+// ↑ 调用函数后数据值不改变
+// 调用函数时传递的实参：原数据值的拷贝副本
+// 函数接收形参的类型：原数据值的类型
+// 函数内部对形参的使用：参数
 ```
 
-```shell [编译执行结果]
-0xc0000b2008 *int 10
-0xc0000b2008 *int 20
+```go [引用传递]
+func 函数(参数 *参数类型) {
+	// &参数++
+}
 
-20
+var 数据 类型
+函数(&数据)
+
+
+// ↑ 调用函数后数据值改变
+// 调用函数时传递的实参：原数据的内存地址
+// 函数接收形参的类型：原数据值的指针类型
+// 函数内部对形参的使用：参数的内存地址
 ```
 
 :::
 
-::: details 例子：
-::: code-group
+:::details 例子：分析说明
 
-```go [代码]
-package main
-
-import "fmt"
-
-func main() { // [!code focus]
-	var ( // [!code focus]
-		a int  = 10 // [!code focus]
-		b *int = &a // [!code focus]
-		c *int = &a // [!code focus]
-	) // [!code focus]
-
-	*b += 10 // [!code focus]
-	*c += 10 // [!code focus]
-	*c += 10 // [!code focus]
-
-	fmt.Printf(
-		"b: %v %v\nc: %v %v\n",
-		b, *b,
-		c, *c,
-	)
-	fmt.Printf("a: %v\n", a)
-} // [!code focus]
-```
-
-```shell [编译执行结果]
-b: 0xc00001a080 40
-c: 0xc00001a080 40
-a: 40
-```
-
-:::
-
-## 指针类型
-
-指针类型描述了指针所指向的数据类型
+> 如下：变量`num`值在函数`fff`调用后还是原值`1`
 
 ```go
-*数据类型
-```
-
-不同类型的指针不能互相赋值，即使它们都指向相同大小的数据
-
-::: details 例子：
-::: code-group
-
-```go [代码]
 package main
 
 import "fmt"
 
-func main() { // [!code focus]
-	var ( // [!code focus]
-		a int     = 10 // [!code focus]
-		b float64 = 10.00 // [!code focus]
-	) // [!code focus]
+func fff(num int) {		//[!code focus]
+	num++				//[!code focus]
+}						//[!code focus]
 
-	var ( // [!code focus]
-		pa *int     = &a // [!code focus]
-		pb *float64 = &b // [!code focus]
-	) // [!code focus]
+func main() {
+	var num = 1			//[!code focus]
+	fmt.Println(num)	// 1
 
-	fmt.Println(pa, *pa, a)
-	fmt.Println(pb, *pb, b)
-} // [!code focus]
+	fff(num)			//[!code focus]
+	fff(num)			//[!code focus]
+	fmt.Println(num) 	// 1
+}
 ```
 
-```go [编译执行结果]
-0xc0000b2008 10 10
-0xc0000b2010 10 10
-```
+因为函数调用时传入的是变量`num`的副本
 
-:::
+即定义的变量`num`的地址和函数调用时其使用的参数`num`的内存地址不同
 
-## 指针函数
+> 如下：利用`&变量`验证原值变量与函数形参的内存地址不同
 
-指针函数是一个返回指针的函数，返回指针类型的值
-
-用于创建新的数据结构实例、在函数内部分配内存等
-
-::: details 例子：
-::: code-group
-
-```go [代码]
+```go
 package main
 
 import "fmt"
 
-func main() { // [!code focus]
-	res := doSomething() // [!code focus]
-	fmt.Println(res, *res)
-} // [!code focus]
+func fff(num int) {		//[!code focus]
+	num++				//[!code focus]
+	fmt.Println(&num)	//[!code focus]
+}						//[!code focus]
 
-func doSomething() *int { // [!code focus]
-	x := 100 // [!code focus]
-	return &x // 返回一个指向整数的指针 // [!code focus]
-} // [!code focus]
+func main() {
+	var num = 1			//[!code focus]
+	fmt.Println(&num)	//[!code focus]// 0x14000122018
+
+	fff(num)			//[!code focus]// 0x14000122030
+	fff(num)			//[!code focus]// 0x14000122008
+}
 ```
 
-```go [编译执行结果]
-0xc00001a080 100
+想要修改到原数据的值：
+
+- 调用函数时传递的实参：原数据值的副本 → 原数据的内存地址
+- 函数接收形参的类型：原数据值的类型 → 原数据值的指针类型
+- 函数内部对形参的使用：参数 → 参数的内存地址
+
+```go
+func 函数(
+	参数 参数类型			//[!code --]
+	参数 *参数类型		    //[!code ++]
+) {
+	参数++				   //[!code --]
+	&参数++				   //[!code ++]
+}
+
+函数(数据)				   //[!code --]
+函数(&数据)				   //[!code ++]
+```
+
+> 如下：变量`num`值在函数`fff`调用后改变了
+
+```go
+package main
+
+import "fmt"
+
+func fff(num *int) {	//[!code focus]
+	&num++				//[!code focus]
+}						//[!code focus]
+
+func main() {
+	var num = 1			//[!code focus]
+	fmt.Println(num)	// 1
+
+	fff(&num)			//[!code focus]
+	fff(&num)			//[!code focus]
+	fmt.Println(num) 	// 3
+}
 ```
 
 :::

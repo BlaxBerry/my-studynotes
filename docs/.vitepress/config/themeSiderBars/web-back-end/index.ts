@@ -10,6 +10,7 @@ export default [
       { text: "Python", link: `${PATH}/python/` },
       { text: "Golang", link: `${PATH}/golang/` },
       { text: "Ruby", link: `${PATH}/ruby/` },
+      { text: "Rust", link: `${PATH}/rust/` },
     ],
   },
   {

@@ -7,11 +7,6 @@ next: false
 
 ![](/images/golang.webp)
 
-## 简介
-
-- 中文网：http://c.biancheng.net/golang/syntax/
-- Go 语言常用内置包简介： http://c.biancheng.net/view/4306.html
-
 ## 安装
 
 > 本文为 Mac 环境下使用 [asdf](../../web-others/web-dev-tools/asdf/index.md)
@@ -29,100 +24,182 @@ asdf reshim golang
 go version
 ```
 
-> 如下：本文使用 Go v1.18
+> 如下：本文使用 Golang v1.20
 
 ```shell
 % go version
-go version go1.18 darwin/amd64
+go version go1.20 darwin/arm64
 ```
 
-## 运行环境
+## 项目结构
 
-Go environments
-https://www.freecodecamp.org/news/golang-environment-gopath-vs-go-mod/
+:::code-group
 
-1. Traditional GOPATH environment
-2. go mod based environment
-
----
-
-### 单一工作区 <Badge type="warning">已弃用</Badge>
-
-::: code-group
-
-```shell [工作区目录结构]
-|- [GOPATH]
-    |- bin # 存放编译后生成的二进制可执行文件
-    |- pkg # 存放编译后的中间文件
-    |- src # 存放项目源码
-        |- GO项目
-        |- GO项目
-        |- ...
+```shell [普通小项目目录结构]
+[项目目录]
+|- main.go
+|- go.mod
+|- ...
 ```
 
-:::
-
----
-
-### 模块化
-
-详见 [包管理](./package-management/index.md)
-
-::: code-group
-
-```shell [项目目录结构]
-|- [任意位置]
-    |- GO项目
-        |- 自定义功能包
-            |- 细分的功能.go
-            |- 细分的功能.go
-            |- ...
-        |- ...
+```shell [大项目目录结构]
+[项目目录]
+|- cmd
+    |- [子项目]
         |- main.go
-        |- go.mod
-        |- go.sum
+|- internal
+|- pkg
+|- scripts
+|- api
+|- assets
+|- build
+|- configs
+|- deployments
+|- docs
+|- examples
+|- init
+|- test
+|- third_party
+|- tool
+|- Makefile
+|- go.mod
+|- README.md
+|- README_es.md
+|- ...
 ```
 
 :::
 
 ## 程序执行
 
-Go 是个编译型静态语言，文件需要先编译后才能执行
+Golang 是个编译型静态语言，文件需要先编译后才能执行
 
 ::: details 方法一：`go build`
 
 ::: code-group
 
-```shell [命令]
+```shell [执行命令]
 % go build 文件名.go
 % ./文件同名二进制文件
 ```
 
-```shell [目录]
+```shell [目录结构]
 |- 文件名.go
 |- 同名二进制文件
 ```
 
-先手动编译，然后手动执行在命令执行目录下生成同名二进制文件
+先编译目标文件生成二进制可执行文件，然后在执行该文件
 
-目标文件的依赖包全部打包编译，生成的二进制文件在无 GO 的环境中也可执行
+目标文件的依赖包全部打包编译，生成的二进制文件在无 Golang 的环境中也可执行
 
 :::
 
-::: details 方法二：`go run`
+::: details 方法二：`go run` <Badge>推荐</Badge>
 
 ```shell
 % go run 文件名.go
 ```
 
-像运行脚本一样直接执行，编译步骤在底层执行
+编译并执行目标文件
 
-仅编译执行目标文件的源代码，执行命令的环境中必须有 GO 否则无法执行
+要编译并执行的文件为`main.go`时命令可简写为`go run .`
+
+编译步骤在底层执行，命令必须在 Golang 的环境中执行
+
+:::code-group
+
+```shell [执行命令]
+cd [项目目录]/cmd/[子项目目录]
+go run .
+```
+
+```shell [目录结构]
+[项目目录]
+|- cmd
+    |- [子项目目录]
+        |- main.go
+|- ...
+|- go.mod
+```
 
 :::
 
-## 格式化
+## 代码注释
+
+为了风格的统一建议全部使用单行注释
+
+:::code-group
+
+```go [单行注释]
+// 一行注释
+// 一行注释
+// 一行注释
+```
+
+```go [多行注释 <Badge type="warning">不推荐</Badge>]
+/*
+一行注释
+一行注释
+*/
+```
+
+:::
+
+## 代码格式化
+
+Golang 制定了统一的官方代码风格
+
+使用 gofmt 代码格式化工具
+
+---
+
+### gofmt
 
 ```shell
-gofmt -w 目标文件.go
+gofmt [flags] [path ...]
 ```
+
+:::details `[flags]`参数
+
+```shell
+% gofmt --help
+
+usage: gofmt [flags] [path ...]
+  -cpuprofile string
+        write cpu profile to this file
+  -d    display diffs instead of rewriting files
+  -e    report all errors (not just the first 10 on different lines)
+  -l    list files whose formatting differs from gofmt's
+  -r string
+        rewrite rule (e.g., 'a[b:len(a)] -> a[b:]')
+  -s    simplify code
+  -w    write result to (source) file instead of stdout
+```
+
+> 比如:
+
+```shell
+gofmt -s -w 文件.go
+```
+
+:::
+
+:::details VSCode 设置
+
+:::code-group
+
+```json [.vscode/settings.json]
+{
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true
+  },
+  "go.formatTool": "gofmt",
+  "go.formatFlags": ["-s", "-w"]
+}
+```
+
+> 前提：安装 Go 插件以及插件所需的依赖包
+
+:::

@@ -10,7 +10,7 @@ export default [
     ],
   },
   {
-    text: "Web 应用框架",
+    text: "Web 应用开发",
     collapsed: true,
     items: [{ text: "Fresh", link: `${PATH}/web-frameworks/fresh/` }],
   },

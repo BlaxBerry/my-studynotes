@@ -28,6 +28,7 @@ import _python from "../themeSiderBars/web-back-end/_python";
 import _django from "../themeSiderBars/web-back-end/_django";
 import _ruby from "../themeSiderBars/web-back-end/_ruby";
 import _rubyOnRails from "../themeSiderBars/web-back-end/_ruby-on-rails";
+import _rust from "../themeSiderBars/web-back-end/_rust";
 
 import webDevTools from "../themeSiderBars/web-others/web-dev-tools";
 
@@ -43,7 +44,7 @@ export default {
   "/notes/web-front-end/": webFrontEnd,
   "/notes/web-front-end/html/": _html,
   "/notes/web-front-end/css/": _css,
-  "/notes/web-front-end/sass/": _sass,
+  "/notes/web-front-end/css/pre-processors/sass/": _sass,
   "/notes/web-front-end/javascript/": _javascript,
   "/notes/web-front-end/typescript/": _typescript,
   "/notes/web-front-end/dart/": _dart,
@@ -70,6 +71,7 @@ export default {
   "/notes/web-back-end/python/web-frameworks/django/": _django,
   "/notes/web-back-end/ruby/": _ruby,
   "/notes/web-back-end/ruby/web-frameworks/ruby-on-rails/": _rubyOnRails,
+  "/notes/web-back-end/rust/": _rust,
 
   "/notes/web-others/web-dev-tools/": webDevTools,
 

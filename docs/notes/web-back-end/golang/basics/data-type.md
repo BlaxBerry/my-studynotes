@@ -1,162 +1,193 @@
 # Golang 数据类型
 
-Go 是个强类型语言，需要指定类型
-
 ## 基本数据类型
-
-又称为值类型
-
-基本数据类型都有其对应的指针类型`*基本数据类型`
-
----
 
 ### 整数型
 
-Go 的整数类型默认为`int`类型
+整数型的变量未赋值时默认值为`0`
 
-整数型数据在定义时若不赋值则使用默认保留值`0`
+整数型可细分为下列类型
 
-| 有符号整数类型 |                     范围                      |
-| :------------: | :-------------------------------------------: |
-|     `int8`     |                 `-128`～`127`                 |
-|    `int16`     |               `-32768`～`32767`               |
-|    `int32`     |          `-2147483648`～`2147483647`          |
-|    `int64`     | `-9223372036854775808`～`9223372036854775807` |
+| 类型名             | 默认值 | 范围                                          | 长度  |
+| ------------------ | ------ | --------------------------------------------- | ----- |
+| int8               | `0`    | `-128`~`127`                                  | 8bit  |
+| int16              | `0`    | `-128`~`127`                                  | 16bit |
+| int32 / int / rune | `0`    | `-2147483648`～`2147483647`                   | 32bit |
+| int64 / int        | `0`    | `-9223372036854775808`～`9223372036854775807` | 64bit |
+| uint8 / byte       | `0`    | `0`～`255`                                    | 8bit  |
+| uint16             | `0`    | `0`～`65535`                                  | 16bit |
+| uint32 / uint      | `0`    | `0`～`4294967295`                             | 32bit |
+| uint64 / uint      | `0`    | `0`～`18446744073709551615`                   | 64bit |
 
-| 无符号整数类型 |            范围             |
-| :------------: | :-------------------------: |
-|    `uint8`     |         `0`～`255`          |
-|    `uint16`    |        `0`～`65535`         |
-|    `uint32`    |      `0`～`4294967295`      |
-|    `uint64`    | `0`～`18446744073709551615` |
+一般整数类型常用`int`，会自动根据系统区分 32 / 64 位
 
-| 其他整数类型 |           范围            |
-| :----------: | :-----------------------: |
-|    `int`     |  等价于 `int32`or`int64`  |
-|    `uint`    | 等价于 `uint32`or`uint64` |
-|    `rune`    |      等价于 `int32`       |
-|    `byte`    |      等价于 `uint8`       |
+```go
+var 变量 int = 值
+var 变量 int
+```
 
 ---
 
 ### 浮点型
 
-浮点型数据在定义时若不赋值则使用默认保留值`0`
+浮点型的变量未赋值时默认值为`0`
 
-| 浮点类型  |           范围            |
-| :-------: | :-----------------------: |
-| `float32` |  `-3.403E38`～`3.403E38`  |
-| `float64` | `-1.798E308`～`1.798E308` |
+浮点型可细分为下列类型
 
----
+| 类型名  | 默认值 | 范围                      | 长度  |
+| ------- | ------ | ------------------------- | ----- |
+| float32 | `0`    | `-3.403E38`～`3.403E38`   | 32bit |
+| float64 | `0`    | `-1.798E308`～`1.798E308` | 64bit |
 
-### 布尔型 ( bool )
-
-布尔型数据在定义时若不赋值则使用默认保留值`false`
-
-| 布尔型  | 含义 |
-| :-----: | :--: |
-| `true`  |  真  |
-| `false` |  假  |
+```go
+var 变量 float64 = 值
+var 变量 float64
+```
 
 ---
 
-### 字符型 ( byte )
+### string
 
-赋值使用数值或单引号包裹的字符
+**双引号**包裹的字符
 
-字符型数据在定义时若不赋值则使用默认保留值`0`
+字符串类型的变量未赋值时默认值为`""`
 
-字母、符号等字符值对应 ASCII 码，范围等价于`uint8` ( `0`～`255` )
+```go
+var 变量 string = "值"
+var 变量 string
+```
 
-汉字、假名等字符集对应的 Unicode 编码值已超过了 ASCII 码的范围，可使用`int`/`rune`
+:::details 拼接、长度
 
-::: details 例子：
+```go
+// 拼接
+"字符串" + "字符串"
 
-::: code-group
+// 长度
+len("字符串")
+```
 
-```go{7-11} [代码]
+:::details 例子：
+
+```go
 package main
 
 import "fmt"
 
 func main() {
-	var (
-		aa byte = 'a'
-		bb byte = 250
-		cc byte = '@'
-		dd int  = 'あ'
-		ff int  = '嗨'
-	)
-	fmt.Printf(
-		"aa: %v,%c\nbb: %v,%c\ncc: %v,%c\ndd: %v,%c\nff: %v,%c\n",
-		aa, aa,
-		bb, bb,
-		cc, cc,
-		dd, dd,
-		ff, ff,
-	)
+	s := "hello" + " " + "world"    //[!code focus]
+
+	fmt.Println(s)          //[!code focus]// hello world
+	fmt.Println(len(s))     //[!code focus]// 11
 }
 ```
 
-```shell [编译执行结果]
-aa: 97,a
-bb: 250,ú
-cc: 64,@
-dd: 12354,あ
-ff: 21992,嗨
+:::
+
+:::details 转义字符
+
+| 转义字符  | 含义       |
+| --------- | ---------- |
+| `"\n"`    | 换行       |
+| `"\t" `   | 横向制表符 |
+| `"\r" `   | 回车       |
+| `"\\'"`   | 单引号     |
+| `"\\\\" ` | 反斜线     |
+
+:::
+
+:::details 格式字符`%`
+
+多与[`fmt.Printf()`](../built-in-pkgs/fmt.md#fmt-printf)一起使用
+
+| 格式字符 | 含义                             | 例子                       |
+| -------- | -------------------------------- | -------------------------- |
+| `%v`     | 数据的值                         | `fmt.Printf("%v", 1+2)`    |
+| `%T`     | 数据的类型                       | `fmt.Printf("%T", 999)`    |
+| `%.2f`   | 浮点型数据保留小数点后两位       | `fmt.Printf("%.2f", 10.0)` |
+| `%c`     | byte 类型数据对应的 Unicode 码值 | `fmt.Printf("%c", 64)`     |
+
+:::
+
+---
+
+### byte
+
+**单引号**包裹字符、0 ～ 255 范围的整数型 详见 [整数型](#整数型)
+
+字符类型的变量未赋值时默认值为`0`
+
+```go
+var 变量 byte = '值'
+var 变量 byte
+
+var 变量 int = '值'
+var 变量 unit8 = '值'
+```
+
+:::details 例子：
+
+```go
+package main
+
+import "fmt"
+
+var (                   //[!code focus]
+	a byte = 'a'        //[!code focus]
+	b byte = 97         //[!code focus]
+	c byte = '@'        //[!code focus]
+	d int  = 'あ'       //[!code focus]
+	e int  = '嗨'       //[!code focus]
+)                       //[!code focus]
+
+func main() {
+	fmt.Printf(         //[!code focus]
+		"a %v %T\nb %v %T\nc %v %T\nd %v %T\ne %v %T\n", //[!code focus]
+		a, a,           //[!code focus]// a 97 uint8
+		b, b,           //[!code focus]// b 97 uint8
+		c, c,           //[!code focus]// c 64 uint8
+		d, d,           //[!code focus]// d 12354 int
+		e, e,           //[!code focus]// e 21992 int
+	)                   //[!code focus]
+
+	fmt.Println(a == b) //[!code focus]// true
+}
 ```
 
 :::
 
-转义字符`\`
+---
 
-| 转义字符 |      含义      | Unicode 编码值 |
-| :------: | :------------: | :------------: |
-|   `\n`   |      换行      |    `\u000a`    |
-|   `\t`   | 制表符 ( Tab ) |    `\u0009`    |
-|   `\'`   |     单引号     |    `\u0022`    |
-|   `\"`   |     双引号     |    `\u0027`    |
-|   `\\`   |     反斜杠     |    `\u005c`    |
+### bool
+
+布尔值只有`true`、`false`
+
+布尔类型的变量未赋值时默认值为`false`
+
+```go
+var 变量 bool = true
+var 变量 bool = false
+var 变量 bool
+```
 
 ---
 
-### 字符串 ( string )
-
-一串字符组成的固定长度的字符序列
-
-字符串数据在定义时若不赋值使用默认保留值空字符串`""`
+### nil
 
 ## 复杂数据类型
 
----
+### 指针类型
 
-### 结构体 ( Struct )
+详见 [指针 ( Pointer )](pointer.md)
 
-::: code-group
+:::code-group
 
-```go [代码]
-
+```go [写法一]
+*数据类型
 ```
 
-```shell [编译执行结果]
-
-```
-
-:::
-
----
-
-### 接口 ( Interface )
-
-::: code-group
-
-```go [代码]
-
-```
-
-```shell [编译执行结果]
-
+```go [写法二]
+var 变量 = new(数据类型)
 ```
 
 :::
@@ -165,279 +196,110 @@ ff: 21992,嗨
 
 ### 数组
 
-::: code-group
+> Golang 的数组 ( Array ) 相当于其他语言中的元组 ( Tuple )
 
-```go [代码]
+---
 
-```
+### 切片
 
-```shell [编译执行结果]
+> Golang 的切片 ( Slice ) 相当于其他语言中的数组 ( Array )
 
-```
+---
 
-:::
+### struct
+
+Golang 的结构体( Struct ) 相当于其他语言中的对象 ( Object )
+
+---
+
+### interface
+
+接口
 
 ---
 
 ### map
 
-::: code-group
+集合
 
-```go [代码]
+## 自定义类型
 
+```go
+type 自定义类型名 类型
 ```
 
-```shell [编译执行结果]
+:::details 例子：
 
+```go
+package main
+
+import "fmt"
+
+type I int						//[!code focus]
+type S string					//[!code focus]
+type F func(m string) string	//[!code focus]
+type Person struct {			//[!code focus]
+	name S						//[!code focus]
+	age  I						//[!code focus]
+	say  F						//[!code focus]
+}								//[!code focus]
+
+func main() {
+	andy := Person{name: "Andy", age: 28}	//[!code focus]
+
+	tom := Person{						//[!code focus]
+		name: "Tom",					//[!code focus]
+		age:  16,						//[!code focus]
+		say: func(m string) string {	//[!code focus]
+			return m					//[!code focus]
+		}}								//[!code focus]
+
+
+	fmt.Println(andy)					//[!code focus]// {Andy 28 <nil>}
+
+	fmt.Println(tom.say("hello"))		//[!code focus]// hello
+}
 ```
 
 :::
 
-### 管道 ( Channel )
+## 类型查看
 
-::: code-group
+### fmt.Printf()
 
-```go [代码]
-
+```go
+fmt.Printf("%T", 数据)
 ```
-
-```shell [编译执行结果]
-
-```
-
-:::
 
 ---
 
-### 指针类型 ( Pointer )
+### reflect.TypeOf()
 
-指针类型是指针变量的数据类型
+```go
+import "reflect"
 
-详见 [指针](./pointer.md)
+reflect.TypeOf(数据)
+```
 
 ---
 
-### 切片 ( Slice )
+### switch...
 
-详见
+只能用于 interface 类型的变量
+
+```go
+var v = interface{}("hello")
+
+switch v.(type) {
+    case string:
+        // ...
+    case int:
+        // ...
+    default:
+        // ...
+}
+```
 
 ## 类型转换
 
-不同类型数据直接的转换只能通过显示转换 ( 强制转换 )
-
-### T(t)
-
-将当前类型`t`转为指定类型`T`
-
-```go
-目标类型(当前类型)
-```
-
-::: details 例子：
-
-::: code-group
-
-```go{6-7,10-11} [代码]
-package main
-
-import "fmt"
-
-func main() {
-	var a int = 1
-	aa := float32(a)
-	fmt.Printf("a: %T\naa: %T\n", a, aa)
-
-	var b byte
-	bb := string(b)
-	fmt.Printf("b: %T\nbb: %T\n", b, bb)
-}
-```
-
-```shell [编译执行结果]
-a: int
-aa: float32
-b: uint8
-bb: string
-```
-
-:::
-
----
-
-### fmt.Sprintf()
-
-将其他类型转为字符串型
-
-使用内置包`fmt`下的`Sprintf()`函数
-
-```go
-package 当前文件所属包名
-
-import "fmt"
-
-var 字符串型 = fmt.Sprintf("%d", 整数型)
-var 字符串型 = fmt.Sprintf("%f", 浮点型)
-var 字符串型 = fmt.Sprintf("%t", 布尔型)
-var 字符串型 = fmt.Sprintf("%c", 字符型)
-```
-
-::: details 例子：
-
-::: code-group
-
-```go{7-10,12-15} [代码]
-package main
-
-import "fmt"
-
-func main() {
-	var (
-		a int     = 10
-		b float32 = 1.00
-		c bool    = false
-		d byte    = '@'
-	)
-	aa := fmt.Sprintf("%d", a)
-	bb := fmt.Sprintf("%f", b)
-	cc := fmt.Sprintf("%t", c)
-	dd := fmt.Sprintf("%c", d)
-
-	fmt.Printf("a: %T,%v\naa: %T,%v\n", a, a, aa, aa)
-	fmt.Printf("b: %T,%v\nbb: %T,%v\n", b, b, bb, bb)
-	fmt.Printf("c: %T,%v\ncc: %T,%v\n", c, c, cc, cc)
-	fmt.Printf("d: %T,%v\ndd: %T,%v\n", d, d, dd, dd)
-}
-```
-
-```shell [编译执行结果]
-a: int,10
-aa: string,10
-b: float32,1
-bb: string,1.000000
-c: bool,false
-cc: string,false
-d: uint8,64
-dd: string,@
-```
-
-:::
-
----
-
-### strconv.FormatXxxx()
-
-> 太过麻烦不常用，推荐[`fmt.Sprintf()`](#fmt-sprintf)
-
-将其他类型转为字符串型
-
-使用字符串转换内置包`strconv`下的`Format`转换函数
-
-```go
-package 当前文件所属包名
-
-import "strconv"
-
-var 字符串型 = strconv.FormatInt(int64类型, 进制)
-var 字符串型 = strconv.FormatFloat(float64类型, 'f', 小数点后保留位数, float的范围)
-var 字符串型 = strconv.FormatBool(bool类型)
-```
-
-::: details 例子：
-
-::: code-group
-
-```go{10-12,15-17} [代码]
-package main
-
-import (
-	"fmt"
-	"strconv"
-)
-
-func main() {
-	var (
-		a int     = 10
-		b float32 = 1.00
-		c bool    = false
-	)
-
-	aa := strconv.FormatInt(int64(a), 10)
-	bb := strconv.FormatFloat(float64(b), 'f', 2, 64)
-	cc := strconv.FormatBool(c)
-
-	fmt.Printf("a: %T,%v\naa: %T,%v\n", a, a, aa, aa)
-	fmt.Printf("b: %T,%v\nbb: %T,%v\n", b, b, bb, bb)
-	fmt.Printf("c: %T,%v\ncc: %T,%v\n", c, c, cc, cc)
-}
-```
-
-```shell [编译执行结果]
-a: int,10
-aa: string,10
-b: float32,1
-bb: string,1.00
-c: bool,false
-cc: string,false
-```
-
-:::
-
----
-
-### strconv.ParseXxxx()
-
-将字符串型转为其他类型
-
-使用字符串转换内置包`strconv`下的`Parse`转换函数
-
-若字符串的值不属于转换类型的值，则转换后使用该类型的默认值
-
-```go
-package 当前文件所属包名
-
-import "strconv"
-
-var 布尔型, err = strconv.ParseBool(布尔值的字符串型)
-var 整数型, err = strconv.ParseInt(整数值的字符串型, 进制, int的范围)
-var 浮点数型, err = strconv.ParseFloat(浮点数值的字符串型, float的范围)
-```
-
-::: details 例子：
-
-::: code-group
-
-```go{10-12,15-17} [代码]
-package main
-
-import (
-	"fmt"
-	"strconv"
-)
-
-func main() {
-	var (
-		a string = "true"
-		b string = "100"
-		c string = "1.00"
-	)
-
-	aa, _ := strconv.ParseBool(a)
-	bb, _ := strconv.ParseInt(b, 10, 64)
-	cc, _ := strconv.ParseFloat(c, 64)
-
-	fmt.Printf("a: %T,%v\naa: %T,%v\n", a, a, aa, aa)
-	fmt.Printf("b: %T,%v\nbb: %T,%v\n", b, b, bb, bb)
-	fmt.Printf("c: %T,%v\ncc: %T,%v\n", c, c, cc, cc)
-}
-```
-
-```shell [编译执行结果]
-a: string,true
-aa: bool,true
-b: string,100
-bb: int64,100
-c: string,1.00
-cc: float64,1
-```
-
-:::
+## 泛型

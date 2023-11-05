@@ -45,10 +45,10 @@ export default [
     items: [
       {
         text: "React Native",
-        link: `/notes/web-others/cross-device/react-native/`,
+        link: `/notes/web-front-end/cross-device/react-native/`,
       },
-      { text: "Flutter", link: `/notes/web-others/cross-device/flutter/` },
-      { text: "Electron", link: `/notes/web-others/cross-device/electron/` },
+      { text: "Flutter", link: `/notes/web-front-end/cross-device/flutter/` },
+      { text: "Electron", link: `/notes/web-front-end/cross-device/electron/` },
     ],
   },
 ];

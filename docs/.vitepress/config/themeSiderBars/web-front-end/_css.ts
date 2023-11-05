@@ -41,8 +41,9 @@ export default [
     text: "预处理器",
     collapsed: true,
     items: [
-      { text: "Sass", link: `/notes/web-front-end/sass/` },
-      { text: "Less", link: `/notes/web-front-end/less/` },
+      { text: "Sass", link: `/notes/web-front-end/css/pre-processors/sass/` },
+      { text: "Less", link: `` },
     ],
   },
+  { text: "目录首页", link: `${PATH}/` },
 ];

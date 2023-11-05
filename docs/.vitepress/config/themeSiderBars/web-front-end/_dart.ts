@@ -9,4 +9,5 @@ export default [
       { text: "?", link: `${PATH}/` },
     ],
   },
+  { text: "目录首页", link: `${PATH}/` },
 ];
