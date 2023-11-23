@@ -9,8 +9,10 @@ next: false
 
 ## 简介
 
+Gatsby.js 是个基于 React 的 web 框架
+
 ## 安装
 
 ```shell
-
+npm init gatsby
 ```

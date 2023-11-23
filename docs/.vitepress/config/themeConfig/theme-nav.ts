@@ -32,10 +32,10 @@ export default [
   {
     text: "其他",
     items: [
-      { text: "互联网基础", link: "/notes/web-others/web-fundamental/" },
+      { text: "网络基础", link: "/notes/web-others/web-fundamental/" },
       { text: "常用开发工具", link: "/notes/web-others/web-dev-tools/" },
-      { text: "云开发", link: "/notes/web-others/cloud-dev/" },
-      // { text: "Linux 基础", link: "/notes/operating-systems/linux/" },
+      { text: "云计算", link: "/notes/web-others/clouds/" },
+      { text: "自动化", link: "/notes/web-others/automation/" },
     ],
   },
 ];

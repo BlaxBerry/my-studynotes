@@ -1,20 +1,19 @@
-const PATH = "/notes/web-others/web-fundamental";
+const PATH = "/notes/web-others";
 
 export default [
   {
-    text: "网络通信",
-    collapsed: true,
+    text: "网络基础",
+    // collapsed: true,
     items: [
-      { text: "？", link: `${PATH}` },
-      { text: "？", link: `${PATH}` },
-    ],
-  },
-  {
-    text: "HTTP/HTTPS",
-    collapsed: true,
-    items: [
-      { text: "？", link: `${PATH}` },
-      { text: "？", link: `${PATH}` },
+      { text: "xx", link: `${PATH}/html/` },
+      {
+        text: "协议",
+        collapsed: true,
+        items: [
+          { text: "xx", link: `${PATH}/html/` },
+          { text: "xx", link: `${PATH}/html/` },
+        ],
+      },
     ],
   },
 ];

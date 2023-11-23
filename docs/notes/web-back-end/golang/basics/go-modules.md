@@ -8,7 +8,7 @@ Golang 利用[包、模块](./basics/pkg-module.md)来组织管理代码，并�
 
 ### 本地包
 
-本地包在`GOPATH/src`目录以外任意位置创建的项目模块的目录下
+本地包可在任意位置创建的项目模块的目录下
 
 只要项目目录下存在`go.mod`文件，其中的包即可被正常导入使用
 
@@ -134,12 +134,11 @@ require (
 一般对外公开的第三方模块命名如下：
 
 ```go
-module [模块名]
 module [仓库名]/[模块名]/[版本]
 
+// 比如：
 // module github.com/blaxberry/my-utils/v1
 // module github.com/blaxberry/my-tools/v2
-
 ```
 
 ---
@@ -164,6 +163,7 @@ module [仓库名]/[模块名]/[版本]
 [依赖包1] [版本]/go.mod [HASH值]
 [依赖包2] [版本] [HASH值]
 [依赖包2] [版本]/go.mod [HASH值]
+
 // ...
 ```
 

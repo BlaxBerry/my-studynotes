@@ -35,8 +35,8 @@ export default [
     text: "打包・构建工具",
     collapsed: true,
     items: [
-      { text: "Webpack", link: `${PATH}` },
-      { text: "Vite", link: `${PATH}` },
+      { text: "Webpack", link: `` },
+      { text: "Vite", link: `` },
     ],
   },
   {
@@ -45,10 +45,10 @@ export default [
     items: [
       {
         text: "React Native",
-        link: `/notes/web-front-end/cross-device/react-native/`,
+        link: `${PATH}/cross-device/react-native/`,
       },
-      { text: "Flutter", link: `/notes/web-front-end/cross-device/flutter/` },
-      { text: "Electron", link: `/notes/web-front-end/cross-device/electron/` },
+      { text: "Flutter", link: `${PATH}/cross-device/flutter/` },
+      { text: "Electron", link: `${PATH}/cross-device/electron/` },
     ],
   },
 ];

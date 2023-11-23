@@ -1,42 +1,58 @@
-const PATH = "/notes/web-others/web-dev-tools";
+const PATH = "/notes/web-others";
 
 export default [
   {
-    text: "多版本运行时管理",
-    // collapsed: true,
-    items: [{ text: "asdf", link: `${PATH}/asdf/` }],
-  },
-  {
-    text: "协作开发版本控制",
+    text: "版本控制",
     // collapsed: true,
     items: [
-      { text: "Git", link: `${PATH}/git/` },
       {
-        text: "Git 托管平台",
+        text: "Git",
         collapsed: true,
         items: [
-          { text: "Github", link: `${PATH}/git/platforms/github` },
-          { text: "GitLab", link: `${PATH}/git/platforms/gitlab` },
+          { text: "基础", link: `${PATH}/web-dev-tools/git/` },
+          { text: "常用命令", link: `${PATH}/web-dev-tools/git/commands/` },
+        ],
+      },
+      {
+        text: "托管平台",
+        collapsed: true,
+        items: [
+          {
+            text: "Github",
+            link: `${PATH}/web-dev-tools/git/platforms/github`,
+          },
+          {
+            text: "GitLab",
+            link: `${PATH}/web-dev-tools/git/platforms/gitlab`,
+          },
         ],
       },
     ],
   },
   {
-    text: "容器化平台",
+    text: "多版本管理",
     // collapsed: true,
     items: [
-      { text: "Docker", link: `${PATH}/docker/` },
-      // { text: "Kubernetes", link: `${PATH}/kubernetes/` },
+      { text: "asdf", link: `${PATH}/web-dev-tools/asdf/` },
+      { text: "RTX", link: `` },
     ],
   },
   {
-    text: "数据请求获取",
+    text: "命令行工具",
     // collapsed: true,
-    items: [{ text: "curl", link: `${PATH}/curl/` }],
+    items: [{ text: "curl", link: `${PATH}/web-dev-tools/curl/` }],
   },
   {
-    text: "x",
+    text: "容器化",
     // collapsed: true,
-    items: [{ text: "Makefile", link: `${PATH}/Makefile/` }],
+    items: [
+      { text: "Docker", link: `${PATH}/web-dev-tools/docker/` },
+      { text: "Kubernetes", link: `` },
+    ],
+  },
+  {
+    text: "工程化",
+    // collapsed: true,
+    items: [{ text: "Makefile", link: `${PATH}/web-dev-tools/Makefile/` }],
   },
 ];

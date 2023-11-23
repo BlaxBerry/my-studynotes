@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Electron 相关
 
 ![](/images/electron.webp)

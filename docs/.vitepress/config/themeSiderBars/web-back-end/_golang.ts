@@ -37,8 +37,8 @@ export default [
           { text: "sync", link: `` },
         ],
       },
-      { text: "并发", link: `${PATH}/basics/` },
-      { text: "异步", link: `${PATH}/basics/` },
+      { text: "并发", link: `` },
+      { text: "异步", link: `` },
     ],
   },
   {

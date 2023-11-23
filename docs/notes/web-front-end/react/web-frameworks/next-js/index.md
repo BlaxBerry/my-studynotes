@@ -9,9 +9,7 @@ next: false
 
 ## 简介
 
-Next.js 是个基于 Node.js 的 web 框架
-
-是 React 官方推荐的 SSR 应用的开发工具
+Next.js 是个基于 React 的 web 框架，是 React 官方推荐的 SSR 应用的开发工具
 
 ## 安装
 
@@ -33,8 +31,10 @@ npx create-next-app@latest
 ✔ Would you like to use `src/` directory? No / Yes
 # 是否使用应用路由 App Router ( 默认推荐 Yes )
 ✔ Would you like to use App Router?(recommended)  No / Yes
-# 是否自定义引用名，默认为 @ ( 默认推荐 No )
+# 是否自定义引用名，默认为 @/* ( 默认推荐 No )
 ✔ Would you like to customize the default import alias? No / Yes
+# 自定义引用别名 ( 默认为 @/* )
+✔ What import alias would you like configured? … @/*
 ```
 
 :::
@@ -90,7 +90,7 @@ Success! Created 项目名 at /项目路径/项目名
 
 :::
 
-> 本文使用 Next v13 版本
+> 本文使用 Next v14 版本
 
 ## 项目启动
 

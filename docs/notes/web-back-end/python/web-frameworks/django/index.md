@@ -13,9 +13,9 @@ Django 是个基于 Python 的重型 Web 框架
 
 ::: details Django 采用了 MTV 模式
 
-- **M**odel:
-- **T**emplate:
-- **V**iew:
+- **M**odel: 模型
+- **T**emplate: 模版
+- **V**iew: 视图
 
 :::
 

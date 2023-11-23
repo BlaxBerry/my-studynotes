@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # AWS 相关
 
 ![](/images/aws.webp)

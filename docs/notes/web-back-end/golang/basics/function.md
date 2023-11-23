@@ -410,6 +410,106 @@ func main() {
 
 :::
 
+---
+
+### 指针函数
+
+详见 [Golang 指针](./pointer.md)
+
+:::code-group
+
+```go [无返回值]
+package main
+
+import "fmt"
+
+func fff(p *int) {		//[!code focus]
+	*p += 1				//[!code focus]
+}						//[!code focus]
+
+func main() {
+	var num int = 1		//[!code focus]
+
+	fff(&num)			//[!code focus]// ← 1+1
+	fff(&num)			//[!code focus]// ← 1+1
+	fmt.Println(num)	// 3
+}
+```
+
+```go [返回数据类型]
+package main
+
+import "fmt"
+
+func fff(p *int) int {	//[!code focus]
+	*p += 1				//[!code focus]
+	return *p			//[!code focus]
+}						//[!code focus]
+
+func main() {
+	var num int = 1		//[!code focus]
+
+	res := fff(&num)	//[!code focus]
+	fmt.Println(res) 	// 2
+
+	res = fff(&num)		//[!code focus]
+	fmt.Println(res) 	// 3
+
+	res = fff(&num)		//[!code focus]
+	fmt.Println(res) 	// 4
+}
+```
+
+```go [返回指针类型]
+package main
+
+import "fmt"
+
+func fff(p *int) *int {	//[!code focus]
+	*p += 1				//[!code focus]
+	return p			//[!code focus]
+}						//[!code focus]
+
+func main() {
+	var num int = 1		//[!code focus]
+
+	p := fff(&num)		//[!code focus]
+	fmt.Println(p, *p)	// 0x140000aa008 2
+
+	p = fff(&num)		//[!code focus]
+	fmt.Println(p, *p)	// 0x140000aa008 3
+
+	p = fff(&num)		//[!code focus]
+	fmt.Println(p, *p)	// 0x140000aa008 4
+}
+```
+
+```go [返回多个值]
+package main
+
+import "fmt"
+
+func fff(p *int) (*int, int) {
+	*p += 1
+	return p, *p
+}
+
+func main() {
+	var num int = 1
+
+	p, d := fff(&num)
+	fmt.Println(d, p) // 0x140000aa008 2
+
+	p, d = fff(&num)
+	fmt.Println(d, p) // 0x140000aa008 3
+
+	p, d = fff(&num)
+	fmt.Println(d, p) // 0x140000aa008 4
+}
+```
+
+:::
+
 ## defer
 
 `defer`关键字后的语句不会立即执行

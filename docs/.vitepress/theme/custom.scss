@@ -50,20 +50,45 @@
 }
 
 // 首页默认 feature box
-.VPFeature {
-  &:hover {
-    border-color: #47caff !important;
+.VPFeatures {
+  .VPFeature {
+    article {
+      display: flex;
+      flex-direction: row !important;
+      align-items: center !important;
+
+      img.VPImage {
+        border-radius: 10px;
+        margin: 0 !important;
+        margin-right: 20px !important;
+      }
+    }
+    &:hover {
+      border-color: #5672cd !important;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px,
+        rgba(0, 0, 0, 0.14) 0px 4px 5px 0px,
+        rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
+    }
   }
 
-  article {
-    display: flex;
-    flex-direction: row !important;
-    align-items: center !important;
+  @media screen and (max-width: 639px) {
+    .container > .items > .item {
+      width: calc(100% / 3) !important;
+      article {
+        justify-content: center;
+        img.VPImage {
+          margin: 0 !important;
+        }
+        h2.title {
+          display: none !important;
+        }
+      }
+    }
+  }
 
-    img.VPImage {
-      border-radius: 10px;
-      margin: 0 !important;
-      margin-right: 20px !important;
+  @media screen and (max-width: 389px) {
+    .container > .items > .item {
+      width: calc(100% / 2) !important;
     }
   }
 }

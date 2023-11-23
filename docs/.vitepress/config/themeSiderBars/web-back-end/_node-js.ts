@@ -5,8 +5,6 @@ export default [
     text: "Node.js 基础",
     collapsed: true,
     items: [
-      { text: "?", link: `${PATH}/` },
-      { text: "?", link: `${PATH}/` },
       {
         text: "内置模块",
         collapsed: true,

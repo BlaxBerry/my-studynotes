@@ -172,7 +172,7 @@ tsc -v
 
 初始化，在当前所处工作区创建 TS 配置文件`tsconfig.json`
 
-> 如下：Version 5.1.6
+> 如下：TS V5.1.6
 
 ```shell
 % tsc --init

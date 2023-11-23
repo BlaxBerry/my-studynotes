@@ -221,31 +221,6 @@ Python 3.3、3.4 版本创建虚拟环境的推荐工具，3.6 以后弃用
 python 文件.py
 ```
 
-## 代码注释
-
-Python 中有两种注释形式：
-
-:::code-group
-
-```py [1. 单行注释]
-# 一行注释
-# 一行注释
-
-version = "0.1" # 一行注释
-author = "BlaxBerry" # 一行注释
-```
-
-```py [2. 多行注释]
-"""
-第一个Python程序 - hello, world
-
-Version: 0.1
-Author: BlaxBerry
-"""
-```
-
-:::
-
 ## 代码格式化
 
 ::: details black
@@ -309,6 +284,31 @@ pip install yapf // [!code focus]
 :::
 
 > 换行的底层逻辑实际是通过`\`进行代码换行
+
+## 代码注释
+
+Python 中有两种注释形式：
+
+:::code-group
+
+```py [1. 单行注释]
+# 一行注释
+# 一行注释
+
+version = "0.1" # 一行注释
+author = "BlaxBerry" # 一行注释
+```
+
+```py [2. 多行注释]
+"""
+第一个Python程序 - hello, world
+
+Version: 0.1
+Author: BlaxBerry
+"""
+```
+
+:::
 
 ## 输入、输出
 

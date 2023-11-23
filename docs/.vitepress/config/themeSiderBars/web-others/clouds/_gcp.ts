@@ -1,8 +1,8 @@
-const PATH = "/notes/web-others/cloud-dev/google-cloud";
+const PATH = "/notes/web-others/cloud-dev/gcp";
 
 export default [
   {
-    text: "Google Cloud 基础",
+    text: "GCP 基础",
     collapsed: true,
     items: [
       { text: "", link: `${PATH}/` },

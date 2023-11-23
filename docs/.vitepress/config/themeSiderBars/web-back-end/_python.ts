@@ -60,12 +60,11 @@ export default [
   {
     text: "数据分析",
     collapsed: true,
-    items: [{ text: "Pandas", link: "？" }],
-  },
-  {
-    text: "机器学习",
-    collapsed: true,
-    items: [{ text: "？", link: "？" }],
+    items: [
+      { text: "NumPy", link: "" },
+      { text: "Pandas", link: "" },
+      { text: "Matplotlib", link: "" },
+    ],
   },
   { text: "目录首页", link: `${PATH}/` },
 ];

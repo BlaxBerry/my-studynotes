@@ -1,12 +1,15 @@
+---
+prev: false
+next: false
+---
+
 # Nuxt.js 相关
 
 ![](/images/nuxt3-js.webp)
 
 ## 简介
 
-Nuxt.js 是个基于 Vue.js 的轻量级 Web 框架
-
-可用来创建 SSR、SSG 应用
+Nuxt.js 是个基于 Vue.js 的轻量级 Web 框架，可用来创建 SSR、SSG 应用
 
 ## 安装
 

@@ -1,4 +1,9 @@
-# asdf
+---
+prev: false
+next: false
+---
+
+# asdf 相关
 
 ![](https://willsena.dev/content/images/2022/11/asdf.jpg)
 
@@ -8,7 +13,7 @@ asdf 是个多版本自动管理工具，可在同一台机器上同时安装管
 
 ## 安装
 
-> 本文主推 Mac 环境
+> 本文为 Mac 环境
 
 ::: code-group
 

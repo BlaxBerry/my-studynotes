@@ -22,8 +22,8 @@ export default [
         link: `${PATH}/node-js/web-frameworks/express-js/`,
       },
       {
-        text: "Fresh",
-        link: `${PATH}/deno/web-frameworks/fresh/`,
+        text: "Nest.js",
+        link: `${PATH}/node-js/web-frameworks/nest-js/`,
       },
       { text: "Django", link: `${PATH}/python/web-frameworks/django/` },
       { text: "Gin", link: `${PATH}/golang/web-frameworks/gin/` },

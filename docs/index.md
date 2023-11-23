@@ -24,10 +24,10 @@ hero:
     #   link: /notes/web-others/
 
 features:
-  - title: Express.js
+  - title: Nest.js
     icon:
-      src: /svgs/express-js.svg
-    link: /notes/web-back-end/node-js/web-frameworks/express-js/
+      src: /svgs/nest-js.svg
+    link: /notes/web-back-end/node-js/web-frameworks/nest-js/
   - title: Nuxt.js
     icon:
       src: /svgs/nuxt-js.svg
